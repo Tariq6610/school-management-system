@@ -220,7 +220,7 @@ export function BulkInvoiceModal({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-2 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-600 transition-colors"
+            className="rounded-lg p-2 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
             aria-label="Close"
           >
             ✕
@@ -325,15 +325,15 @@ export function BulkInvoiceModal({
                     <button
                       type="button"
                       onClick={handleSelectAllStructures}
-                      className="text-xs font-semibold text-purple-700 hover:text-purple-900"
+                      className="text-xs font-semibold text-purple-700 hover:text-purple-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
                     >
                       Select All
                     </button>
-                    <span className="text-neutral-300">|</span>
+                    <span className="text-neutral-500">|</span>
                     <button
                       type="button"
                       onClick={handleClearAllStructures}
-                      className="text-xs font-semibold text-neutral-500 hover:text-neutral-800"
+                      className="text-xs font-semibold text-neutral-500 hover:text-neutral-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
                     >
                       Clear
                     </button>
@@ -371,7 +371,7 @@ export function BulkInvoiceModal({
                             <span className="text-2xs text-neutral-500 capitalize">
                               {structure.frequency}
                             </span>
-                            <span className="text-2xs text-neutral-400">•</span>
+                            <span className="text-2xs text-neutral-500">•</span>
                             <span className="text-2xs text-purple-700">
                               {structure.appliesToClassIds.length} classes
                             </span>
@@ -522,7 +522,7 @@ export function BulkInvoiceModal({
                     <tbody className="divide-y divide-neutral-200 bg-white">
                       {filteredPreviewItems.length === 0 ? (
                         <tr>
-                          <td colSpan={7} className="px-4 py-8 text-center text-neutral-400">
+                          <td colSpan={7} className="px-4 py-8 text-center text-neutral-500">
                             No preview records match your search or filter criteria.
                           </td>
                         </tr>
@@ -536,13 +536,13 @@ export function BulkInvoiceModal({
                               <div className="font-semibold text-neutral-900">
                                 {item.studentName}
                               </div>
-                              <div className="text-2xs text-neutral-400 font-mono">
+                              <div className="text-2xs text-neutral-500 font-mono">
                                 {item.admissionNumber}
                               </div>
                             </td>
                             <td className="px-3.5 py-2">
                               <div className="text-neutral-800 font-medium">{item.className}</div>
-                              <div className="text-2xs text-neutral-400">{item.campusName}</div>
+                              <div className="text-2xs text-neutral-500">{item.campusName}</div>
                             </td>
                             <td className="px-3.5 py-2">
                               <span className="font-medium text-neutral-900">
@@ -558,7 +558,7 @@ export function BulkInvoiceModal({
                                   -{formatCurrency(item.discountAmount)}
                                 </span>
                               ) : (
-                                <span className="text-neutral-400">—</span>
+                                <span className="text-neutral-500">—</span>
                               )}
                             </td>
                             <td className="px-3.5 py-2 text-right tabular-nums font-bold text-neutral-900">

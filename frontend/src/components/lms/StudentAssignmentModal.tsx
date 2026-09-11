@@ -282,7 +282,7 @@ function StudentAssignmentForm({
               </div>
             </div>
           ) : (
-            <p className="text-xs text-neutral-400 italic">No written text provided.</p>
+            <p className="text-xs text-neutral-500 italic">No written text provided.</p>
           )}
 
           {/* Attached File */}
@@ -335,7 +335,7 @@ function StudentAssignmentForm({
               <label className="block text-xs font-semibold text-neutral-800">
                 Written Response / Solution Text
               </label>
-              <span className="text-[11px] text-neutral-400">Rich text / markdown supported</span>
+              <span className="text-[11px] text-neutral-500">Rich text / markdown supported</span>
             </div>
             <textarea
               value={body}
@@ -350,9 +350,9 @@ function StudentAssignmentForm({
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <label className="block text-xs font-semibold text-neutral-800">
-                Uploaded File Attachment <span className="text-neutral-400 font-normal">(PDF, DOCX, ZIP)</span>
+                Uploaded File Attachment <span className="text-neutral-500 font-normal">(PDF, DOCX, ZIP)</span>
               </label>
-              <span className="text-[11px] text-neutral-400">Prototype file placeholder</span>
+              <span className="text-[11px] text-neutral-500">Prototype file placeholder</span>
             </div>
 
             <div className="flex items-center gap-2">
@@ -367,7 +367,7 @@ function StudentAssignmentForm({
                 <button
                   type="button"
                   onClick={() => setFileName('')}
-                  className="px-2 py-2 text-xs text-neutral-400 hover:text-rose-600"
+                  className="px-2 py-2 text-xs text-neutral-500 hover:text-rose-600"
                   title="Clear file"
                 >
                   Clear

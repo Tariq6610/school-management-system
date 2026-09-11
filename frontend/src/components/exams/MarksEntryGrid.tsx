@@ -487,7 +487,7 @@ export function MarksEntryGrid({ examId, initialData, onSaved }: MarksEntryGridP
 
   if (loading) {
     return (
-      <div className="p-8 max-w-6xl mx-auto space-y-6 animate-pulse">
+      <div className="p-8 max-w-6xl mx-auto space-y-6 motion-safe:animate-pulse">
         <div className="h-8 bg-neutral-200 rounded w-1/3" />
         <div className="h-24 bg-neutral-100 rounded-xl" />
         <div className="h-96 bg-neutral-100 rounded-xl" />
@@ -517,9 +517,9 @@ export function MarksEntryGrid({ examId, initialData, onSaved }: MarksEntryGridP
           <Link href="/admin/exams" className="hover:text-neutral-900 transition-colors">
             Exams
           </Link>
-          <span className="text-neutral-400">/</span>
+          <span className="text-neutral-500">/</span>
           <span className="font-semibold text-neutral-900">{data.exam.name}</span>
-          <span className="text-neutral-400">/</span>
+          <span className="text-neutral-500">/</span>
           <span className="text-neutral-500">Marks Entry</span>
         </div>
 
@@ -527,8 +527,8 @@ export function MarksEntryGrid({ examId, initialData, onSaved }: MarksEntryGridP
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
             {autosaveStatus === 'saving' && (
-              <span className="inline-flex items-center gap-1.5 text-xs font-medium text-amber-700 bg-amber-50 border border-amber-200 px-2.5 py-1 rounded-full animate-pulse">
-                <span className="w-2 h-2 rounded-full bg-amber-500 animate-ping" />
+              <span className="inline-flex items-center gap-1.5 text-xs font-medium text-amber-700 bg-amber-50 border border-amber-200 px-2.5 py-1 rounded-full motion-safe:animate-pulse">
+                <span className="w-2 h-2 rounded-full bg-amber-500 motion-safe:animate-ping" />
                 Autosaving draft...
               </span>
             )}
@@ -616,7 +616,7 @@ export function MarksEntryGrid({ examId, initialData, onSaved }: MarksEntryGridP
         <div className="bg-white border border-neutral-200 rounded-xl p-3.5 shadow-xs">
           <span className="text-xs text-neutral-500 font-medium block">Marks Entered</span>
           <span className="text-xl font-bold text-emerald-700 font-mono mt-0.5 block">
-            {stats.entered} <span className="text-xs font-normal text-neutral-400">/ {stats.total}</span>
+            {stats.entered} <span className="text-xs font-normal text-neutral-500">/ {stats.total}</span>
           </span>
         </div>
 
@@ -637,7 +637,7 @@ export function MarksEntryGrid({ examId, initialData, onSaved }: MarksEntryGridP
         <div className="bg-white border border-neutral-200 rounded-xl p-3.5 shadow-xs">
           <span className="text-xs text-neutral-500 font-medium block">Highest Score</span>
           <span className="text-xl font-bold text-indigo-700 font-mono mt-0.5 block">
-            {stats.highest} <span className="text-xs font-normal text-neutral-400">/ {data.maxMarks}</span>
+            {stats.highest} <span className="text-xs font-normal text-neutral-500">/ {data.maxMarks}</span>
           </span>
         </div>
 
@@ -679,14 +679,14 @@ export function MarksEntryGrid({ examId, initialData, onSaved }: MarksEntryGridP
           <button
             type="button"
             onClick={handleMarkRemainingAbsent}
-            className="px-2.5 py-1 text-xs font-medium text-neutral-700 bg-white border border-neutral-300 hover:bg-neutral-100 rounded-md transition-colors"
+            className="px-2.5 py-1 text-xs font-medium text-neutral-700 bg-white border border-neutral-300 hover:bg-neutral-100 rounded-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
           >
             Mark Unentered as Absent
           </button>
           <button
             type="button"
             onClick={handleFillSampleMarks}
-            className="px-2.5 py-1 text-xs font-medium text-purple-700 bg-purple-50 border border-purple-200 hover:bg-purple-100 rounded-md transition-colors"
+            className="px-2.5 py-1 text-xs font-medium text-purple-700 bg-purple-50 border border-purple-200 hover:bg-purple-100 rounded-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
           >
             ✨ Fill Demo Scores
           </button>
@@ -714,7 +714,7 @@ export function MarksEntryGrid({ examId, initialData, onSaved }: MarksEntryGridP
                 <th className="py-3 px-4">Student Name</th>
                 <th className="py-3 px-4 w-32">Admission No</th>
                 <th className="py-3 px-4 w-44 text-center">
-                  Marks Obtained <span className="text-neutral-400 font-normal">/ {data.maxMarks}</span>
+                  Marks Obtained <span className="text-neutral-500 font-normal">/ {data.maxMarks}</span>
                 </th>
                 <th className="py-3 px-4 w-24 text-center">Percentage</th>
                 <th className="py-3 px-4 w-20 text-center">Grade</th>
@@ -750,7 +750,7 @@ export function MarksEntryGrid({ examId, initialData, onSaved }: MarksEntryGridP
                       } ${state.isOverMax ? 'bg-red-50/40' : ''}`}
                     >
                       {/* Row Index */}
-                      <td className="py-2.5 px-4 text-center text-xs font-mono text-neutral-400">
+                      <td className="py-2.5 px-4 text-center text-xs font-mono text-neutral-500">
                         {index + 1}
                       </td>
 
@@ -800,7 +800,7 @@ export function MarksEntryGrid({ examId, initialData, onSaved }: MarksEntryGridP
                                 ? 'bg-neutral-100 border border-neutral-300 text-neutral-500 cursor-not-allowed font-sans text-xs'
                                 : hasValidMark
                                 ? 'bg-white border border-neutral-300 text-neutral-900 focus:border-purple-600 focus:ring-2 focus:ring-purple-200'
-                                : 'bg-white border border-neutral-300 text-neutral-400 focus:border-purple-600 focus:ring-2 focus:ring-purple-200'
+                                : 'bg-white border border-neutral-300 text-neutral-500 focus:border-purple-600 focus:ring-2 focus:ring-purple-200'
                             }`}
                           />
 
@@ -808,7 +808,7 @@ export function MarksEntryGrid({ examId, initialData, onSaved }: MarksEntryGridP
                           {state.isOverMax && (
                             <div
                               role="alert"
-                              className="absolute top-10 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap bg-red-600 text-white text-2xs font-bold py-0.5 px-2 rounded shadow-md pointer-events-none animate-bounce"
+                              className="absolute top-10 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap bg-red-600 text-white text-2xs font-bold py-0.5 px-2 rounded shadow-md pointer-events-none motion-safe:animate-bounce"
                             >
                               ⚠️ {state.errorMessage || `Max is ${data.maxMarks}`}
                             </div>
@@ -824,7 +824,7 @@ export function MarksEntryGrid({ examId, initialData, onSaved }: MarksEntryGridP
                       {/* Real-time Dynamic Grade Badge */}
                       <td className="py-2.5 px-4 text-center">
                         {state.isAbsent ? (
-                          <span className="text-xs text-neutral-400 font-mono">—</span>
+                          <span className="text-xs text-neutral-500 font-mono">—</span>
                         ) : gradeObj ? (
                           <span
                             className={`inline-block px-2 py-0.5 rounded font-mono font-bold text-xs ${
@@ -836,7 +836,7 @@ export function MarksEntryGrid({ examId, initialData, onSaved }: MarksEntryGridP
                             {gradeObj.grade}
                           </span>
                         ) : (
-                          <span className="text-xs text-neutral-400 font-mono">—</span>
+                          <span className="text-xs text-neutral-500 font-mono">—</span>
                         )}
                       </td>
 
@@ -849,7 +849,7 @@ export function MarksEntryGrid({ examId, initialData, onSaved }: MarksEntryGridP
                             value={state.remarks}
                             onChange={(e) => handleRemarksChange(row.studentId, e.target.value)}
                             disabled={state.isAbsent}
-                            className="w-full h-8 px-2.5 text-xs rounded-md border border-neutral-200 bg-white text-neutral-800 placeholder:text-neutral-400 focus:outline-hidden focus:border-purple-500 focus:ring-1 focus:ring-purple-200"
+                            className="w-full h-8 px-2.5 text-xs rounded-md border border-neutral-200 bg-white text-neutral-800 placeholder:text-neutral-500 focus:outline-hidden focus:border-purple-500 focus:ring-1 focus:ring-purple-200"
                           />
                           <button
                             type="button"

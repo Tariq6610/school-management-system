@@ -66,7 +66,7 @@ export default function TeacherCourseLessonsPage({ params }: PageProps) {
 
           {/* Hero Banner with Course Details */}
           {loading ? (
-            <div className="h-36 rounded-2xl bg-neutral-100 border border-neutral-200 animate-pulse" />
+            <div className="h-36 rounded-2xl bg-neutral-100 border border-neutral-200 motion-safe:animate-pulse" />
           ) : course ? (
             <div
               className="rounded-2xl p-6 text-white relative overflow-hidden shadow-sm"

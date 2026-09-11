@@ -324,7 +324,7 @@ export function ParentDashboardView({
                 </div>
 
                 {!childData || childData.homework.items.length === 0 ? (
-                  <p className="py-6 text-center text-xs text-neutral-400">
+                  <p className="py-6 text-center text-xs text-neutral-500">
                     No pending homework assignments at this time. All coursework is up to date!
                   </p>
                 ) : (
@@ -442,19 +442,19 @@ export function ParentDashboardView({
 
                 <div className="grid grid-cols-3 gap-2 pt-4 border-t border-neutral-100 text-xs">
                   <div className="p-2.5 rounded-lg bg-neutral-50 border border-neutral-200/50">
-                    <span className="text-neutral-400 block">Total Billed</span>
+                    <span className="text-neutral-500 block">Total Billed</span>
                     <span className="font-mono font-bold text-neutral-900">
                       {formatCurrency(feesOverview.totalInvoiced)}
                     </span>
                   </div>
                   <div className="p-2.5 rounded-lg bg-neutral-50 border border-neutral-200/50">
-                    <span className="text-neutral-400 block">Scholarship</span>
+                    <span className="text-neutral-500 block">Scholarship</span>
                     <span className="font-mono font-bold text-purple-700">
                       {feesOverview.totalDiscounts > 0 ? formatCurrency(feesOverview.totalDiscounts) : '0'}
                     </span>
                   </div>
                   <div className="p-2.5 rounded-lg bg-neutral-50 border border-neutral-200/50">
-                    <span className="text-neutral-400 block">Paid</span>
+                    <span className="text-neutral-500 block">Paid</span>
                     <span className="font-mono font-bold text-emerald-700">
                       {formatCurrency(feesOverview.totalPaid)}
                     </span>

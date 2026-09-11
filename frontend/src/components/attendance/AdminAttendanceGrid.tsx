@@ -113,7 +113,7 @@ export function AdminAttendanceGrid({
                             👤 {row.teacherName}
                           </span>
                           {row.teacherEmployeeNumber && (
-                            <span className="text-[11px] text-neutral-400">
+                            <span className="text-[11px] text-neutral-500">
                               ({row.teacherEmployeeNumber})
                             </span>
                           )}
@@ -124,7 +124,7 @@ export function AdminAttendanceGrid({
                         </span>
                       )}
                     </div>
-                    <div className="text-[11px] text-neutral-400 mt-0.5">
+                    <div className="text-[11px] text-neutral-500 mt-0.5">
                       {row.totalStudents} enrolled students
                     </div>
                   </div>
@@ -139,7 +139,7 @@ export function AdminAttendanceGrid({
                     return (
                       <td
                         key={date}
-                        className="border-r border-neutral-200 px-3 py-3 text-center text-xs text-neutral-300"
+                        className="border-r border-neutral-200 px-3 py-3 text-center text-xs text-neutral-500"
                       >
                         —
                       </td>
@@ -164,7 +164,7 @@ export function AdminAttendanceGrid({
                         >
                           <div className="flex flex-col items-center gap-1">
                             <span className="inline-flex items-center gap-1 rounded-full bg-amber-300 px-2 py-0.5 text-[11px] font-black text-amber-950 border border-amber-400">
-                              <span className="h-1.5 w-1.5 rounded-full bg-amber-600 animate-ping" />
+                              <span className="h-1.5 w-1.5 rounded-full bg-amber-600 motion-safe:animate-ping" />
                               Needs Marking
                             </span>
                             <span className="text-[10px] font-bold text-amber-900 group-hover:underline">
@@ -183,11 +183,11 @@ export function AdminAttendanceGrid({
                         key={date}
                         className="border-r border-neutral-200 p-2 text-center"
                       >
-                        <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-neutral-200 bg-neutral-50/60 p-2.5 text-xs text-neutral-400">
+                        <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-neutral-200 bg-neutral-50/60 p-2.5 text-xs text-neutral-500">
                           <span className="text-[11px] font-medium text-neutral-500">
                             {isToday ? 'Pre-cutoff' : 'Pending'}
                           </span>
-                          <span className="text-[10px] text-neutral-400">
+                          <span className="text-[10px] text-neutral-500">
                             {isToday ? `Due by ${cutoffTime}` : 'Upcoming'}
                           </span>
                         </div>

@@ -301,7 +301,7 @@ function TeacherGradingContent({
                         Roll: {item.rollNumber || '—'} • Adm: {item.admissionNumber || '—'}
                       </span>
                       {item.submission && (
-                        <span className="text-[10px] text-neutral-400">
+                        <span className="text-[10px] text-neutral-500">
                           {formatDateTime(item.submission.submittedAt)}
                         </span>
                       )}
@@ -322,7 +322,7 @@ function TeacherGradingContent({
                 onSave={handleSaveGrade}
               />
             ) : (
-              <div className="h-64 flex flex-col items-center justify-center text-neutral-400 text-xs">
+              <div className="h-64 flex flex-col items-center justify-center text-neutral-500 text-xs">
                 <p>Select a student from the list to review and grade.</p>
               </div>
             )}
@@ -426,7 +426,7 @@ function StudentEvaluationPane({
             </span>
           )}
         </div>
-        <p className="text-[10px] text-neutral-400 mt-1">
+        <p className="text-[10px] text-neutral-500 mt-1">
           Submitted on: {formatDateTime(submission.submittedAt)}
         </p>
       </div>
@@ -461,7 +461,7 @@ function StudentEvaluationPane({
               <p className="text-xs font-semibold text-neutral-800 truncate">
                 {submission.fileName}
               </p>
-              <p className="text-[10px] text-neutral-400">Attached student document</p>
+              <p className="text-[10px] text-neutral-500">Attached student document</p>
             </div>
             <span className="text-[10px] font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">
               File Ready
@@ -470,7 +470,7 @@ function StudentEvaluationPane({
         ) : null}
 
         {!submission.body && !submission.fileName && (
-          <p className="text-xs text-neutral-400 italic">No text or file attachments found.</p>
+          <p className="text-xs text-neutral-500 italic">No text or file attachments found.</p>
         )}
       </div>
 
@@ -486,7 +486,7 @@ function StudentEvaluationPane({
             htmlFor="teacher-marks-input"
             className="block text-xs font-semibold text-neutral-700 mb-1"
           >
-            Marks Awarded <span className="text-neutral-400">(Max: {assignment.maxMarks} pts)</span>
+            Marks Awarded <span className="text-neutral-500">(Max: {assignment.maxMarks} pts)</span>
           </label>
           <div className="flex items-center gap-2">
             <input

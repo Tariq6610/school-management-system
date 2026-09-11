@@ -168,7 +168,7 @@ function AssignmentForm({
       <div>
         <div className="flex items-center justify-between mb-1">
           <label className="block text-xs font-semibold text-neutral-800">
-            Linked Curriculum Lesson <span className="text-neutral-400 font-normal">(Optional)</span>
+            Linked Curriculum Lesson <span className="text-neutral-500 font-normal">(Optional)</span>
           </label>
           <span className="text-[11px] text-neutral-500">
             {lessonId ? 'Attached to lesson unit' : 'General course assignment'}
@@ -225,7 +225,7 @@ function AssignmentForm({
               className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-600/30 focus:border-purple-600 transition-colors bg-white font-mono text-xs"
               required
             />
-            <span className="absolute right-3.5 top-2.5 text-xs text-neutral-400 pointer-events-none">
+            <span className="absolute right-3.5 top-2.5 text-xs text-neutral-500 pointer-events-none">
               pts
             </span>
           </div>

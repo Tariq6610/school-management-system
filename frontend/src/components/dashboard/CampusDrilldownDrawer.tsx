@@ -58,7 +58,7 @@ export function CampusDrilldownDrawer({
             </p>
           </div>
           <div className="text-right">
-            <span className="text-xs text-gray-400 block">Campus Code</span>
+            <span className="text-xs text-gray-500 block">Campus Code</span>
             <span className="text-sm font-mono font-bold text-gray-800">{campus.campusCode}</span>
           </div>
         </div>
@@ -93,7 +93,7 @@ export function CampusDrilldownDrawer({
             <span className="text-lg font-bold text-gray-900 tabular-nums">
               {campus.studentsCount}
             </span>
-            <span className="text-[10px] text-gray-400 block">Active Students</span>
+            <span className="text-[10px] text-gray-500 block">Active Students</span>
           </div>
 
           <div className="p-3 rounded-lg border border-gray-100 bg-gray-50">
@@ -101,7 +101,7 @@ export function CampusDrilldownDrawer({
             <span className="text-lg font-bold text-gray-900 tabular-nums">
               {campus.teacherCount}
             </span>
-            <span className="text-[10px] text-gray-400 block">Teachers</span>
+            <span className="text-[10px] text-gray-500 block">Teachers</span>
           </div>
 
           <div className="p-3 rounded-lg border border-gray-100 bg-gray-50">
@@ -109,7 +109,7 @@ export function CampusDrilldownDrawer({
             <span className="text-lg font-bold text-gray-900 tabular-nums">
               {campus.classesCount}
             </span>
-            <span className="text-[10px] text-gray-400 block">Active Classes</span>
+            <span className="text-[10px] text-gray-500 block">Active Classes</span>
           </div>
 
           <div className="p-3 rounded-lg border border-gray-100 bg-gray-50">
@@ -117,7 +117,7 @@ export function CampusDrilldownDrawer({
             <span className="text-lg font-bold text-gray-900 tabular-nums">
               {campus.studentTeacherRatio}:1
             </span>
-            <span className="text-[10px] text-gray-400 block">Students / Teacher</span>
+            <span className="text-[10px] text-gray-500 block">Students / Teacher</span>
           </div>
         </div>
 
@@ -167,19 +167,19 @@ export function CampusDrilldownDrawer({
 
           <div className="grid grid-cols-3 gap-2 pt-2 border-t border-gray-100 text-xs">
             <div>
-              <span className="text-gray-400 block">Total Billed</span>
+              <span className="text-gray-500 block">Total Billed</span>
               <span className="font-semibold text-gray-900">
                 PKR {campus.totalFeeBilled.toLocaleString('en-PK')}
               </span>
             </div>
             <div>
-              <span className="text-gray-400 block">Collected</span>
+              <span className="text-gray-500 block">Collected</span>
               <span className="font-semibold text-emerald-600">
                 PKR {campus.totalFeeCollected.toLocaleString('en-PK')}
               </span>
             </div>
             <div>
-              <span className="text-gray-400 block">Pending</span>
+              <span className="text-gray-500 block">Pending</span>
               <span className="font-semibold text-red-600">
                 PKR {campus.pendingFeeAmount.toLocaleString('en-PK')}
               </span>

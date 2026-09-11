@@ -127,7 +127,7 @@ export function RecordPaymentModal({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-2 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-600 transition-colors"
+            className="rounded-lg p-2 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
             aria-label="Close"
           >
             ✕
@@ -159,7 +159,7 @@ export function RecordPaymentModal({
             </div>
 
             <div className="relative">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-xs font-bold text-neutral-400">
+              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-xs font-bold text-neutral-500">
                 PKR
               </span>
               <input
@@ -215,7 +215,7 @@ export function RecordPaymentModal({
               {method !== 'cash' ? (
                 <span className="text-rose-500">*</span>
               ) : (
-                <span className="text-neutral-400 font-normal">(Optional)</span>
+                <span className="text-neutral-500 font-normal">(Optional)</span>
               )}
             </label>
             <input

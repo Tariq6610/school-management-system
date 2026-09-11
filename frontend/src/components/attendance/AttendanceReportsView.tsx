@@ -531,7 +531,7 @@ export function AttendanceReportsView({ initialScope }: AttendanceReportsViewPro
             </div>
 
             {/* Roster Table */}
-            <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xs">
+            <div className="overflow-x-auto overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xs">
               <div className="flex items-center justify-between border-b border-neutral-200 bg-neutral-50 px-4 py-3">
                 <span className="font-bold text-sm text-neutral-900">
                   Student Roster Attendance Breakdown ({formatDate(startDate, 'short')} – {formatDate(endDate, 'short')})
@@ -623,7 +623,7 @@ export function AttendanceReportsView({ initialScope }: AttendanceReportsViewPro
             </div>
 
             {/* Daily Trend Table */}
-            <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xs">
+            <div className="overflow-x-auto overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xs">
               <div className="flex items-center justify-between border-b border-neutral-200 bg-neutral-50 px-4 py-3">
                 <span className="font-bold text-sm text-neutral-900">
                   Daily School Attendance Log ({formatDate(startDate, 'short')} – {formatDate(endDate, 'short')})
@@ -746,7 +746,7 @@ export function AttendanceReportsView({ initialScope }: AttendanceReportsViewPro
             </div>
 
             {/* Daily History Table */}
-            <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xs">
+            <div className="overflow-x-auto overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xs">
               <div className="flex items-center justify-between border-b border-neutral-200 bg-neutral-50 px-4 py-3">
                 <span className="font-bold text-sm text-neutral-900">
                   Chronological Daily Attendance History ({formatDate(startDate, 'short')} – {formatDate(endDate, 'short')})

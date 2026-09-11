@@ -523,7 +523,7 @@ export function StudentDirectory() {
           {hasActiveFilters && (
             <button
               onClick={handleClearFilters}
-              className="text-xs text-brand-700 hover:text-brand-900 font-medium underline"
+              className="text-xs text-brand-700 hover:text-brand-900 font-medium underline focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
             >
               Reset All Filters
             </button>

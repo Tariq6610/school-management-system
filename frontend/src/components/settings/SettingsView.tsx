@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { GradingScaleEditor } from './GradingScaleEditor';
 import { PeriodConfigurationEditor } from './PeriodConfigurationEditor';
+import { AttendanceSettingsEditor } from './AttendanceSettingsEditor';
+import { BrandingSettingsEditor } from './BrandingSettingsEditor';
 
 type SettingsTab = 'grading' | 'timetable' | 'attendance' | 'branding';
 
@@ -76,23 +78,9 @@ export function SettingsView() {
 
       {activeTab === 'timetable' && <PeriodConfigurationEditor />}
 
-      {activeTab === 'attendance' && (
-        <div className="bg-white border border-neutral-200 rounded-xl p-6 shadow-xs space-y-4">
-          <h2 className="text-lg font-bold text-neutral-900">Attendance Policies</h2>
-          <p className="text-sm text-neutral-600">
-            Attendance edit window is set to <strong>48 hours</strong>. Daily morning attendance cutoff time is set to <strong>08:30 AM</strong>.
-          </p>
-        </div>
-      )}
+      {activeTab === 'attendance' && <AttendanceSettingsEditor />}
 
-      {activeTab === 'branding' && (
-        <div className="bg-white border border-neutral-200 rounded-xl p-6 shadow-xs space-y-4">
-          <h2 className="text-lg font-bold text-neutral-900">Institution Branding</h2>
-          <p className="text-sm text-neutral-600">
-            Default school network currency is set to <strong>PKR</strong>. Institutional theme colors are configured in theme tokens.
-          </p>
-        </div>
-      )}
+      {activeTab === 'branding' && <BrandingSettingsEditor />}
     </div>
   );
 }

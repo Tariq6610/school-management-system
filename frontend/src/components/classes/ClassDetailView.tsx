@@ -393,7 +393,7 @@ export function ClassDetailView({
       accessor: (s) => {
         const allergies = s.health?.allergies ?? [];
         if (allergies.length === 0) {
-          return <span className="text-xs text-neutral-400">None reported</span>;
+          return <span className="text-xs text-neutral-500">None reported</span>;
         }
         return (
           <div className="flex flex-wrap items-center gap-1.5" data-testid="allergy-alert">

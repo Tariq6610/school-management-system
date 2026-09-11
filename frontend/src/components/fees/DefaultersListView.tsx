@@ -277,7 +277,7 @@ export function DefaultersListView({
             >
               ← Back to Invoices
             </Link>
-            <span className="text-xs text-neutral-400">•</span>
+            <span className="text-xs text-neutral-500">•</span>
             <Link
               href="/admin/fees/structures"
               className="text-xs font-semibold text-neutral-600 hover:text-neutral-900"

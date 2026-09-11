@@ -104,7 +104,7 @@ export function InvoicesTable({
                       <div className="font-semibold text-neutral-900 hover:text-purple-700">
                         {studentName}
                       </div>
-                      <div className="text-2xs text-neutral-400 font-mono">
+                      <div className="text-2xs text-neutral-500 font-mono">
                         {student?.admissionNumber || '—'}
                       </div>
                     </div>
@@ -116,7 +116,7 @@ export function InvoicesTable({
                   <div className="text-neutral-800 font-medium">
                     {cls ? `${cls.grade} - ${cls.section}` : 'Class —'}
                   </div>
-                  <div className="text-2xs text-neutral-400">{campus?.name || 'Main Campus'}</div>
+                  <div className="text-2xs text-neutral-500">{campus?.name || 'Main Campus'}</div>
                 </td>
 
                 {/* Fee Structure */}
@@ -153,7 +153,7 @@ export function InvoicesTable({
                       {formatCurrency(balanceDue)}
                     </span>
                   ) : (
-                    <span className="text-neutral-400 font-normal">PKR 0</span>
+                    <span className="text-neutral-500 font-normal">PKR 0</span>
                   )}
                 </td>
 

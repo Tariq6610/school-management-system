@@ -61,7 +61,7 @@ export function ClassAttendanceCard({
 
           {/* Status Badge */}
           {!isMarked ? (
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300 animate-pulse">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300 motion-safe:animate-pulse">
               <span className="w-2 h-2 rounded-full bg-amber-500" />
               Needs Marking
             </span>
@@ -106,7 +106,7 @@ export function ClassAttendanceCard({
             </div>
 
             {attendanceDay?.markedAt && (
-              <p className="text-[11px] text-neutral-400 mt-0.5">
+              <p className="text-[11px] text-neutral-500 mt-0.5">
                 Marked on {formatDateTime(attendanceDay.markedAt)}
               </p>
             )}

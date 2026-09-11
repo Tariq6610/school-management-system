@@ -117,7 +117,7 @@ export function StudentCoursesView({
             className="w-full text-xs sm:text-sm border border-neutral-300 rounded-xl py-2 px-3 pl-9 bg-white text-neutral-900 focus:outline-none focus:ring-2 focus:ring-purple-500 shadow-xs"
           />
           <svg
-            className="w-4 h-4 text-neutral-400 absolute left-3 top-2.5"
+            className="w-4 h-4 text-neutral-500 absolute left-3 top-2.5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -134,7 +134,7 @@ export function StudentCoursesView({
 
       {/* Courses Grid */}
       {loading ? (
-        <div className="bg-white border border-neutral-200 rounded-2xl p-12 text-center text-neutral-500 shadow-xs animate-pulse">
+        <div className="bg-white border border-neutral-200 rounded-2xl p-12 text-center text-neutral-500 shadow-xs motion-safe:animate-pulse">
           Loading your enrolled courses...
         </div>
       ) : filteredCourses.length === 0 ? (

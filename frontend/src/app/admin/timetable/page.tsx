@@ -192,7 +192,7 @@ function AdminTimetableContent() {
             </p>
 
             {loading ? (
-              <div className="p-6 text-center text-neutral-500 animate-pulse">
+              <div className="p-6 text-center text-neutral-500 motion-safe:animate-pulse">
                 Loading schedule directory...
               </div>
             ) : classes.length === 0 ? (

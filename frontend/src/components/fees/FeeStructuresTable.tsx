@@ -32,7 +32,7 @@ export function FeeStructuresTable({
 
   if (isLoading) {
     return (
-      <div className="py-16 text-center text-neutral-400">
+      <div className="py-16 text-center text-neutral-500">
         <p className="text-sm font-medium">Loading fee structures...</p>
       </div>
     );
@@ -79,7 +79,7 @@ export function FeeStructuresTable({
                   {/* Name and ID */}
                   <td className="py-3.5 px-4">
                     <div className="font-bold text-neutral-900 text-sm">{fs.name}</div>
-                    <div className="font-mono text-[10px] text-neutral-400 mt-0.5">
+                    <div className="font-mono text-[10px] text-neutral-500 mt-0.5">
                       ID: {fs.id}
                     </div>
                   </td>
@@ -121,7 +121,7 @@ export function FeeStructuresTable({
                     <span className="font-bold text-neutral-900 font-mono text-sm">
                       {formatCurrency(fs.amount)}
                     </span>
-                    <span className="text-[10px] text-neutral-400 block font-sans">
+                    <span className="text-[10px] text-neutral-500 block font-sans">
                       per student / cycle
                     </span>
                   </td>
@@ -129,7 +129,7 @@ export function FeeStructuresTable({
                   {/* Applied Classes */}
                   <td className="py-3.5 px-4 max-w-xs">
                     {appliedClassNames.length === 0 ? (
-                      <span className="text-neutral-400 italic text-[11px]">None assigned</span>
+                      <span className="text-neutral-500 italic text-[11px]">None assigned</span>
                     ) : (
                       <div className="flex flex-wrap items-center gap-1">
                         {visibleClasses.map((cName, idx) => (
@@ -163,7 +163,7 @@ export function FeeStructuresTable({
                       <button
                         type="button"
                         onClick={() => onDelete(fs)}
-                        className="rounded-lg p-1.5 text-neutral-400 hover:text-rose-600 hover:bg-rose-50 transition-colors"
+                        className="rounded-lg p-1.5 text-neutral-500 hover:text-rose-600 hover:bg-rose-50 transition-colors"
                         title={`Delete ${fs.name}`}
                         aria-label={`Delete ${fs.name}`}
                       >

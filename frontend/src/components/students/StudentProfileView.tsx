@@ -362,7 +362,7 @@ export function StudentProfileView({
   if (isLoading) {
     return (
       <div className="max-w-5xl mx-auto space-y-6">
-        <div className="h-40 bg-surface rounded-card border border-rule animate-pulse p-6">
+        <div className="h-40 bg-surface rounded-card border border-rule motion-safe:animate-pulse p-6">
           <div className="flex gap-4">
             <div className="w-16 h-16 bg-ink-100 rounded-full"></div>
             <div className="space-y-2 flex-1">

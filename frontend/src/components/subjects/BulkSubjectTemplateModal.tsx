@@ -270,15 +270,15 @@ export function BulkSubjectTemplateModal({
             <button
               type="button"
               onClick={handleSelectAllInView}
-              className="text-brand-navy hover:underline font-medium"
+              className="text-brand-navy hover:underline font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
             >
               Select All in View
             </button>
-            <span className="text-neutral-300">|</span>
+            <span className="text-neutral-500">|</span>
             <button
               type="button"
               onClick={handleClearAll}
-              className="text-neutral-500 hover:text-neutral-800"
+              className="text-neutral-500 hover:text-neutral-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
             >
               Clear All
             </button>

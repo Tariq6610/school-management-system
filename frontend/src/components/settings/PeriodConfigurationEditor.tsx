@@ -260,7 +260,7 @@ export function PeriodConfigurationEditor({
 
   if (loading) {
     return (
-      <div className="bg-white border border-neutral-200 rounded-xl p-8 text-center text-neutral-500 animate-pulse">
+      <div className="bg-white border border-neutral-200 rounded-xl p-8 text-center text-neutral-500 motion-safe:animate-pulse">
         Loading period configurations...
       </div>
     );
@@ -282,7 +282,7 @@ export function PeriodConfigurationEditor({
         <div className="flex items-center gap-2">
           {hasUnsavedChanges && (
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-800 border border-amber-200">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 motion-safe:animate-pulse" />
               Unsaved changes
             </span>
           )}
@@ -517,7 +517,7 @@ export function PeriodConfigurationEditor({
                           onClick={() => handleMove(index, 'up')}
                           disabled={index === 0}
                           title="Move up"
-                          className="p-1 rounded text-neutral-400 hover:text-neutral-700 hover:bg-neutral-200 disabled:opacity-30 disabled:cursor-not-allowed"
+                          className="p-1 rounded text-neutral-500 hover:text-neutral-700 hover:bg-neutral-200 disabled:opacity-30 disabled:cursor-not-allowed"
                         >
                           ▲
                         </button>
@@ -526,7 +526,7 @@ export function PeriodConfigurationEditor({
                           onClick={() => handleMove(index, 'down')}
                           disabled={index === periods.length - 1}
                           title="Move down"
-                          className="p-1 rounded text-neutral-400 hover:text-neutral-700 hover:bg-neutral-200 disabled:opacity-30 disabled:cursor-not-allowed"
+                          className="p-1 rounded text-neutral-500 hover:text-neutral-700 hover:bg-neutral-200 disabled:opacity-30 disabled:cursor-not-allowed"
                         >
                           ▼
                         </button>

@@ -89,19 +89,19 @@ export function MessageList({
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Filter messages or contacts..."
-          className="w-full px-3 py-1.5 text-xs rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600 transition-all placeholder:text-neutral-400"
+          className="w-full px-3 py-1.5 text-xs rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600 transition-all placeholder:text-neutral-500"
         />
       </div>
 
       {/* Thread Items */}
       <div className="flex-1 overflow-y-auto divide-y divide-neutral-100">
         {loading ? (
-          <div className="p-8 text-center text-xs text-neutral-400">
+          <div className="p-8 text-center text-xs text-neutral-500">
             <div className="inline-block w-5 h-5 border-2 border-neutral-300 border-t-purple-600 rounded-full animate-spin mb-2" />
             <p>Loading conversations...</p>
           </div>
         ) : filteredThreads.length === 0 ? (
-          <div className="p-8 text-center text-xs text-neutral-400 space-y-2">
+          <div className="p-8 text-center text-xs text-neutral-500 space-y-2">
             <p>{search ? 'No conversations match your filter.' : 'No active conversations yet.'}</p>
             {!search && (
               <Button variant="secondary" size="sm" onClick={onOpenNew} className="text-xs">
@@ -152,7 +152,7 @@ export function MessageList({
                     >
                       {thread.otherUser.name}
                     </span>
-                    <span className="text-[10px] text-neutral-400 font-mono shrink-0">
+                    <span className="text-[10px] text-neutral-500 font-mono shrink-0">
                       {formatRelativeTime(thread.lastMessage.sentAt)}
                     </span>
                   </div>
@@ -165,7 +165,7 @@ export function MessageList({
                         {thread.studentContext.studentName}
                       </span>
                       {thread.studentContext.className && (
-                        <span className="text-neutral-400 ml-1">
+                        <span className="text-neutral-500 ml-1">
                           ({thread.studentContext.className})
                         </span>
                       )}
@@ -181,7 +181,7 @@ export function MessageList({
                           : 'text-neutral-500'
                       }`}
                     >
-                      {isOutgoing && <span className="text-neutral-400 mr-1">You:</span>}
+                      {isOutgoing && <span className="text-neutral-500 mr-1">You:</span>}
                       {thread.lastMessage.body}
                     </p>
 

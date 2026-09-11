@@ -281,7 +281,7 @@ export function LearningProfileView({
                 </div>
 
                 {/* Individual assessment points */}
-                <div className="flex items-center gap-1 mt-1 text-[10px] text-neutral-400 font-mono">
+                <div className="flex items-center gap-1 mt-1 text-[10px] text-neutral-500 font-mono">
                   {st.assessments.map((a, idx) => (
                     <span key={a.examId} className="hover:text-neutral-700">
                       {a.term.slice(0, 4)}: {a.percentage}%{idx < st.assessments.length - 1 ? ' → ' : ''}
@@ -347,15 +347,15 @@ export function LearningProfileView({
 
           <div className="grid grid-cols-3 gap-2 pt-3 border-t border-neutral-100 text-center text-xs">
             <div className="p-2 bg-neutral-50 rounded-lg">
-              <span className="text-neutral-400 block text-[10px]">Present</span>
+              <span className="text-neutral-500 block text-[10px]">Present</span>
               <span className="font-mono font-bold text-emerald-700">{data.attendanceTrend.presentCount}</span>
             </div>
             <div className="p-2 bg-neutral-50 rounded-lg">
-              <span className="text-neutral-400 block text-[10px]">Absent</span>
+              <span className="text-neutral-500 block text-[10px]">Absent</span>
               <span className="font-mono font-bold text-rose-700">{data.attendanceTrend.absentCount}</span>
             </div>
             <div className="p-2 bg-neutral-50 rounded-lg">
-              <span className="text-neutral-400 block text-[10px]">Late/Leave</span>
+              <span className="text-neutral-500 block text-[10px]">Late/Leave</span>
               <span className="font-mono font-bold text-amber-700">
                 {data.attendanceTrend.lateCount + data.attendanceTrend.leaveCount}
               </span>
@@ -401,7 +401,7 @@ export function LearningProfileView({
           <div className="space-y-2 mt-3">
             <span className="text-xs font-semibold text-neutral-600 block">Coursework Tasks:</span>
             {data.assignmentSummary.items.length === 0 ? (
-              <p className="text-xs text-neutral-400 py-3 text-center">No assignments recorded.</p>
+              <p className="text-xs text-neutral-500 py-3 text-center">No assignments recorded.</p>
             ) : (
               <div className="space-y-2 max-h-[190px] overflow-y-auto pr-1">
                 {data.assignmentSummary.items.slice(0, 5).map((item) => (
@@ -505,10 +505,10 @@ export function LearningProfileView({
 
         {/* Proposals List */}
         {filteredProposals.length === 0 ? (
-          <div className="py-12 text-center text-neutral-400 bg-neutral-50/50 rounded-2xl border border-dashed border-neutral-200">
+          <div className="py-12 text-center text-neutral-500 bg-neutral-50/50 rounded-2xl border border-dashed border-neutral-200">
             <span className="text-3xl block mb-2">📋</span>
             <p className="text-sm font-semibold text-neutral-700">No notes in this category</p>
-            <p className="text-xs text-neutral-400 mt-1">
+            <p className="text-xs text-neutral-500 mt-1">
               {!isTeacherView
                 ? 'Teacher validation is currently in progress. Confirmed notes will appear here.'
                 : 'All proposals have been validated or dismissed.'}
@@ -540,7 +540,7 @@ export function LearningProfileView({
               <button
                 type="button"
                 onClick={() => setShowAddModal(false)}
-                className="text-neutral-400 hover:text-neutral-700 text-lg font-bold"
+                className="text-neutral-500 hover:text-neutral-700 text-lg font-bold"
               >
                 ✕
               </button>

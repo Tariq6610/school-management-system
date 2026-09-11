@@ -75,12 +75,12 @@ function ParentAnnouncementsContent() {
             <span className="w-2 h-2 rounded-full bg-blue-500" />
             <span className="text-neutral-500">Showing announcements for:</span>
             <span className="font-bold text-neutral-900">{currentChildName}</span>
-            <span className="text-neutral-400 font-medium">
+            <span className="text-neutral-500 font-medium">
               (Roll: {activeChildStudent.rollNumber || 'N/A'})
             </span>
           </div>
 
-          <span className="text-[11px] text-neutral-400">
+          <span className="text-[11px] text-neutral-500">
             Use child switcher in header to change child
           </span>
         </div>

@@ -329,15 +329,15 @@ export function FeeStructureForm({
               <button
                 type="button"
                 onClick={handleSelectAllClasses}
-                className="text-xs font-semibold text-purple-700 hover:text-purple-900 transition-colors"
+                className="text-xs font-semibold text-purple-700 hover:text-purple-900 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
               >
                 Select All
               </button>
-              <span className="text-neutral-300">·</span>
+              <span className="text-neutral-500">·</span>
               <button
                 type="button"
                 onClick={handleClearAllClasses}
-                className="text-xs font-semibold text-neutral-500 hover:text-neutral-800 transition-colors"
+                className="text-xs font-semibold text-neutral-500 hover:text-neutral-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
               >
                 Clear
               </button>
@@ -355,7 +355,7 @@ export function FeeStructureForm({
             className="max-h-48 overflow-y-auto p-2.5 rounded-xl border border-neutral-200 bg-neutral-50/50 grid grid-cols-2 sm:grid-cols-3 gap-2"
           >
             {filteredClasses.length === 0 ? (
-              <p className="col-span-full py-4 text-center text-xs text-neutral-400">
+              <p className="col-span-full py-4 text-center text-xs text-neutral-500">
                 No classes found for the selected campus.
               </p>
             ) : (
@@ -379,7 +379,7 @@ export function FeeStructureForm({
                     <div className="truncate">
                       <span>Grade {cls.grade}-{cls.section}</span>
                       {!campusId && cls.campusId && (
-                        <span className="block text-[10px] font-normal text-neutral-400 truncate">
+                        <span className="block text-[10px] font-normal text-neutral-500 truncate">
                           {campuses.find((cmp) => cmp.id === cls.campusId)?.name ?? 'Main'}
                         </span>
                       )}

@@ -254,7 +254,7 @@ export function AdminAttendanceOverview({
                       className="inline-flex items-center gap-1.5 rounded-lg border border-amber-300 bg-white px-2.5 py-1 text-xs font-semibold text-neutral-900 shadow-2xs hover:bg-amber-100/60 hover:border-amber-400 transition-colors"
                     >
                       <span className="font-bold text-amber-900">{item.name}</span>
-                      <span className="text-neutral-400">·</span>
+                      <span className="text-neutral-500">·</span>
                       <span className="text-neutral-600">{item.teacher}</span>
                       <span className="text-amber-700 font-bold ml-1">Mark →</span>
                     </Link>
@@ -410,7 +410,7 @@ export function AdminAttendanceOverview({
             </span>
           </div>
 
-          <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xs">
+          <div className="overflow-x-auto overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xs">
             <table className="w-full border-collapse text-left text-sm">
               <thead className="border-b border-neutral-200 bg-neutral-50 text-xs font-bold text-neutral-700">
                 <tr>
@@ -452,7 +452,7 @@ export function AdminAttendanceOverview({
                               {row.teacherName}
                             </span>
                             {row.teacherEmail && (
-                              <span className="text-[11px] text-neutral-400">
+                              <span className="text-[11px] text-neutral-500">
                                 {row.teacherEmail}
                               </span>
                             )}
@@ -470,7 +470,7 @@ export function AdminAttendanceOverview({
                           </span>
                         ) : isOverdue ? (
                           <span className="inline-flex items-center gap-1 rounded-full bg-amber-200 px-2.5 py-0.5 text-[11px] font-black text-amber-950 border border-amber-400">
-                            <span className="h-1.5 w-1.5 rounded-full bg-amber-600 animate-ping" />
+                            <span className="h-1.5 w-1.5 rounded-full bg-amber-600 motion-safe:animate-ping" />
                             Needs Marking
                           </span>
                         ) : (
@@ -499,7 +499,7 @@ export function AdminAttendanceOverview({
                             </span>
                           </div>
                         ) : (
-                          <span className="text-neutral-400">—</span>
+                          <span className="text-neutral-500">—</span>
                         )}
                       </td>
                       <td className="px-4 py-3 text-right">

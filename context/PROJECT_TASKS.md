@@ -140,17 +140,17 @@ Do not start a task whose dependencies are not `Done`.
 | TASK-075 | Parent dashboard | P0 | 038 | Done | Attendance, homework, fees, next exam per child |
 | TASK-076 | **Student learning profile with teacher validation** | P1 | 052 | Done | Proposals pending until a teacher confirms; no auto-publish |
 | TASK-077 | **Parent engagement outreach list** | P1 | 067 | Done | Prompt list with "log a call". **No parent-visible score** |
-| TASK-078 | Health and pickup screens | P0 | 025 | Pending | Allergy alerts on the class roster |
+| TASK-078 | Health and pickup screens | P0 | 025 | Done | Allergy alerts on the class roster |
 
 ## M11 — Settings & Polish
 
 | ID | Task | Pri | Deps | Status | Acceptance |
 |---|---|---|---|---|---|
-| TASK-079 | Settings: general, academic, attendance, fees, branding | P0 | 018 | Pending | Grading scale and attendance statuses editable |
-| TASK-080 | Branding applied to portal, receipts, report cards | P1 | 079 | Pending | Logo and colours flow through |
-| TASK-081 | Full responsive pass at 360px | P0 | all | Pending | Every screen usable; no horizontal scroll |
-| TASK-082 | Accessibility pass | P0 | all | Pending | Focus, labels, contrast, reduced motion |
-| TASK-083 | Empty, loading and error states everywhere | P0 | 014 | Pending | No blank screens anywhere |
+| TASK-079 | Settings: general, academic, attendance, fees, branding | P0 | 018 | Done | Grading scale and attendance statuses editable |
+| TASK-080 | Branding applied to portal, receipts, report cards | P1 | 079 | Done | Logo and colours flow through |
+| TASK-081 | Full responsive pass at 360px | P0 | all | Done | Every screen usable; no horizontal scroll |
+| TASK-082 | Accessibility pass | P0 | all | Done | Focus, labels, contrast, reduced motion |
+| TASK-083 | Empty, loading and error states everywhere | P0 | 014 | Done | No blank screens anywhere |
 | TASK-084 | Demo rehearsal against DEMO_SCENARIOS.md | P0 | all | Pending | All seven workflows complete with no dead ends |
 
 ---

@@ -35,7 +35,7 @@ export function Skeleton({
     <div
       aria-hidden="true"
       style={style}
-      className={`bg-rule/70 animate-pulse shrink-0 ${roundedClass} ${className}`}
+      className={`bg-rule/70 motion-safe:animate-pulse shrink-0 ${roundedClass} ${className}`}
     />
   );
 }

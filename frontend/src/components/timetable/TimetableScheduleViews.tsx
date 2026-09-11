@@ -252,7 +252,7 @@ export function TimetableScheduleViews({
 
   if (loading) {
     return (
-      <div className="bg-white border border-neutral-200 rounded-2xl p-12 text-center text-neutral-500 shadow-xs animate-pulse">
+      <div className="bg-white border border-neutral-200 rounded-2xl p-12 text-center text-neutral-500 shadow-xs motion-safe:animate-pulse">
         Loading timetable schedules...
       </div>
     );
@@ -431,7 +431,7 @@ export function TimetableScheduleViews({
           <div className="text-left sm:text-right text-xs text-neutral-500 print:text-neutral-800">
             <p className="font-semibold text-neutral-900 print:text-black">Official Schedule</p>
             <p>Generated: {new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</p>
-            <p className="text-[11px] text-neutral-400 print:text-neutral-600">Confidential &bull; School Internal Use</p>
+            <p className="text-[11px] text-neutral-500 print:text-neutral-600">Confidential &bull; School Internal Use</p>
           </div>
         </div>
 
@@ -561,7 +561,7 @@ export function TimetableScheduleViews({
                               </div>
                             </div>
                           ) : (
-                            <div className="h-full flex items-center justify-center rounded-lg border border-dashed border-neutral-200 print:border-neutral-300 text-neutral-400 print:text-neutral-500 text-[10px] italic">
+                            <div className="h-full flex items-center justify-center rounded-lg border border-dashed border-neutral-200 print:border-neutral-300 text-neutral-500 print:text-neutral-500 text-[10px] italic">
                               {viewMode === 'teacher' ? 'Prep / Free' : viewMode === 'room' ? 'Vacant' : '—'}
                             </div>
                           )}

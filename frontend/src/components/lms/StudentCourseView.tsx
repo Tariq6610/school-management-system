@@ -332,8 +332,8 @@ export function StudentCourseView({
       {activeTab === 'lessons' && (
         loading ? (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2 h-96 rounded-2xl bg-neutral-100 border border-neutral-200 animate-pulse" />
-            <div className="h-96 rounded-2xl bg-neutral-100 border border-neutral-200 animate-pulse" />
+            <div className="lg:col-span-2 h-96 rounded-2xl bg-neutral-100 border border-neutral-200 motion-safe:animate-pulse" />
+            <div className="h-96 rounded-2xl bg-neutral-100 border border-neutral-200 motion-safe:animate-pulse" />
           </div>
         ) : lessons.length === 0 ? (
         /* Empty State */
@@ -463,8 +463,8 @@ export function StudentCourseView({
                         {/* Top bar */}
                         <div className="flex items-center justify-between z-10">
                           <div className="flex items-center gap-2">
-                            <span className="w-2.5 h-2.5 rounded-full bg-rose-500 animate-pulse" />
-                            <span className="text-xs font-semibold uppercase tracking-wider text-neutral-300">
+                            <span className="w-2.5 h-2.5 rounded-full bg-rose-500 motion-safe:animate-pulse" />
+                            <span className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
                               HD 1080p Stream
                             </span>
                           </div>
@@ -491,7 +491,7 @@ export function StudentCourseView({
                               </svg>
                             )}
                           </button>
-                          <span className="text-xs text-neutral-300 font-medium">
+                          <span className="text-xs text-neutral-500 font-medium">
                             {isPlaying ? 'Streaming simulated video lecture...' : 'Click to start video lecture'}
                           </span>
                         </div>
@@ -501,11 +501,11 @@ export function StudentCourseView({
                           <div className="w-full bg-neutral-800/80 h-1.5 rounded-full overflow-hidden cursor-pointer">
                             <div
                               className={`bg-purple-500 h-full rounded-full transition-all duration-300 ${
-                                isPlaying ? 'w-1/2 animate-pulse' : 'w-1/4'
+                                isPlaying ? 'w-1/2 motion-safe:animate-pulse' : 'w-1/4'
                               }`}
                             />
                           </div>
-                          <div className="flex items-center justify-between text-[11px] text-neutral-400 font-mono">
+                          <div className="flex items-center justify-between text-[11px] text-neutral-500 font-mono">
                             <span>{isPlaying ? '14:32' : '00:00'}</span>
                             <span>{activeLesson.durationMinutes ?? 30}:00</span>
                           </div>
@@ -723,7 +723,7 @@ export function StudentCourseView({
                       </div>
 
                       {/* Icon */}
-                      <div className="shrink-0 text-neutral-400">
+                      <div className="shrink-0 text-neutral-500">
                         {lesson.contentType === 'video' && (
                           <svg className="w-4 h-4 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />

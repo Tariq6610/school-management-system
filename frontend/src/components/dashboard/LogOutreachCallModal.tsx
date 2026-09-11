@@ -90,7 +90,7 @@ export function LogOutreachCallModal({
           <button
             type="button"
             onClick={onClose}
-            className="text-neutral-400 hover:text-neutral-700 text-lg font-bold p-1"
+            className="text-neutral-500 hover:text-neutral-700 text-lg font-bold p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
           >
             ✕
           </button>

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { WhatsAppLog } from '@/types';
+import { useBranding } from '@/components/providers/BrandingProvider';
 
 export interface WhatsAppPhoneViewProps {
   logs: WhatsAppLog[];
@@ -22,6 +23,7 @@ export function WhatsAppPhoneView({
   onSelectRecipient,
   uniqueRecipients,
 }: WhatsAppPhoneViewProps) {
+  const { schoolName } = useBranding();
   // Filter logs for selected recipient (or all)
   const displayLogs = logs
     .filter((log) => {
@@ -76,7 +78,7 @@ export function WhatsAppPhoneView({
             <div className="flex items-center gap-2">
               <button
                 type="button"
-                className="text-white/80 hover:text-white text-base leading-none pr-1"
+                className="text-white/80 hover:text-white text-base leading-none pr-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
                 aria-label="Back"
               >
                 ‹
@@ -90,7 +92,7 @@ export function WhatsAppPhoneView({
               <div className="min-w-0">
                 <div className="flex items-center gap-1">
                   <h4 className="text-xs font-bold text-white truncate max-w-[150px]">
-                    ABC School Network
+                    {schoolName}
                   </h4>
                   <span
                     className="text-emerald-300 text-[11px]"
@@ -152,7 +154,7 @@ export function WhatsAppPhoneView({
                       {/* Business Sender Header */}
                       <div className="flex items-center justify-between gap-2 pb-1 border-b border-neutral-100 mb-1">
                         <span className="text-[10px] font-bold text-emerald-800 flex items-center gap-1">
-                          ABC School
+                          {schoolName.split(' ')[0]}
                           <span className="text-[9px] font-normal text-neutral-500">
                             ~ {log.trigger}
                           </span>
@@ -172,14 +174,14 @@ export function WhatsAppPhoneView({
                         <span>{formatWhatsAppTime(log.sentAt)}</span>
                         {isDelivered && (
                           <span
-                            className={isRead ? 'text-sky-500 font-bold' : 'text-neutral-400'}
+                            className={isRead ? 'text-sky-500 font-bold' : 'text-neutral-500'}
                             title={isRead ? 'Read' : 'Delivered'}
                           >
                             ✓✓
                           </span>
                         )}
                         {!isDelivered && (
-                          <span className="text-neutral-400" title="Sent">
+                          <span className="text-neutral-500" title="Sent">
                             ✓
                           </span>
                         )}
@@ -195,7 +197,7 @@ export function WhatsAppPhoneView({
           <div className="bg-[#F0F2F5] px-2.5 py-2 flex items-center gap-2 border-t border-neutral-200 shrink-0">
             <span className="text-base text-neutral-500 cursor-pointer">😊</span>
             <span className="text-base text-neutral-500 cursor-pointer">📎</span>
-            <div className="flex-1 bg-white rounded-full px-3 py-1.5 text-neutral-400 text-xs shadow-2xs border border-neutral-200/80 truncate">
+            <div className="flex-1 bg-white rounded-full px-3 py-1.5 text-neutral-500 text-xs shadow-2xs border border-neutral-200/80 truncate">
               Type a message...
             </div>
             <div className="w-8 h-8 rounded-full bg-[#00A884] text-white flex items-center justify-center text-xs shadow-xs cursor-pointer">

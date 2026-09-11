@@ -229,7 +229,7 @@ export function NotificationCentre({
           <button
             type="button"
             onClick={handleMarkAllRead}
-            className="text-[11px] font-semibold text-purple-700 hover:text-purple-900 transition-colors"
+            className="text-[11px] font-semibold text-purple-700 hover:text-purple-900 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
           >
             Mark all as read
           </button>
@@ -305,15 +305,15 @@ export function NotificationCentre({
       {/* 3. Notification List Items */}
       <div className="flex-1 overflow-y-auto divide-y divide-neutral-100 min-h-[160px]">
         {loading ? (
-          <div className="p-8 text-center text-xs text-neutral-400">
+          <div className="p-8 text-center text-xs text-neutral-500">
             <div className="inline-block w-5 h-5 border-2 border-neutral-300 border-t-purple-600 rounded-full animate-spin mb-2" />
             <p>Loading notification feed...</p>
           </div>
         ) : filteredNotifications.length === 0 ? (
-          <div className="p-8 text-center text-xs text-neutral-400 space-y-1">
+          <div className="p-8 text-center text-xs text-neutral-500 space-y-1">
             <span className="text-2xl block mb-1">✨</span>
             <p className="font-semibold text-neutral-700">No notifications found</p>
-            <p className="text-[11px] text-neutral-400">
+            <p className="text-[11px] text-neutral-500">
               {filterMode === 'unread'
                 ? 'You have zero unread alerts. All caught up!'
                 : 'No notices matching the selected filter criteria.'}
@@ -363,7 +363,7 @@ export function NotificationCentre({
                       {n.title}
                     </h4>
 
-                    <span className="text-[10px] text-neutral-400 font-mono shrink-0">
+                    <span className="text-[10px] text-neutral-500 font-mono shrink-0">
                       {formatNotificationTime(n.createdAt)}
                     </span>
                   </div>
@@ -400,7 +400,7 @@ export function NotificationCentre({
                     <button
                       type="button"
                       onClick={() => handleDelete(n.id)}
-                      className="text-[10px] text-neutral-400 hover:text-rose-600 opacity-0 group-hover:opacity-100 transition-opacity"
+                      className="text-[10px] text-neutral-500 hover:text-rose-600 opacity-0 group-hover:opacity-100 transition-opacity"
                       aria-label="Dismiss notification"
                     >
                       Dismiss

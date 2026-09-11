@@ -186,7 +186,7 @@ export function RecentActivityFeed({ activities }: RecentActivityFeedProps) {
                     <h4 className="text-xs font-bold text-neutral-900 truncate">
                       {act.title}
                     </h4>
-                    <span className="text-[10px] text-neutral-400 font-mono whitespace-nowrap shrink-0">
+                    <span className="text-[10px] text-neutral-500 font-mono whitespace-nowrap shrink-0">
                       {formatRelativeTime(act.timestamp)}
                     </span>
                   </div>

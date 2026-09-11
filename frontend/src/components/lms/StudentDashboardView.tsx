@@ -72,13 +72,13 @@ export function StudentDashboardView({
   if (loading && !data) {
     return (
       <div className="space-y-6" data-testid="student-dashboard-loading">
-        <div className="h-44 rounded-2xl bg-neutral-100 border border-neutral-200 animate-pulse" />
+        <div className="h-44 rounded-2xl bg-neutral-100 border border-neutral-200 motion-safe:animate-pulse" />
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="h-28 rounded-2xl bg-neutral-100 border border-neutral-200 animate-pulse" />
-          <div className="h-28 rounded-2xl bg-neutral-100 border border-neutral-200 animate-pulse" />
-          <div className="h-28 rounded-2xl bg-neutral-100 border border-neutral-200 animate-pulse" />
+          <div className="h-28 rounded-2xl bg-neutral-100 border border-neutral-200 motion-safe:animate-pulse" />
+          <div className="h-28 rounded-2xl bg-neutral-100 border border-neutral-200 motion-safe:animate-pulse" />
+          <div className="h-28 rounded-2xl bg-neutral-100 border border-neutral-200 motion-safe:animate-pulse" />
         </div>
-        <div className="h-96 rounded-2xl bg-neutral-100 border border-neutral-200 animate-pulse" />
+        <div className="h-96 rounded-2xl bg-neutral-100 border border-neutral-200 motion-safe:animate-pulse" />
       </div>
     );
   }

@@ -30,8 +30,8 @@ export function LessonContentPreview({ lesson, isOpen, onClose }: LessonContentP
               {/* Top info overlay */}
               <div className="flex items-center justify-between z-10">
                 <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500 animate-pulse" />
-                  <span className="text-xs font-semibold uppercase tracking-wider text-neutral-300">
+                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500 motion-safe:animate-pulse" />
+                  <span className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
                     HD 1080p Stream
                   </span>
                 </div>
@@ -47,7 +47,7 @@ export function LessonContentPreview({ lesson, isOpen, onClose }: LessonContentP
                     <path d="M8 5v14l11-7z" />
                   </svg>
                 </div>
-                <span className="text-xs text-neutral-400 font-medium">Click to resume lecture stream</span>
+                <span className="text-xs text-neutral-500 font-medium">Click to resume lecture stream</span>
               </div>
 
               {/* Bottom Controls Placeholder */}
@@ -55,7 +55,7 @@ export function LessonContentPreview({ lesson, isOpen, onClose }: LessonContentP
                 <div className="w-full bg-neutral-700/80 h-1.5 rounded-full overflow-hidden">
                   <div className="bg-purple-500 h-full w-1/3 rounded-full" />
                 </div>
-                <div className="flex items-center justify-between text-[11px] text-neutral-400 font-mono">
+                <div className="flex items-center justify-between text-[11px] text-neutral-500 font-mono">
                   <span>10:24</span>
                   <span>{lesson.durationMinutes ?? 30}:00</span>
                 </div>

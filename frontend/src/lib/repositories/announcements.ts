@@ -19,6 +19,7 @@ import { listCampuses } from './campuses';
 import { listClasses } from './classes';
 import { listUsers } from './users';
 import { logWhatsAppMessage } from './whatsappLog';
+import { getSettings } from './settings';
 
 /**
  * Computes the temporal status of an announcement (active, scheduled, or expired).
@@ -143,11 +144,12 @@ export async function createAnnouncement(input: NewAnnouncement): Promise<Announ
   const publishDate = new Date(created.publishAt);
   if (publishDate.getTime() <= now.getTime()) {
     try {
+      const settings = await getSettings({ schoolId: created.schoolId });
       const campuses = await listCampuses({ schoolId: created.schoolId });
       const targetCampus = created.campusId
         ? campuses.find((c) => c.id === created.campusId)
         : null;
-      const campusLabel = targetCampus ? targetCampus.name : 'ABC School Network';
+      const campusLabel = targetCampus ? targetCampus.name : (settings.branding.schoolName || 'ABC School Network');
 
       await logWhatsAppMessage({
         schoolId: created.schoolId,

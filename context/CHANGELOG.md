@@ -526,6 +526,13 @@ Decisions:      Implemented Parent Engagement Outreach List (Differentiation Scr
                 4. Persistence & Audit Log: Outreach calls persist to sp:v1:outreachLogs and immediately reflect in the family's prompt row with date and caller attribution.
 Incomplete:     none
 
+### TASK-080 — Branding applied to portal, receipts, report cards
+Completed: 2026-09-11
+Files added:    frontend/src/components/providers/BrandingProvider.tsx
+Files changed:  frontend/src/app/layout.tsx, frontend/src/app/login/page.tsx, frontend/src/components/communication/WhatsAppPhoneView.tsx, frontend/src/components/fees/PaymentReceiptModal.tsx, frontend/src/lib/repositories/announcements.ts
+Decisions:      Injected CSS variables `--color-brand-700` and `--color-accent-700` dynamically via SSR and CSR inside `<BrandingProvider>`, enabling immediate Tailwind updates. Used Context API to provide `schoolName` and `formatCurrency` globally. Updated legacy hardcoded "ABC School Network" fallback for `login`, WhatsApp simulations, and receipts to use dynamic branding. Tests successfully passed.
+Incomplete:     none
+
 ---
 
 ## Open questions

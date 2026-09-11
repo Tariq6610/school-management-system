@@ -152,7 +152,7 @@ export function ReportCardDocument({
           </span>
         </div>
 
-        <div className="overflow-hidden border border-ink-200 rounded-control">
+        <div className="overflow-x-auto overflow-hidden border border-ink-200 rounded-control">
           <table className="w-full text-left text-xs border-collapse">
             <thead>
               <tr className="bg-ink-100/70 border-b border-ink-200 font-semibold text-ink-700">
@@ -321,7 +321,7 @@ export function ReportCardDocument({
                   <button
                     type="button"
                     onClick={handleSaveRemarks}
-                    className="text-[11px] bg-primary-700 text-white px-2 py-0.5 rounded font-semibold cursor-pointer"
+                    className="text-[11px] bg-primary-700 text-white px-2 py-0.5 rounded font-semibold cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
                   >
                     Done
                   </button>

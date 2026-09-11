@@ -9,8 +9,8 @@ import {
   Student,
   User,
 } from '@/types';
-import { formatCurrency } from '@/lib/utils/currency';
 import { Button } from '@/components/ui/Button';
+import { useBranding } from '@/components/providers/BrandingProvider';
 
 export interface PaymentReceiptModalProps {
   isOpen: boolean;
@@ -37,6 +37,8 @@ export function PaymentReceiptModal({
   receiverUser,
   isReprint = false,
 }: PaymentReceiptModalProps) {
+  const { schoolName, formatCurrency } = useBranding();
+
   if (!isOpen) return null;
 
   const handlePrint = () => {
@@ -95,7 +97,7 @@ export function PaymentReceiptModal({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg p-1.5 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-600 transition-colors"
+              className="rounded-lg p-1.5 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
               aria-label="Close"
             >
               ✕
@@ -110,7 +112,7 @@ export function PaymentReceiptModal({
             <div className="flex justify-between items-start">
               <div>
                 <h1 className="text-lg font-black tracking-tight text-neutral-900 uppercase">
-                  ABC School Network
+                  {schoolName}
                 </h1>
                 <p className="text-2xs text-neutral-500 font-medium">
                   Sector F-8/3, Islamabad, Pakistan • Ph: +92 51 111-222-333
@@ -178,7 +180,7 @@ export function PaymentReceiptModal({
           </div>
 
           {/* Line Item Breakdown */}
-          <div className="border border-neutral-200 rounded-xl overflow-hidden">
+          <div className="overflow-x-auto border border-neutral-200 rounded-xl overflow-hidden">
             <table className="w-full text-left text-2xs">
               <thead className="bg-neutral-100 text-neutral-700 font-semibold uppercase tracking-wider border-b border-neutral-200">
                 <tr>
@@ -269,20 +271,20 @@ export function PaymentReceiptModal({
           <div className="pt-8 flex justify-between items-end border-t border-neutral-200">
             <div className="text-center">
               <div className="w-36 border-b border-neutral-400 mb-1" />
-              <span className="text-3xs text-neutral-400 uppercase tracking-wider">
+              <span className="text-3xs text-neutral-500 uppercase tracking-wider">
                 Parent / Depositor
               </span>
             </div>
 
             <div className="text-center">
               <div className="w-36 border-b border-neutral-400 mb-1" />
-              <span className="text-3xs text-neutral-400 uppercase tracking-wider">
+              <span className="text-3xs text-neutral-500 uppercase tracking-wider">
                 Cashier / Officer Stamp
               </span>
             </div>
           </div>
 
-          <div className="text-center text-3xs text-neutral-400 border-t border-neutral-100 pt-3">
+          <div className="text-center text-3xs text-neutral-500 border-t border-neutral-100 pt-3">
             This is a computer generated receipt. Thank you for your timely payment.
           </div>
         </div>

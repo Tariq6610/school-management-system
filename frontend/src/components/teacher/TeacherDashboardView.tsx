@@ -420,7 +420,7 @@ export function TeacherDashboardView({ initialDate }: TeacherDashboardViewProps)
         {displayedClasses.length === 0 ? (
           <div className="py-12 text-center bg-neutral-50 border border-dashed border-neutral-300 rounded-xl text-neutral-500">
             <p className="font-semibold text-sm">No classes found matching filter</p>
-            <p className="text-xs text-neutral-400 mt-1">
+            <p className="text-xs text-neutral-500 mt-1">
               {activeFilter === 'unmarked'
                 ? 'All registers for this date are marked!'
                 : 'No class records available.'}

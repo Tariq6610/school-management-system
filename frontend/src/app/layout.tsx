@@ -4,6 +4,7 @@ import "./globals.css";
 import { BootProvider } from "@/components/providers/BootProvider";
 import { ToastProvider } from "@/components/ui/Toast";
 import { SessionProvider } from "@/components/providers/SessionProvider";
+import { BrandingProvider } from "@/components/providers/BrandingProvider";
 
 const notoSans = Noto_Sans({
   variable: "--font-noto-sans",
@@ -27,7 +28,9 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-sans">
         <BootProvider>
           <ToastProvider>
-            <SessionProvider>{children}</SessionProvider>
+            <SessionProvider>
+              <BrandingProvider>{children}</BrandingProvider>
+            </SessionProvider>
           </ToastProvider>
         </BootProvider>
       </body>

@@ -230,7 +230,7 @@ export function LessonManager({
           {[1, 2, 3].map((i) => (
             <div
               key={i}
-              className="h-20 bg-neutral-100/70 border border-neutral-200 rounded-2xl animate-pulse"
+              className="h-20 bg-neutral-100/70 border border-neutral-200 rounded-2xl motion-safe:animate-pulse"
             />
           ))}
         </div>
@@ -292,7 +292,7 @@ export function LessonManager({
                 <div className="flex items-center gap-3.5 flex-1 min-w-0">
                   {/* Drag Handle */}
                   <div
-                    className="cursor-grab active:cursor-grabbing p-1.5 text-neutral-400 hover:text-neutral-700 hover:bg-neutral-100 rounded-lg transition-colors shrink-0"
+                    className="cursor-grab active:cursor-grabbing p-1.5 text-neutral-500 hover:text-neutral-700 hover:bg-neutral-100 rounded-lg transition-colors shrink-0"
                     title="Drag to reorder lesson"
                     aria-label="Drag handle"
                   >

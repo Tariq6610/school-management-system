@@ -100,7 +100,7 @@ export function ProposedNoteCard({
               </span>
             ) : isPending ? (
               <span className="inline-flex items-center gap-1 text-xs font-bold text-amber-800 bg-amber-50 px-2.5 py-1 rounded-lg border border-amber-300/70">
-                <span className="inline-block w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+                <span className="inline-block w-2 h-2 rounded-full bg-amber-500 motion-safe:animate-pulse" />
                 <span>Pending Teacher Validation</span>
               </span>
             ) : null}
@@ -138,13 +138,13 @@ export function ProposedNoteCard({
             <span className="font-semibold text-emerald-800">
               {`Validated by ${proposal.teacherName}`}
               {proposal.confirmedAt && (
-                <span className="text-neutral-400 font-normal">
+                <span className="text-neutral-500 font-normal">
                   {` • ${new Date(proposal.confirmedAt).toLocaleDateString()}`}
                 </span>
               )}
             </span>
           ) : (
-            <span className="italic text-neutral-400">
+            <span className="italic text-neutral-500">
               System proposed note • Requires teacher confirmation before visible to parents
             </span>
           )}
@@ -202,7 +202,7 @@ export function ProposedNoteCard({
                 </Button>
               </>
             ) : (
-              <span className="text-xs text-neutral-400 font-medium">Visible to parent</span>
+              <span className="text-xs text-neutral-500 font-medium">Visible to parent</span>
             )}
           </div>
         )}

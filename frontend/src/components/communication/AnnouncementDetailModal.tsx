@@ -100,7 +100,7 @@ export function AnnouncementDetailModal({
             </span>
           </div>
 
-          <div className="text-[11px] text-neutral-400">
+          <div className="text-[11px] text-neutral-500">
             Published {formatDate(announcement.publishAt)}
           </div>
         </div>

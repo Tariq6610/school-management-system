@@ -150,7 +150,7 @@ export function ParentChildProfileView({
                   key={i}
                   className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white text-rose-800 font-semibold text-xs border border-rose-300 shadow-2xs"
                 >
-                  <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-rose-500 motion-safe:animate-pulse" />
                   {allergy}
                 </span>
               ))}
@@ -195,7 +195,7 @@ export function ParentChildProfileView({
                     ))}
                   </div>
                 ) : (
-                  <span className="text-neutral-400 italic">None recorded</span>
+                  <span className="text-neutral-500 italic">None recorded</span>
                 )}
               </div>
 
@@ -210,7 +210,7 @@ export function ParentChildProfileView({
                     ))}
                   </div>
                 ) : (
-                  <span className="text-neutral-400 italic">None recorded</span>
+                  <span className="text-neutral-500 italic">None recorded</span>
                 )}
               </div>
             </div>
@@ -224,7 +224,7 @@ export function ParentChildProfileView({
                 {student.health?.doctorPhone ? ` (${student.health.doctorPhone})` : ''}
               </span>
             ) : (
-              <span className="text-neutral-400 italic">No doctor recorded</span>
+              <span className="text-neutral-500 italic">No doctor recorded</span>
             )}
           </div>
         </div>
@@ -239,7 +239,7 @@ export function ParentChildProfileView({
           </h3>
 
           {emergencyContacts.length === 0 ? (
-            <p className="text-xs text-neutral-400 italic">No emergency contacts recorded.</p>
+            <p className="text-xs text-neutral-500 italic">No emergency contacts recorded.</p>
           ) : (
             <div className="space-y-2.5">
               {emergencyContacts.map((contact, i) => (

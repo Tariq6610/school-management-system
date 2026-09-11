@@ -234,7 +234,7 @@ export function TimetableGrid({
 
   if (loading) {
     return (
-      <div className="bg-white border border-neutral-200 rounded-xl p-12 text-center text-neutral-500 animate-pulse">
+      <div className="bg-white border border-neutral-200 rounded-xl p-12 text-center text-neutral-500 motion-safe:animate-pulse">
         Loading timetable builder grid...
       </div>
     );
@@ -392,7 +392,7 @@ export function TimetableGrid({
                                 </div>
                                 <div className="text-[11px] text-neutral-600 flex items-center gap-1 mt-1 truncate">
                                   <svg
-                                    className="w-3 h-3 text-neutral-400 shrink-0"
+                                    className="w-3 h-3 text-neutral-500 shrink-0"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -418,7 +418,7 @@ export function TimetableGrid({
                               </div>
                             </div>
                           ) : (
-                            <div className="h-full flex items-center justify-center rounded-lg border border-dashed border-neutral-200 group-hover:border-purple-300 group-hover:bg-purple-50/20 text-neutral-400 group-hover:text-purple-600 transition-colors">
+                            <div className="h-full flex items-center justify-center rounded-lg border border-dashed border-neutral-200 group-hover:border-purple-300 group-hover:bg-purple-50/20 text-neutral-500 group-hover:text-purple-600 transition-colors">
                               <span className="text-xs font-medium flex items-center gap-1">
                                 <span className="text-sm leading-none">+</span> Assign
                               </span>

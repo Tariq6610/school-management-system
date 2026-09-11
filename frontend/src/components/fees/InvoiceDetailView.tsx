@@ -414,7 +414,7 @@ export function InvoiceDetailView({
           <div className="rounded-xl border border-dashed border-neutral-300 p-8 text-center text-neutral-500">
             <span className="text-2xl mb-1 block">⏳</span>
             <p className="text-xs font-semibold text-neutral-800">No Payments Recorded Yet</p>
-            <p className="text-2xs text-neutral-400 mt-0.5">
+            <p className="text-2xs text-neutral-500 mt-0.5">
               Click &quot;Record Payment&quot; above to log an installment or full fee settlement.
             </p>
           </div>

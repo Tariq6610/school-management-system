@@ -114,7 +114,7 @@ export function WhatsAppControlPanel({
             type="button"
             onClick={onClearLogs}
             disabled={triggering || logs.length === 0}
-            className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white/90 border border-white/20 transition-colors disabled:opacity-50 self-start sm:self-auto"
+            className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white/90 border border-white/20 transition-colors disabled:opacity-50 self-start sm:self-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
           >
             Clear Log
           </button>
@@ -126,7 +126,7 @@ export function WhatsAppControlPanel({
             type="button"
             onClick={onTriggerAbsence}
             disabled={triggering}
-            className="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-left transition-all hover:translate-y-[-1px] disabled:opacity-50"
+            className="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-left transition-all hover:translate-y-[-1px] disabled:opacity-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
           >
             <span className="text-lg p-1.5 rounded-lg bg-rose-500/20 text-rose-300">🚨</span>
             <div className="min-w-0">
@@ -141,7 +141,7 @@ export function WhatsAppControlPanel({
             type="button"
             onClick={onTriggerFeeReminder}
             disabled={triggering}
-            className="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-left transition-all hover:translate-y-[-1px] disabled:opacity-50"
+            className="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-left transition-all hover:translate-y-[-1px] disabled:opacity-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
           >
             <span className="text-lg p-1.5 rounded-lg bg-amber-500/20 text-amber-300">💳</span>
             <div className="min-w-0">
@@ -156,7 +156,7 @@ export function WhatsAppControlPanel({
             type="button"
             onClick={onTriggerHomework}
             disabled={triggering}
-            className="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-left transition-all hover:translate-y-[-1px] disabled:opacity-50"
+            className="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-left transition-all hover:translate-y-[-1px] disabled:opacity-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
           >
             <span className="text-lg p-1.5 rounded-lg bg-sky-500/20 text-sky-300">📚</span>
             <div className="min-w-0">
@@ -171,7 +171,7 @@ export function WhatsAppControlPanel({
             type="button"
             onClick={onTriggerAnnouncement}
             disabled={triggering}
-            className="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-left transition-all hover:translate-y-[-1px] disabled:opacity-50"
+            className="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-left transition-all hover:translate-y-[-1px] disabled:opacity-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
           >
             <span className="text-lg p-1.5 rounded-lg bg-purple-500/20 text-purple-300">📢</span>
             <div className="min-w-0">
@@ -186,7 +186,7 @@ export function WhatsAppControlPanel({
             type="button"
             onClick={onTriggerResultPublished}
             disabled={triggering}
-            className="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-left transition-all hover:translate-y-[-1px] disabled:opacity-50 sm:col-span-2 lg:col-span-1"
+            className="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-left transition-all hover:translate-y-[-1px] disabled:opacity-50 sm:col-span-2 lg:col-span-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
           >
             <span className="text-lg p-1.5 rounded-lg bg-emerald-500/20 text-emerald-300">🏆</span>
             <div className="min-w-0">

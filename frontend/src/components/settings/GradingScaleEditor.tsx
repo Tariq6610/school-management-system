@@ -222,7 +222,7 @@ export function GradingScaleEditor({ initialScale, onSaved }: GradingScaleEditor
 
   if (loading) {
     return (
-      <div className="p-6 space-y-4 animate-pulse">
+      <div className="p-6 space-y-4 motion-safe:animate-pulse">
         <div className="h-6 bg-neutral-200 rounded w-1/4" />
         <div className="h-48 bg-neutral-100 rounded-xl" />
       </div>
@@ -328,7 +328,7 @@ export function GradingScaleEditor({ initialScale, onSaved }: GradingScaleEditor
               {scale.map((tier, idx) => (
                 <tr key={idx} className="hover:bg-neutral-50/50 transition-colors">
                   {/* Order Number */}
-                  <td className="py-2.5 px-4 text-center font-mono text-xs text-neutral-400">
+                  <td className="py-2.5 px-4 text-center font-mono text-xs text-neutral-500">
                     {idx + 1}
                   </td>
 
@@ -357,7 +357,7 @@ export function GradingScaleEditor({ initialScale, onSaved }: GradingScaleEditor
                         }
                         className="w-full h-8 pr-6 pl-2 font-mono text-right text-xs bg-neutral-50 border border-neutral-300 rounded-md focus:bg-white focus:border-purple-600 focus:outline-hidden"
                       />
-                      <span className="absolute right-2 top-2 text-xs text-neutral-400 pointer-events-none">
+                      <span className="absolute right-2 top-2 text-xs text-neutral-500 pointer-events-none">
                         %
                       </span>
                     </div>
@@ -377,7 +377,7 @@ export function GradingScaleEditor({ initialScale, onSaved }: GradingScaleEditor
                         }
                         className="w-full h-8 pr-6 pl-2 font-mono text-right text-xs bg-neutral-50 border border-neutral-300 rounded-md focus:bg-white focus:border-purple-600 focus:outline-hidden"
                       />
-                      <span className="absolute right-2 top-2 text-xs text-neutral-400 pointer-events-none">
+                      <span className="absolute right-2 top-2 text-xs text-neutral-500 pointer-events-none">
                         %
                       </span>
                     </div>
@@ -421,7 +421,7 @@ export function GradingScaleEditor({ initialScale, onSaved }: GradingScaleEditor
                         type="button"
                         onClick={() => handleMoveUp(idx)}
                         disabled={idx === 0}
-                        className="p-1 text-neutral-400 hover:text-neutral-700 disabled:opacity-30 rounded"
+                        className="p-1 text-neutral-500 hover:text-neutral-700 disabled:opacity-30 rounded"
                         title="Move Up"
                       >
                         ▲
@@ -430,7 +430,7 @@ export function GradingScaleEditor({ initialScale, onSaved }: GradingScaleEditor
                         type="button"
                         onClick={() => handleMoveDown(idx)}
                         disabled={idx === scale.length - 1}
-                        className="p-1 text-neutral-400 hover:text-neutral-700 disabled:opacity-30 rounded"
+                        className="p-1 text-neutral-500 hover:text-neutral-700 disabled:opacity-30 rounded"
                         title="Move Down"
                       >
                         ▼

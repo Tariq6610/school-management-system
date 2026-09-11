@@ -555,7 +555,7 @@ export function QRScannerMock({
             {/* Viewfinder Top Bar: Camera Specs & Chime Toggle */}
             <div className="flex items-center justify-between z-10">
               <div className="flex items-center gap-2 bg-neutral-900/80 backdrop-blur-xs px-3 py-1.5 rounded-lg border border-neutral-700/60 text-xs">
-                <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-ping" />
+                <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-500 motion-safe:animate-ping" />
                 <span className="font-mono text-emerald-400 font-bold uppercase tracking-wider text-[11px]">
                   SCANNER ACTIVE (1080P HD)
                 </span>
@@ -616,7 +616,7 @@ export function QRScannerMock({
                         {lastScanned.status.toUpperCase()}
                       </span>
                     </div>
-                    <div className="text-[11px] text-neutral-400 mt-1 font-mono">
+                    <div className="text-[11px] text-neutral-500 mt-1 font-mono">
                       Roll #{lastScanned.student.rollNumber} · {lastScanned.student.admissionNumber} · {lastScanned.scannedAt}
                     </div>
                   </div>
@@ -625,7 +625,7 @@ export function QRScannerMock({
                 <button
                   type="button"
                   onClick={() => setLastScanned(null)}
-                  className="text-neutral-400 hover:text-white p-1 rounded transition-colors text-sm"
+                  className="text-neutral-500 hover:text-white p-1 rounded transition-colors text-sm"
                   aria-label="Dismiss scan card"
                 >
                   ✕
@@ -634,7 +634,7 @@ export function QRScannerMock({
             )}
 
             {/* Viewfinder Bottom Status */}
-            <div className="flex items-center justify-between text-[11px] text-neutral-400 font-mono z-10">
+            <div className="flex items-center justify-between text-[11px] text-neutral-500 font-mono z-10">
               <span>FOV: 84° WIDE</span>
               <span>ISO: AUTO (400)</span>
               <span>LATENCY: 12ms</span>
@@ -647,7 +647,7 @@ export function QRScannerMock({
               <span className="text-xs font-bold uppercase tracking-wider text-neutral-500">
                 Hardware Simulator Controls
               </span>
-              <span className="text-xs text-neutral-400">
+              <span className="text-xs text-neutral-500">
                 {pendingStudents.length} unscanned remaining
               </span>
             </div>
@@ -783,10 +783,10 @@ export function QRScannerMock({
               </div>
 
               {scannedEvents.length === 0 ? (
-                <div className="flex-1 flex flex-col items-center justify-center text-center p-8 text-neutral-400">
+                <div className="flex-1 flex flex-col items-center justify-center text-center p-8 text-neutral-500">
                   <span className="text-3xl mb-2">📸</span>
                   <p className="text-sm font-semibold text-neutral-700">No students scanned yet</p>
-                  <p className="text-xs text-neutral-400 mt-1 max-w-xs">
+                  <p className="text-xs text-neutral-500 mt-1 max-w-xs">
                     Click &ldquo;Simulate Scan&rdquo; or use the barcode field to record student entry.
                   </p>
                 </div>
@@ -814,7 +814,7 @@ export function QRScannerMock({
                               {evt.status === 'present' ? '✓ Present' : '⏱ Late'}
                             </span>
                           </div>
-                          <div className="text-[10px] text-neutral-400 font-mono">
+                          <div className="text-[10px] text-neutral-500 font-mono">
                             Roll #{evt.student.rollNumber} · {evt.student.admissionNumber} ·{' '}
                             <span className="text-neutral-600 font-semibold">{evt.scannedAt}</span>
                           </div>
@@ -843,16 +843,16 @@ export function QRScannerMock({
                 <span className="text-xs font-bold text-neutral-800">
                   Unscanned Roster ({pendingStudents.length})
                 </span>
-                <span className="text-[11px] text-neutral-400">
+                <span className="text-[11px] text-neutral-500">
                   Click student to check in
                 </span>
               </div>
 
               {pendingStudents.length === 0 ? (
-                <div className="flex-1 flex flex-col items-center justify-center text-center p-8 text-neutral-400">
+                <div className="flex-1 flex flex-col items-center justify-center text-center p-8 text-neutral-500">
                   <span className="text-3xl mb-2">🎉</span>
                   <p className="text-sm font-semibold text-emerald-700">100% Attendance Complete</p>
-                  <p className="text-xs text-neutral-400 mt-1">
+                  <p className="text-xs text-neutral-500 mt-1">
                     All students in this class have scanned their badges.
                   </p>
                 </div>
@@ -869,7 +869,7 @@ export function QRScannerMock({
                           <div className="text-xs font-bold text-neutral-900">
                             {item.user.name}
                           </div>
-                          <div className="text-[10px] text-neutral-400 font-mono">
+                          <div className="text-[10px] text-neutral-500 font-mono">
                             Roll #{item.student.rollNumber} · {item.student.admissionNumber}
                           </div>
                         </div>
@@ -952,15 +952,15 @@ export function QRScannerMock({
               </div>
 
               {/* Mock Turnstile Event Stream */}
-              <div className="p-3 rounded-xl bg-neutral-900 text-neutral-300 font-mono text-[11px] space-y-1.5">
+              <div className="p-3 rounded-xl bg-neutral-900 text-neutral-500 font-mono text-[11px] space-y-1.5">
                 <div className="text-emerald-400 font-bold border-b border-neutral-800 pb-1 flex justify-between">
                   <span>MOCK TURNSTILE EVENT STREAM</span>
-                  <span className="animate-pulse text-emerald-400">LIVE</span>
+                  <span className="motion-safe:animate-pulse text-emerald-400">LIVE</span>
                 </div>
-                <div className="text-neutral-400">
+                <div className="text-neutral-500">
                   [07:54:12] GATE_01: Card #98231 scanned -&gt; Stu: Ayesha Khan
                 </div>
-                <div className="text-neutral-400">
+                <div className="text-neutral-500">
                   [07:55:04] GATE_01: Card #98232 scanned -&gt; Stu: Ahmed Khan
                 </div>
                 <div className="text-emerald-300">

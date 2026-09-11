@@ -33,7 +33,7 @@ export function RouteGuard({ allowedRoles, children, fallback }: RouteGuardProps
 
   if (isLoading) {
     return (
-      <div className="p-6 space-y-4 max-w-5xl mx-auto animate-pulse">
+      <div className="p-6 space-y-4 max-w-5xl mx-auto motion-safe:animate-pulse">
         <SkeletonCard />
         <SkeletonTable rows={4} columns={4} />
       </div>

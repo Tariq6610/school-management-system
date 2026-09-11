@@ -224,7 +224,7 @@ export function AnnouncementsListView({
         </div>
         <div className="p-4 bg-white rounded-2xl border border-neutral-200/80 shadow-2xs">
           <span className="text-xs font-medium text-neutral-500 block">Expired</span>
-          <span className="text-xl font-extrabold text-neutral-400 mt-0.5 block">
+          <span className="text-xl font-extrabold text-neutral-500 mt-0.5 block">
             {expiredCount}
           </span>
         </div>
@@ -235,7 +235,7 @@ export function AnnouncementsListView({
         {/* Search */}
         <div className="relative flex-1">
           <svg
-            className="w-4 h-4 text-neutral-400 absolute left-3 top-2.5"
+            className="w-4 h-4 text-neutral-500 absolute left-3 top-2.5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -258,7 +258,7 @@ export function AnnouncementsListView({
 
         {/* Audience Segment Tabs */}
         <div className="flex items-center gap-1 overflow-x-auto pb-1 md:pb-0">
-          <span className="text-neutral-400 font-semibold px-1 shrink-0">Audience:</span>
+          <span className="text-neutral-500 font-semibold px-1 shrink-0">Audience:</span>
           {(['all', 'school', 'campus', 'class'] as const).map((tab) => (
             <button
               key={tab}
@@ -277,7 +277,7 @@ export function AnnouncementsListView({
 
         {/* Status Segment Tabs */}
         <div className="flex items-center gap-1 overflow-x-auto pb-1 md:pb-0">
-          <span className="text-neutral-400 font-semibold px-1 shrink-0">Status:</span>
+          <span className="text-neutral-500 font-semibold px-1 shrink-0">Status:</span>
           {(['all', 'active', 'scheduled', 'expired'] as const).map((tab) => (
             <button
               key={tab}
@@ -303,7 +303,7 @@ export function AnnouncementsListView({
         </div>
       ) : announcements.length === 0 ? (
         <div className="py-16 text-center text-xs text-neutral-500 bg-white rounded-2xl border border-neutral-200 space-y-2 p-6">
-          <div className="w-12 h-12 rounded-full bg-neutral-100 flex items-center justify-center mx-auto text-neutral-400 mb-2">
+          <div className="w-12 h-12 rounded-full bg-neutral-100 flex items-center justify-center mx-auto text-neutral-500 mb-2">
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"

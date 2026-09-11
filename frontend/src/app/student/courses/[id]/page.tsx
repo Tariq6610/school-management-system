@@ -53,7 +53,7 @@ export default function StudentCourseLessonViewerPage({ params }: PageProps) {
           </div>
 
           {loading ? (
-            <div className="h-64 rounded-2xl bg-neutral-100 border border-neutral-200 animate-pulse" />
+            <div className="h-64 rounded-2xl bg-neutral-100 border border-neutral-200 motion-safe:animate-pulse" />
           ) : course ? (
             <StudentCourseView course={course} />
           ) : (

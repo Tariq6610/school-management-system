@@ -147,7 +147,7 @@ export function PrincipalDashboardView({
             <span className="text-3xl font-extrabold text-gray-900 tabular-nums">
               {activeStudents}
             </span>
-            <span className="text-xs text-gray-400">/ {totalStudents} total</span>
+            <span className="text-xs text-gray-500">/ {totalStudents} total</span>
           </div>
           <div className="mt-2 flex items-center justify-between text-xs text-gray-500 pt-2 border-t border-gray-100">
             <span>+{newAdmissionsThisMonth} this month</span>
@@ -190,7 +190,7 @@ export function PrincipalDashboardView({
             </span>
           </div>
           <div className="flex items-baseline gap-1 mt-2">
-            <span className="text-xs text-gray-400 font-semibold">PKR</span>
+            <span className="text-xs text-gray-500 font-semibold">PKR</span>
             <span className="text-2xl font-extrabold text-blue-700 tabular-nums">
               {pendingFees.totalCollected.toLocaleString('en-PK')}
             </span>
@@ -218,7 +218,7 @@ export function PrincipalDashboardView({
           </div>
           <div className="mt-2 flex items-center justify-between text-xs text-gray-500 pt-2 border-t border-gray-100">
             <span>Next: {upcomingExams[0]?.date || 'None'}</span>
-            <span className="text-gray-400">Class terms</span>
+            <span className="text-gray-500">Class terms</span>
           </div>
         </div>
       </div>
@@ -329,11 +329,11 @@ export function PrincipalDashboardView({
 
               <div className="grid grid-cols-2 gap-3 pt-3 border-t border-gray-100 text-xs">
                 <div className="p-3 rounded-lg bg-gray-50">
-                  <span className="text-gray-400 block">Campus Faculty</span>
+                  <span className="text-gray-500 block">Campus Faculty</span>
                   <span className="text-lg font-bold text-gray-900">{totalTeachers} Teachers</span>
                 </div>
                 <div className="p-3 rounded-lg bg-gray-50">
-                  <span className="text-gray-400 block">Campus Staff Ratio</span>
+                  <span className="text-gray-500 block">Campus Staff Ratio</span>
                   <span className="text-lg font-bold text-gray-900">{studentTeacherRatio} : 1</span>
                 </div>
               </div>
@@ -360,7 +360,7 @@ export function PrincipalDashboardView({
             </div>
 
             {upcomingExams.length === 0 ? (
-              <p className="py-8 text-center text-xs text-gray-400">
+              <p className="py-8 text-center text-xs text-gray-500">
                 No examinations scheduled for this campus yet.
               </p>
             ) : (
@@ -391,7 +391,7 @@ export function PrincipalDashboardView({
                       <span className="text-xs font-bold text-gray-800 block">
                         {ex.date}
                       </span>
-                      <span className="text-[11px] text-gray-400 block">
+                      <span className="text-[11px] text-gray-500 block">
                         Max: {ex.maxMarks} marks
                       </span>
                     </div>
@@ -427,19 +427,19 @@ export function PrincipalDashboardView({
 
               <div className="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-gray-100 text-xs">
                 <div>
-                  <span className="text-gray-400 block">Campus Billed</span>
+                  <span className="text-gray-500 block">Campus Billed</span>
                   <span className="font-bold text-gray-800">
                     PKR {pendingFees.totalBilled.toLocaleString('en-PK')}
                   </span>
                 </div>
                 <div>
-                  <span className="text-gray-400 block">Collected</span>
+                  <span className="text-gray-500 block">Collected</span>
                   <span className="font-bold text-emerald-600">
                     PKR {pendingFees.totalCollected.toLocaleString('en-PK')}
                   </span>
                 </div>
                 <div>
-                  <span className="text-gray-400 block">Pending</span>
+                  <span className="text-gray-500 block">Pending</span>
                   <span className="font-bold text-red-600">
                     PKR {pendingFees.pendingAmount.toLocaleString('en-PK')}
                   </span>

@@ -437,7 +437,7 @@ export function ExamsListView({ initialCampusId, initialExams }: ExamsListViewPr
                         <div className="font-medium text-neutral-800">
                           {exam.subject?.name || 'General'}
                         </div>
-                        <div className="text-xs font-mono text-neutral-400">
+                        <div className="text-xs font-mono text-neutral-500">
                           {exam.subject?.code || ''}
                         </div>
                       </td>
@@ -519,7 +519,7 @@ export function ExamsListView({ initialCampusId, initialExams }: ExamsListViewPr
                             <button
                               type="button"
                               onClick={() => handleDeleteExam(exam)}
-                              className="p-1.5 text-neutral-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+                              className="p-1.5 text-neutral-500 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
                               title="Delete schedule"
                             >
                               🗑️

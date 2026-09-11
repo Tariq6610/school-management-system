@@ -63,7 +63,7 @@ export function NewConversationModal({
                 ? 'Search by parent name, student, or grade...'
                 : 'Search by teacher name, subject, or class...'
             }
-            className="w-full px-3 py-2 text-sm rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600 transition-all placeholder:text-neutral-400"
+            className="w-full px-3 py-2 text-sm rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600 transition-all placeholder:text-neutral-500"
             autoFocus
           />
         </div>
@@ -119,7 +119,7 @@ export function NewConversationModal({
                         </span>
                       )}
                       {recipient.className && (
-                        <span className="text-neutral-400">({recipient.className})</span>
+                        <span className="text-neutral-500">({recipient.className})</span>
                       )}
                       {recipient.subjectNames && recipient.subjectNames.length > 0 && (
                         <span className="text-purple-600 font-medium">

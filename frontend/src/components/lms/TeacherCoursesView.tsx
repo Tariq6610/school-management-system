@@ -317,7 +317,7 @@ export function TeacherCoursesView({
               className="w-full text-xs sm:text-sm border border-neutral-300 rounded-xl py-2 px-3 pl-9 bg-neutral-50/50 text-neutral-900 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:bg-white"
             />
             <svg
-              className="w-4 h-4 text-neutral-400 absolute left-3 top-2.5"
+              className="w-4 h-4 text-neutral-500 absolute left-3 top-2.5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -367,7 +367,7 @@ export function TeacherCoursesView({
 
       {/* Courses Grid */}
       {loading ? (
-        <div className="bg-white border border-neutral-200 rounded-2xl p-12 text-center text-neutral-500 shadow-xs animate-pulse">
+        <div className="bg-white border border-neutral-200 rounded-2xl p-12 text-center text-neutral-500 shadow-xs motion-safe:animate-pulse">
           Loading courses...
         </div>
       ) : filteredCourses.length === 0 ? (
@@ -430,13 +430,13 @@ export function TeacherCoursesView({
 
                   <div className="pt-2 border-t border-neutral-100 space-y-1.5 text-xs text-neutral-600">
                     <div className="flex items-center justify-between">
-                      <span className="text-neutral-400 font-medium">Class:</span>
+                      <span className="text-neutral-500 font-medium">Class:</span>
                       <span className="font-semibold text-neutral-900 bg-neutral-100 px-2 py-0.5 rounded-md">
                         {course.className}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-neutral-400 font-medium">Instructor:</span>
+                      <span className="text-neutral-500 font-medium">Instructor:</span>
                       <span className="font-medium text-neutral-800">{course.teacherName}</span>
                     </div>
                     <div className="flex items-center justify-between text-[11px] text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">

@@ -343,7 +343,7 @@ export function ParentAttendanceCalendar({
           </div>
         </div>
 
-        <div className="text-neutral-400 italic">
+        <div className="text-neutral-500 italic">
           Sundays and school holidays are non-instructional.
         </div>
       </div>
@@ -364,7 +364,7 @@ export function ParentAttendanceCalendar({
             <div>Thu</div>
             <div>Fri</div>
             <div>Sat</div>
-            <div className="text-neutral-400">Sun</div>
+            <div className="text-neutral-500">Sun</div>
           </div>
 
           {/* Calendar Day Cells */}
@@ -379,9 +379,9 @@ export function ParentAttendanceCalendar({
                   onClick={() => setSelectedDateDetail(cell.date)}
                   className={`min-h-[105px] p-2 flex flex-col justify-between cursor-pointer transition-all hover:bg-neutral-50 ${
                     !cell.isCurrentMonth
-                      ? 'bg-neutral-50/40 text-neutral-300'
+                      ? 'bg-neutral-50/40 text-neutral-500'
                       : cell.isSunday
-                      ? 'bg-neutral-50/70 text-neutral-400'
+                      ? 'bg-neutral-50/70 text-neutral-500'
                       : 'bg-white text-neutral-800'
                   } ${
                     isSelected ? 'ring-2 ring-purple-500 bg-purple-50/20' : ''
@@ -395,7 +395,7 @@ export function ParentAttendanceCalendar({
                           ? 'flex h-5 w-5 items-center justify-center rounded-full bg-purple-600 text-white font-black'
                           : cell.isCurrentMonth
                           ? 'text-neutral-800'
-                          : 'text-neutral-300'
+                          : 'text-neutral-500'
                       }`}
                     >
                       {cell.dayNumber}
@@ -439,13 +439,13 @@ export function ParentAttendanceCalendar({
                     )}
 
                     {!status && cell.isSunday && (
-                      <span className="text-center text-[10px] italic text-neutral-400 py-1">
+                      <span className="text-center text-[10px] italic text-neutral-500 py-1">
                         Weekend
                       </span>
                     )}
 
                     {!status && !cell.isSunday && cell.isCurrentMonth && (
-                      <span className="text-center text-[10px] text-neutral-300 py-1">
+                      <span className="text-center text-[10px] text-neutral-500 py-1">
                         —
                       </span>
                     )}

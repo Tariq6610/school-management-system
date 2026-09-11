@@ -381,7 +381,7 @@ function AnnouncementComposerForm({
             onChange={(e) => setPublishAtLocal(e.target.value)}
             className="w-full px-3 py-2 text-xs bg-white rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-800 font-medium"
           />
-          <p className="text-[10px] text-neutral-400 mt-1">
+          <p className="text-[10px] text-neutral-500 mt-1">
             Setting a future date schedules the announcement.
           </p>
         </div>
@@ -391,7 +391,7 @@ function AnnouncementComposerForm({
             htmlFor="announcement-expire"
             className="block text-xs font-semibold text-neutral-800 mb-1"
           >
-            Expiry Date &amp; Time <span className="text-neutral-400 font-normal">(Optional)</span>
+            Expiry Date &amp; Time <span className="text-neutral-500 font-normal">(Optional)</span>
           </label>
           <input
             id="announcement-expire"
@@ -400,7 +400,7 @@ function AnnouncementComposerForm({
             onChange={(e) => setExpiresAtLocal(e.target.value)}
             className="w-full px-3 py-2 text-xs bg-white rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-800 font-medium"
           />
-          <p className="text-[10px] text-neutral-400 mt-1">
+          <p className="text-[10px] text-neutral-500 mt-1">
             Announcement will automatically hide after this date.
           </p>
         </div>

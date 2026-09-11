@@ -92,7 +92,7 @@ export function StudentFeeLedgerModal({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-2 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-600 transition-colors print:hidden"
+            className="rounded-lg p-2 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-600 transition-colors print:hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
             aria-label="Close"
           >
             ✕
@@ -202,7 +202,7 @@ export function StudentFeeLedgerModal({
                     <tbody className="divide-y divide-neutral-100">
                       {statement.entries.length === 0 ? (
                         <tr>
-                          <td colSpan={7} className="py-8 text-center text-neutral-400">
+                          <td colSpan={7} className="py-8 text-center text-neutral-500">
                             No ledger transactions recorded yet.
                           </td>
                         </tr>

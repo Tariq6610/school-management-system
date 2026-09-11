@@ -136,12 +136,12 @@ export function EngagementOutreachList({ initialItems }: EngagementOutreachListP
             placeholder="Search family name, student, or phone..."
             className="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-neutral-200 focus:outline-hidden focus:ring-2 focus:ring-purple-500 bg-neutral-50/50"
           />
-          <span className="absolute left-3 top-2.5 text-neutral-400 text-xs">🔍</span>
+          <span className="absolute left-3 top-2.5 text-neutral-500 text-xs">🔍</span>
           {searchQuery && (
             <button
               type="button"
               onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-2.5 text-neutral-400 hover:text-neutral-700 text-xs"
+              className="absolute right-3 top-2.5 text-neutral-500 hover:text-neutral-700 text-xs"
             >
               ✕
             </button>
@@ -189,10 +189,10 @@ export function EngagementOutreachList({ initialItems }: EngagementOutreachListP
       {/* 4. Outreach Prompts List */}
       <div className="space-y-4">
         {filtered.length === 0 ? (
-          <div className="py-16 text-center text-neutral-400 bg-white rounded-2xl border border-dashed border-neutral-200">
+          <div className="py-16 text-center text-neutral-500 bg-white rounded-2xl border border-dashed border-neutral-200">
             <span className="text-3xl block mb-2">📞</span>
             <p className="text-sm font-semibold text-neutral-700">No outreach prompts found</p>
-            <p className="text-xs text-neutral-400 mt-1">
+            <p className="text-xs text-neutral-500 mt-1">
               {searchQuery
                 ? `No families matching "${searchQuery}".`
                 : 'All families are actively communicating or up to date.'}
@@ -211,7 +211,7 @@ export function EngagementOutreachList({ initialItems }: EngagementOutreachListP
                     <h3 className="text-base font-bold text-neutral-900">
                       {item.familyTitle}
                     </h3>
-                    <span className="text-xs text-neutral-400">•</span>
+                    <span className="text-xs text-neutral-500">•</span>
                     <span className="text-xs text-neutral-600 font-medium">
                       Primary Contact: <strong>{item.parentUser.name}</strong>
                     </span>
@@ -222,9 +222,9 @@ export function EngagementOutreachList({ initialItems }: EngagementOutreachListP
 
                   {/* Children Chips */}
                   <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
-                    <span className="text-[11px] font-semibold text-neutral-400">Children:</span>
+                    <span className="text-[11px] font-semibold text-neutral-500">Children:</span>
                     {item.children.length === 0 ? (
-                      <span className="text-[11px] text-neutral-400 italic">No linked enrolled records</span>
+                      <span className="text-[11px] text-neutral-500 italic">No linked enrolled records</span>
                     ) : (
                       item.children.map((child) => (
                         <span
@@ -304,7 +304,7 @@ export function EngagementOutreachList({ initialItems }: EngagementOutreachListP
                         {new Date(item.lastCallRecord.calledAt).toLocaleString()}
                       </span>
                     </span>
-                    <span className="text-[11px] text-neutral-400">
+                    <span className="text-[11px] text-neutral-500">
                       by {item.lastCallRecord.loggedByName}
                     </span>
                   </div>

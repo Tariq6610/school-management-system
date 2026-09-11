@@ -129,7 +129,7 @@ export function AnnouncementFeedView({
         </div>
       ) : filteredAnnouncements.length === 0 ? (
         <div className="py-10 text-center text-xs text-neutral-500 bg-neutral-50 rounded-2xl border border-neutral-200/80 p-6 space-y-1.5">
-          <div className="w-10 h-10 rounded-full bg-neutral-200/60 flex items-center justify-center mx-auto text-neutral-400 mb-1">
+          <div className="w-10 h-10 rounded-full bg-neutral-200/60 flex items-center justify-center mx-auto text-neutral-500 mb-1">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"
@@ -174,7 +174,7 @@ export function AnnouncementFeedView({
 
                   {/* Aggregate View Count Badge */}
                   <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-neutral-100 text-neutral-600 border border-neutral-200 inline-flex items-center gap-1">
-                    <svg className="w-2.5 h-2.5 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-2.5 h-2.5 text-neutral-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -192,7 +192,7 @@ export function AnnouncementFeedView({
                   </span>
                 </div>
 
-                <span className="text-[11px] text-neutral-400 font-medium shrink-0">
+                <span className="text-[11px] text-neutral-500 font-medium shrink-0">
                   {formatDate(item.publishAt)}
                 </span>
               </div>
@@ -209,7 +209,7 @@ export function AnnouncementFeedView({
 
               {/* Action */}
               <div className="pt-1 flex items-center justify-between text-xs">
-                <span className="text-[11px] text-neutral-400">
+                <span className="text-[11px] text-neutral-500">
                   From: <span className="text-neutral-600 font-medium">{item.authorName}</span>
                 </span>
 

@@ -6,10 +6,12 @@ import { useRouter } from 'next/navigation';
 import { Input, Button, StatusBadge } from '@/components/ui';
 import { DEMO_ACCOUNTS, DemoAccount, getRoleDashboardRoute } from '@/lib/auth/auth';
 import { useSession } from '@/components/providers/SessionProvider';
+import { useBranding } from '@/components/providers/BrandingProvider';
 
 export default function LoginPage() {
   const router = useRouter();
   const { login, logout, isAuthenticated, user } = useSession();
+  const { schoolName } = useBranding();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -71,9 +73,9 @@ export default function LoginPage() {
           <div className="flex items-center justify-between border-b border-rule pb-4">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-control bg-brand-700 text-surface flex items-center justify-center font-bold text-sm">
-                ABC
+                {schoolName.substring(0, 3).toUpperCase()}
               </div>
-              <span className="text-sm font-semibold text-ink-900">ABC School Network</span>
+              <span className="text-sm font-semibold text-ink-900">{schoolName}</span>
             </div>
             <span className="inline-flex items-center rounded-control bg-brand-100 px-2.5 py-1 text-secondary-meta font-medium text-brand-700">
               Phase 0 Prototype

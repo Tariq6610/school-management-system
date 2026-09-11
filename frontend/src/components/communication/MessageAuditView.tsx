@@ -176,7 +176,7 @@ export function MessageAuditView({
           <div className="text-2xl font-black text-neutral-900 mt-1 font-mono">
             {stats.totalThreads}
           </div>
-          <span className="text-[10px] text-neutral-400 mt-0.5 block">
+          <span className="text-[10px] text-neutral-500 mt-0.5 block">
             Across selected parameters
           </span>
         </div>
@@ -188,7 +188,7 @@ export function MessageAuditView({
           <div className="text-2xl font-black text-purple-700 mt-1 font-mono">
             {stats.totalMessages}
           </div>
-          <span className="text-[10px] text-neutral-400 mt-0.5 block">Logged communications</span>
+          <span className="text-[10px] text-neutral-500 mt-0.5 block">Logged communications</span>
         </div>
 
         <div className="bg-white p-4 rounded-2xl border border-neutral-200/80 shadow-2xs">
@@ -198,7 +198,7 @@ export function MessageAuditView({
           <div className="text-2xl font-black text-indigo-700 mt-1 font-mono">
             {stats.participatingTeachers}
           </div>
-          <span className="text-[10px] text-neutral-400 mt-0.5 block">Faculty in discussions</span>
+          <span className="text-[10px] text-neutral-500 mt-0.5 block">Faculty in discussions</span>
         </div>
 
         <div className="bg-white p-4 rounded-2xl border border-neutral-200/80 shadow-2xs">
@@ -208,7 +208,7 @@ export function MessageAuditView({
           <div className="text-2xl font-black text-emerald-700 mt-1 font-mono">
             {stats.participatingParents}
           </div>
-          <span className="text-[10px] text-neutral-400 mt-0.5 block">Engaged guardians</span>
+          <span className="text-[10px] text-neutral-500 mt-0.5 block">Engaged guardians</span>
         </div>
       </div>
 
@@ -222,7 +222,7 @@ export function MessageAuditView({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search teacher, parent, student, or message body..."
-              className="w-full px-3.5 py-2 text-xs rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600 transition-all placeholder:text-neutral-400"
+              className="w-full px-3.5 py-2 text-xs rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600 transition-all placeholder:text-neutral-500"
             />
           </div>
 
@@ -300,17 +300,17 @@ export function MessageAuditView({
             <h3 className="text-xs font-bold text-neutral-700 uppercase tracking-wider">
               Audit Threads ({threads.length})
             </h3>
-            <span className="text-[10px] text-neutral-400">Newest activity first</span>
+            <span className="text-[10px] text-neutral-500">Newest activity first</span>
           </div>
 
           <div className="flex-1 overflow-y-auto divide-y divide-neutral-100">
             {loading ? (
-              <div className="p-8 text-center text-xs text-neutral-400">
+              <div className="p-8 text-center text-xs text-neutral-500">
                 <div className="inline-block w-5 h-5 border-2 border-neutral-300 border-t-purple-600 rounded-full animate-spin mb-2" />
                 <p>Loading audit index...</p>
               </div>
             ) : threads.length === 0 ? (
-              <div className="p-8 text-center text-xs text-neutral-400">
+              <div className="p-8 text-center text-xs text-neutral-500">
                 No threads match the selected audit criteria.
               </div>
             ) : (
@@ -331,7 +331,7 @@ export function MessageAuditView({
                       <div className="min-w-0">
                         <div className="flex items-center gap-1.5 text-xs font-bold text-neutral-900 truncate">
                           <span>{t.teacherUser.name}</span>
-                          <span className="text-neutral-400 font-normal">↔</span>
+                          <span className="text-neutral-500 font-normal">↔</span>
                           <span>{t.parentUser.name}</span>
                         </div>
                         {t.studentName && (
@@ -341,13 +341,13 @@ export function MessageAuditView({
                               {t.studentName}
                             </strong>
                             {t.className && (
-                              <span className="text-neutral-400 ml-1">({t.className})</span>
+                              <span className="text-neutral-500 ml-1">({t.className})</span>
                             )}
                           </div>
                         )}
                       </div>
 
-                      <span className="text-[10px] text-neutral-400 font-mono shrink-0">
+                      <span className="text-[10px] text-neutral-500 font-mono shrink-0">
                         {formatRelativeTime(t.lastMessageAt)}
                       </span>
                     </div>
@@ -375,10 +375,10 @@ export function MessageAuditView({
         {/* Right Pane: Read-Only Audit Transcript */}
         <div className="flex-1 h-full min-w-0 flex flex-col bg-white">
           {!activeThread ? (
-            <div className="h-full flex flex-col items-center justify-center p-8 text-neutral-400">
+            <div className="h-full flex flex-col items-center justify-center p-8 text-neutral-500">
               <span className="text-4xl mb-2">🛡️</span>
               <p className="text-sm font-bold text-neutral-700">No thread selected</p>
-              <p className="text-xs text-neutral-400 mt-1">
+              <p className="text-xs text-neutral-500 mt-1">
                 Select an audit thread from the list to review the complete transcript.
               </p>
             </div>
@@ -405,7 +405,7 @@ export function MessageAuditView({
                 {/* Participant Metadata Card */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 p-3 rounded-xl bg-white border border-neutral-200/80 text-xs">
                   <div>
-                    <span className="text-[10px] uppercase font-bold text-neutral-400 block">
+                    <span className="text-[10px] uppercase font-bold text-neutral-500 block">
                       Teacher
                     </span>
                     <span className="font-bold text-neutral-900">
@@ -417,7 +417,7 @@ export function MessageAuditView({
                   </div>
 
                   <div>
-                    <span className="text-[10px] uppercase font-bold text-neutral-400 block">
+                    <span className="text-[10px] uppercase font-bold text-neutral-500 block">
                       Parent / Guardian
                     </span>
                     <span className="font-bold text-neutral-900">
@@ -429,7 +429,7 @@ export function MessageAuditView({
                   </div>
 
                   <div>
-                    <span className="text-[10px] uppercase font-bold text-neutral-400 block">
+                    <span className="text-[10px] uppercase font-bold text-neutral-500 block">
                       Student Context
                     </span>
                     <span className="font-bold text-neutral-900">
@@ -469,7 +469,7 @@ export function MessageAuditView({
                           <span className="text-[10px] font-semibold px-1.5 py-0.2 rounded bg-neutral-100 text-neutral-600 capitalize">
                             {senderRole}
                           </span>
-                          <span className="text-[10px] text-neutral-400 font-mono">
+                          <span className="text-[10px] text-neutral-500 font-mono">
                             (Index #{index + 1})
                           </span>
                         </div>

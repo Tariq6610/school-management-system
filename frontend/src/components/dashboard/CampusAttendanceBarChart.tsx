@@ -181,14 +181,14 @@ export function CampusAttendanceBarChart({
                 {/* Tooltip on hover */}
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity absolute -top-12 z-20 pointer-events-none bg-gray-900 text-white text-xs px-2.5 py-1 rounded shadow-lg whitespace-nowrap">
                   <p className="font-semibold">{c.campusName}</p>
-                  <p className="text-[11px] text-gray-300">
+                  <p className="text-[11px] text-gray-500">
                     {currentConfig.label}: <span className="text-white font-bold">{currentConfig.format(val)}</span>
                   </p>
                 </div>
 
                 {/* Top Performer Badge */}
                 {isTop && (
-                  <span className="text-[10px] font-bold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded-full border border-amber-200 mb-1.5 animate-pulse">
+                  <span className="text-[10px] font-bold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded-full border border-amber-200 mb-1.5 motion-safe:animate-pulse">
                     ★ Lead
                   </span>
                 )}
@@ -231,7 +231,7 @@ export function CampusAttendanceBarChart({
         </div>
 
         {/* Footer Note */}
-        <div className="mt-4 flex items-center justify-between text-xs text-gray-400">
+        <div className="mt-4 flex items-center justify-between text-xs text-gray-500">
           <span>* Click any bar or campus to drill down into operational details</span>
           <span>Strictly computed on read • Zero fabricated figures</span>
         </div>

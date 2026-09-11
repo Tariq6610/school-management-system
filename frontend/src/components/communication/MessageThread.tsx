@@ -80,10 +80,10 @@ export function MessageThread({
 
   if (!thread) {
     return (
-      <div className="h-full flex flex-col items-center justify-center p-8 bg-neutral-50/50 text-neutral-400">
+      <div className="h-full flex flex-col items-center justify-center p-8 bg-neutral-50/50 text-neutral-500">
         <span className="text-4xl mb-3">💬</span>
         <h3 className="text-sm font-bold text-neutral-700">No conversation selected</h3>
-        <p className="text-xs text-neutral-400 max-w-xs text-center mt-1">
+        <p className="text-xs text-neutral-500 max-w-xs text-center mt-1">
           Select an active conversation from the list or start a new thread to contact a parent or teacher.
         </p>
       </div>
@@ -106,7 +106,7 @@ export function MessageThread({
             <button
               type="button"
               onClick={onBack}
-              className="lg:hidden p-1.5 -ml-1 text-neutral-500 hover:text-neutral-900 rounded-lg hover:bg-neutral-100 transition-colors"
+              className="lg:hidden p-1.5 -ml-1 text-neutral-500 hover:text-neutral-900 rounded-lg hover:bg-neutral-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
               aria-label="Back to conversations list"
             >
               ←
@@ -134,7 +134,7 @@ export function MessageThread({
                   {thread.studentContext.studentName}
                 </strong>
                 {thread.studentContext.className && (
-                  <span className="text-neutral-400 ml-1">
+                  <span className="text-neutral-500 ml-1">
                     ({thread.studentContext.className})
                   </span>
                 )}
@@ -168,12 +168,12 @@ export function MessageThread({
         className="flex-1 overflow-y-auto p-4 space-y-4"
       >
         {loading ? (
-          <div className="h-full flex items-center justify-center text-xs text-neutral-400">
+          <div className="h-full flex items-center justify-center text-xs text-neutral-500">
             <div className="inline-block w-5 h-5 border-2 border-neutral-300 border-t-purple-600 rounded-full animate-spin mr-2" />
             Loading messages...
           </div>
         ) : messages.length === 0 ? (
-          <div className="h-full flex flex-col items-center justify-center text-xs text-neutral-400">
+          <div className="h-full flex flex-col items-center justify-center text-xs text-neutral-500">
             <p>No messages yet in this conversation.</p>
             <p className="mt-1">Send a greeting to start the thread.</p>
           </div>
@@ -208,7 +208,7 @@ export function MessageThread({
 
                   {/* Metadata: timestamp & read receipt */}
                   <div
-                    className={`flex items-center gap-1 text-[10px] text-neutral-400 mt-1 px-1 ${
+                    className={`flex items-center gap-1 text-[10px] text-neutral-500 mt-1 px-1 ${
                       isMe ? 'flex-row-reverse' : ''
                     }`}
                   >
@@ -245,7 +245,7 @@ export function MessageThread({
               onChange={(e) => setInputText(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Type your message... (Press Enter to send, Shift+Enter for new line)"
-              className="w-full px-3.5 py-2 text-xs rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600 transition-all resize-none placeholder:text-neutral-400 leading-relaxed"
+              className="w-full px-3.5 py-2 text-xs rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600 transition-all resize-none placeholder:text-neutral-500 leading-relaxed"
             />
           </div>
 

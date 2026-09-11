@@ -178,7 +178,7 @@ export function ParentFeeView({ initialStudentId, initialOverview }: ParentFeeVi
                 }`}
               >
                 <span>{child.name}</span>
-                <span className="font-mono text-[10px] text-neutral-400">({child.admissionNumber})</span>
+                <span className="font-mono text-[10px] text-neutral-500">({child.admissionNumber})</span>
               </button>
             );
           })}
@@ -370,7 +370,7 @@ export function ParentFeeView({ initialStudentId, initialOverview }: ParentFeeVi
                   <tbody className="divide-y divide-neutral-100">
                     {overview.invoices.length === 0 ? (
                       <tr>
-                        <td colSpan={10} className="py-12 text-center text-neutral-400">
+                        <td colSpan={10} className="py-12 text-center text-neutral-500">
                           No invoices generated for this student yet.
                         </td>
                       </tr>
@@ -460,7 +460,7 @@ export function ParentFeeView({ initialStudentId, initialOverview }: ParentFeeVi
                   <tbody className="divide-y divide-neutral-100">
                     {overview.receipts.length === 0 ? (
                       <tr>
-                        <td colSpan={7} className="py-12 text-center text-neutral-400">
+                        <td colSpan={7} className="py-12 text-center text-neutral-500">
                           No payment receipts recorded for this student yet.
                         </td>
                       </tr>
@@ -555,7 +555,7 @@ export function ParentFeeView({ initialStudentId, initialOverview }: ParentFeeVi
               <button
                 type="button"
                 onClick={() => setSelectedInvoiceForDetail(null)}
-                className="rounded-lg p-1.5 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-700"
+                className="rounded-lg p-1.5 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-700"
               >
                 ✕
               </button>

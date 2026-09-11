@@ -173,7 +173,7 @@ export function CampusComparisonView({
 
   const renderSortIndicator = (field: SortField) => {
     if (sortField !== field) {
-      return <span className="text-gray-300 ml-1">↕</span>;
+      return <span className="text-gray-500 ml-1">↕</span>;
     }
     return (
       <span className="text-emerald-600 font-bold ml-1">
@@ -431,7 +431,7 @@ export function CampusComparisonView({
                                 </span>
                               )}
                             </div>
-                            <span className="text-xs text-gray-400 block truncate max-w-xs">
+                            <span className="text-xs text-gray-500 block truncate max-w-xs">
                               {c.address} • {c.principalName}
                             </span>
                           </div>

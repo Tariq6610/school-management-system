@@ -232,7 +232,7 @@ export function AssignmentManager({
           {[1, 2, 3].map((i) => (
             <div
               key={i}
-              className="h-28 bg-neutral-100/70 border border-neutral-200 rounded-2xl animate-pulse"
+              className="h-28 bg-neutral-100/70 border border-neutral-200 rounded-2xl motion-safe:animate-pulse"
             />
           ))}
         </div>
