@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-noto-sans), "Noto Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Brand Palette */
+  --color-brand-700: #4B2FA8;
+  --color-brand-600: #5B41C7;
+  --color-brand-100: #EDE9FB;
+
+  /* Secondary Accent */
+  --color-accent-700: #1D5F96;
+  --color-accent-100: #E4EEF7;
+
+  /* Neutrals & Surfaces */
+  --color-ink-900: #1A1B23;
+  --color-ink-600: #565A68;
+  --color-ink-400: #8B90A0;
+  --color-rule: #E2E4EA;
+  --color-surface: #FFFFFF;
+  --color-canvas: #F6F6F9;
+  --color-sidebar: #241C46;
+
+  /* Status Colors */
+  --color-present: #17795E;
+  --color-present-bg: #E3F3EE;
+  --color-absent: #B4322A;
+  --color-absent-bg: #FBE9E7;
+  --color-late: #9A6206;
+  --color-late-bg: #FDF1DC;
+  --color-leave: #4A5265;
+  --color-leave-bg: #EDEFF3;
+
+  /* Radii */
+  --radius-control: 6px;
+  --radius-card: 10px;
+
+  /* Elevation */
+  --shadow-overlay: 0 4px 16px rgba(26, 27, 35, 0.12);
+}
+
+/* Custom Typography Utilities per UI_DESIGN_SYSTEM.md §3 */
+@utility text-page-title {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+}
+
+@utility text-section-heading {
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 600;
+}
+
+@utility text-card-title {
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 600;
+}
+
+@utility text-body-custom {
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
+}
+
+@utility text-table-cell {
+  font-size: 13.5px;
+  line-height: 20px;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility text-secondary-meta {
+  font-size: 12.5px;
+  line-height: 18px;
+  font-weight: 400;
+}
+
+@utility text-stat-number {
+  font-size: 30px;
+  line-height: 34px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-ink-900);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Print Stylesheet for Report Cards & Invoices */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm 10mm;
+  }
+
+  html, body {
+    background-color: #ffffff !important;
+    color: #1a1b23 !important;
+    font-size: 12px;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .print-page-break {
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .print-page-break:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  .print-avoid-break {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
