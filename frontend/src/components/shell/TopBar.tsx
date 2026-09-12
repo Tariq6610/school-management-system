@@ -6,6 +6,7 @@ import { Role, User } from '@/types';
 import { Avatar, StatusBadge } from '@/components/ui';
 import { CampusSwitcher } from './CampusSwitcher';
 import { ChildSwitcher } from './ChildSwitcher';
+import { FontSwitcher } from './FontSwitcher';
 import { useOptionalSession } from '@/components/providers/SessionProvider';
 import { NotificationBellTrigger } from '@/components/communication';
 
@@ -83,6 +84,10 @@ export function TopBar({
         {role === 'parent' && (
           <ChildSwitcher currentChildName={childName} />
         )}
+
+        <div className="hidden sm:block">
+          <FontSwitcher />
+        </div>
 
         {/* Prototype Demo Affordances */}
         <div className="hidden lg:flex items-center gap-1.5">

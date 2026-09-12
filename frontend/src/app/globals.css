@@ -126,3 +126,20 @@ body {
     display: none !important;
   }
 }
+
+/* Font Switcher Overrides */
+html[data-font="noto"] {
+  --font-sans: var(--font-noto-sans), "Noto Sans", system-ui, sans-serif;
+}
+
+html[data-font="fraunces"] {
+  --font-sans: var(--font-fraunces), "Fraunces", serif;
+}
+
+html[data-font="jetbrains"] {
+  --font-sans: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+}
+
+html[data-font="inter"] {
+  --font-sans: var(--font-inter), "Inter", sans-serif;
+}
