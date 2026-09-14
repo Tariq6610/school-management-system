@@ -52,6 +52,7 @@ export interface Assignment {
   instructions: string;
   deadline: string; // ISO date-time string
   maxMarks: number;
+  submissionType?: 'online' | 'offline';
 }
 
 export interface EnrichedAssignment extends Assignment {

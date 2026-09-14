@@ -13,6 +13,7 @@ import { Modal } from '@/components/ui/Modal';
 import { Button } from '@/components/ui/Button';
 import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface BulkSubjectTemplateModalProps {
   isOpen: boolean;
@@ -246,23 +247,23 @@ export function BulkSubjectTemplateModal({
             <button
               type="button"
               onClick={() => handleSelectStream('core')}
-              className="px-2 py-0.5 rounded bg-neutral-100 text-neutral-700 hover:bg-neutral-200 font-medium transition-colors"
+              className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-neutral-100 text-neutral-700 hover:bg-neutral-200 font-medium transition-colors"
             >
-              + All Core
+              <NavIcon name="plus" className="w-3 h-3" /> All Core
             </button>
             <button
               type="button"
               onClick={() => handleSelectStream('science')}
-              className="px-2 py-0.5 rounded bg-neutral-100 text-neutral-700 hover:bg-neutral-200 font-medium transition-colors"
+              className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-neutral-100 text-neutral-700 hover:bg-neutral-200 font-medium transition-colors"
             >
-              + Science Stream
+              <NavIcon name="plus" className="w-3 h-3" /> Science Stream
             </button>
             <button
               type="button"
               onClick={() => handleSelectStream('humanities')}
-              className="px-2 py-0.5 rounded bg-neutral-100 text-neutral-700 hover:bg-neutral-200 font-medium transition-colors"
+              className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-neutral-100 text-neutral-700 hover:bg-neutral-200 font-medium transition-colors"
             >
-              + Humanities
+              <NavIcon name="plus" className="w-3 h-3" /> Humanities
             </button>
           </div>
 

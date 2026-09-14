@@ -17,6 +17,7 @@ import { DatePicker } from '@/components/ui/DatePicker';
 import { Textarea } from '@/components/ui/Textarea';
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
 import { StatusBadge } from '@/components/ui/StatusBadge';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface StudentEditFormProps {
   studentId: string;
@@ -315,7 +316,15 @@ export function StudentEditForm({
             }`}
           >
             <div className="font-bold mb-1 flex items-center gap-1.5">
-              {status === 'active' ? '✓ Active Enrollment' : '⚠️ Inactive Lifecycle Status'}
+              {status === 'active' ? (
+                <>
+                  <NavIcon name="check-circle" className="w-4 h-4" /> Active Enrollment
+                </>
+              ) : (
+                <>
+                  <NavIcon name="alert-triangle" className="w-4 h-4" /> Inactive Lifecycle Status
+                </>
+              )}
             </div>
             {status === 'active' && (
               <p>

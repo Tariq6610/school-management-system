@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { ActivityCategory, NetworkActivityItem } from '@/lib/repositories/networkDashboard';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface RecentActivityFeedProps {
   activities: NetworkActivityItem[];
@@ -34,46 +35,46 @@ interface CategoryMeta {
 
 const CATEGORY_METAS: Record<ActivityCategory, CategoryMeta> = {
   admission: {
-    icon: '🎓',
+    icon: 'user-check',
     label: 'Admission',
-    bgClass: 'bg-emerald-50',
-    textClass: 'text-emerald-700',
-    borderClass: 'border-emerald-200/80',
+    bgClass: 'bg-present-bg',
+    textClass: 'text-present',
+    borderClass: 'border-present/20',
   },
   fee_payment: {
-    icon: '💳',
+    icon: 'credit-card',
     label: 'Fee Payment',
-    bgClass: 'bg-amber-50',
-    textClass: 'text-amber-700',
-    borderClass: 'border-amber-200/80',
+    bgClass: 'bg-late-bg',
+    textClass: 'text-late',
+    borderClass: 'border-late/20',
   },
   attendance: {
-    icon: '📅',
+    icon: 'clipboard-check',
     label: 'Attendance',
-    bgClass: 'bg-sky-50',
-    textClass: 'text-sky-700',
-    borderClass: 'border-sky-200/80',
+    bgClass: 'bg-accent-100',
+    textClass: 'text-accent-700',
+    borderClass: 'border-accent-700/20',
   },
   exam: {
-    icon: '🏆',
+    icon: 'award',
     label: 'Results',
-    bgClass: 'bg-indigo-50',
-    textClass: 'text-indigo-700',
-    borderClass: 'border-indigo-200/80',
+    bgClass: 'bg-brand-100',
+    textClass: 'text-brand-700',
+    borderClass: 'border-brand-700/20',
   },
   announcement: {
-    icon: '📢',
+    icon: 'bell',
     label: 'Notice',
-    bgClass: 'bg-purple-50',
-    textClass: 'text-purple-700',
-    borderClass: 'border-purple-200/80',
+    bgClass: 'bg-brand-100',
+    textClass: 'text-brand-700',
+    borderClass: 'border-brand-700/20',
   },
   whatsapp: {
-    icon: '💬',
+    icon: 'message-circle',
     label: 'WhatsApp',
-    bgClass: 'bg-emerald-50',
-    textClass: 'text-emerald-800',
-    borderClass: 'border-emerald-200/80',
+    bgClass: 'bg-present-bg',
+    textClass: 'text-present',
+    borderClass: 'border-present/20',
   },
 };
 
@@ -91,7 +92,7 @@ export function RecentActivityFeed({ activities }: RecentActivityFeedProps) {
       <div className="p-4 border-b border-neutral-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-neutral-50/50">
         <div>
           <h3 className="text-sm font-bold text-neutral-900 flex items-center gap-2">
-            <span>⚡</span> Network Recent Activity
+            <NavIcon name="activity" className="w-4 h-4 text-brand-700" /> Network Recent Activity
           </h3>
           <p className="text-xs text-neutral-500 mt-0.5">
             Real-time feed of admissions, fee collection, attendance submissions, and dispatches.
@@ -175,9 +176,9 @@ export function RecentActivityFeed({ activities }: RecentActivityFeedProps) {
               >
                 {/* Icon Badge */}
                 <div
-                  className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 border ${meta.bgClass} ${meta.textClass} ${meta.borderClass} text-sm shadow-2xs`}
+                  className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 border ${meta.bgClass} ${meta.textClass} ${meta.borderClass} shadow-2xs`}
                 >
-                  {meta.icon}
+                  <NavIcon name={meta.icon} className="w-4.5 h-4.5" />
                 </div>
 
                 {/* Content */}
@@ -197,8 +198,8 @@ export function RecentActivityFeed({ activities }: RecentActivityFeedProps) {
 
                   <div className="flex items-center gap-2 mt-1.5">
                     {act.campusName && (
-                      <span className="text-[10px] font-medium px-2 py-0.5 rounded bg-neutral-100 text-neutral-700">
-                        📍 {act.campusName}
+                      <span className="text-[10px] font-medium px-2 py-0.5 rounded bg-neutral-100 text-neutral-700 inline-flex items-center gap-1">
+                        <NavIcon name="map-pin" className="w-2.5 h-2.5" /> {act.campusName}
                       </span>
                     )}
                     <span

@@ -14,6 +14,7 @@ import {
 import { formatCurrency } from '@/lib/utils/currency';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { Avatar } from '@/components/ui/Avatar';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface InvoicesTableProps {
   invoices: FeeInvoice[];
@@ -46,8 +47,8 @@ export function InvoicesTable({
   if (invoices.length === 0) {
     return (
       <div className="rounded-xl border border-dashed border-neutral-300 p-12 text-center bg-white">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 text-purple-600 text-xl font-bold mb-3">
-          🧾
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 text-purple-600 mb-3">
+          <NavIcon name="receipt" className="w-6 h-6" />
         </div>
         <h3 className="text-sm font-bold text-neutral-900">No Invoices Found</h3>
         <p className="mt-1 text-xs text-neutral-500 max-w-sm mx-auto">

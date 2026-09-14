@@ -3,7 +3,7 @@
  * Reference: DATA_MODELS.md §3
  */
 
-import { ID, ISODate, Role } from './common';
+import { DesignTokens, ID, ISODate, Role } from './common';
 
 export interface School {
   id: ID;
@@ -26,6 +26,20 @@ export interface Campus {
 }
 
 export type NewCampus = Omit<Campus, 'id'>;
+
+/**
+ * Per-campus design override, used when Settings.branding.designMode is
+ * 'per-campus'. Set by super_admin only (DESIGN_SYSTEM customization).
+ * One record per campus, id === campusId.
+ */
+export interface CampusTheme extends DesignTokens {
+  id: ID; // === campusId
+  schoolId: ID;
+  campusId: ID;
+  updatedAt: ISODate;
+}
+
+export type NewCampusTheme = Omit<CampusTheme, 'id' | 'updatedAt'>;
 
 export interface AcademicYear {
   id: ID;

@@ -10,6 +10,7 @@ import {
   markNotificationAsRead,
   markNotificationAsUnread,
 } from '@/lib/repositories/notifications';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface NotificationCentreProps {
   recipientId: ID;
@@ -45,34 +46,34 @@ interface TypeMeta {
 
 const TYPE_METAS: Record<NotificationType, TypeMeta> = {
   attendance: {
-    icon: '📅',
+    icon: 'clipboard-check',
     label: 'Attendance',
-    bgClass: 'bg-emerald-50 text-emerald-700 border-emerald-200/60',
-    textClass: 'text-emerald-700',
+    bgClass: 'bg-present-bg text-present border-present/20',
+    textClass: 'text-present',
   },
   fee: {
-    icon: '💳',
+    icon: 'credit-card',
     label: 'Fees',
-    bgClass: 'bg-amber-50 text-amber-700 border-amber-200/60',
-    textClass: 'text-amber-700',
+    bgClass: 'bg-late-bg text-late border-late/20',
+    textClass: 'text-late',
   },
   homework: {
-    icon: '📚',
+    icon: 'book-open',
     label: 'LMS / Work',
-    bgClass: 'bg-blue-50 text-blue-700 border-blue-200/60',
-    textClass: 'text-blue-700',
+    bgClass: 'bg-accent-100 text-accent-700 border-accent-700/20',
+    textClass: 'text-accent-700',
   },
   exam: {
-    icon: '🏆',
+    icon: 'award',
     label: 'Exams',
-    bgClass: 'bg-purple-50 text-purple-700 border-purple-200/60',
-    textClass: 'text-purple-700',
+    bgClass: 'bg-brand-100 text-brand-700 border-brand-700/20',
+    textClass: 'text-brand-700',
   },
   announcement: {
-    icon: '📢',
+    icon: 'bell',
     label: 'Notice',
-    bgClass: 'bg-rose-50 text-rose-700 border-rose-200/60',
-    textClass: 'text-rose-700',
+    bgClass: 'bg-absent-bg text-absent border-absent/20',
+    textClass: 'text-absent',
   },
 };
 
@@ -203,7 +204,7 @@ export function NotificationCentre({
 
   return (
     <div
-      className={`flex flex-col bg-white ${
+      className={`flex flex-col bg-surface ${
         isDropdown
           ? 'w-88 sm:w-96 max-h-[540px] rounded-2xl border border-neutral-200/90 shadow-xl overflow-hidden'
           : 'w-full rounded-2xl border border-neutral-200/80 shadow-2xs'
@@ -212,10 +213,10 @@ export function NotificationCentre({
       {/* 1. Header with Stats and Mark All Read */}
       <div className="p-3.5 border-b border-neutral-100 flex items-center justify-between gap-2 bg-neutral-50/50 shrink-0">
         <div className="flex items-center gap-2">
-          <span className="text-base">🔔</span>
+          <NavIcon name="bell" className="w-4 h-4 text-brand-700" />
           <h3 className="text-sm font-bold text-neutral-900">Notifications</h3>
           {unreadCount > 0 ? (
-            <span className="px-2 py-0.5 rounded-full bg-purple-600 text-white text-[10px] font-black tracking-tight">
+            <span className="px-2 py-0.5 rounded-full bg-brand-700 text-white text-[10px] font-black tracking-tight">
               {unreadCount} new
             </span>
           ) : (
@@ -229,7 +230,7 @@ export function NotificationCentre({
           <button
             type="button"
             onClick={handleMarkAllRead}
-            className="text-[11px] font-semibold text-purple-700 hover:text-purple-900 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
+            className="text-[11px] font-semibold text-brand-700 hover:text-brand-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600/50"
           >
             Mark all as read
           </button>
@@ -289,11 +290,11 @@ export function NotificationCentre({
                   onClick={() => setSelectedType(type)}
                   className={`px-2 py-0.5 rounded-lg border font-medium shrink-0 transition-colors flex items-center gap-1 ${
                     isSel
-                      ? 'bg-purple-600 text-white border-purple-600'
+                      ? 'bg-brand-700 text-white border-brand-700'
                       : 'bg-neutral-50 text-neutral-600 border-neutral-200 hover:bg-neutral-100'
                   }`}
                 >
-                  <span>{meta.icon}</span>
+                  <NavIcon name={meta.icon} className="w-3 h-3" />
                   <span>{meta.label}</span>
                 </button>
               );
@@ -306,12 +307,12 @@ export function NotificationCentre({
       <div className="flex-1 overflow-y-auto divide-y divide-neutral-100 min-h-[160px]">
         {loading ? (
           <div className="p-8 text-center text-xs text-neutral-500">
-            <div className="inline-block w-5 h-5 border-2 border-neutral-300 border-t-purple-600 rounded-full animate-spin mb-2" />
+            <div className="inline-block w-5 h-5 border-2 border-neutral-300 border-t-brand-600 rounded-full animate-spin mb-2" />
             <p>Loading notification feed...</p>
           </div>
         ) : filteredNotifications.length === 0 ? (
           <div className="p-8 text-center text-xs text-neutral-500 space-y-1">
-            <span className="text-2xl block mb-1">✨</span>
+            <NavIcon name="bell" className="w-6 h-6 mx-auto mb-1 text-ink-300" />
             <p className="font-semibold text-neutral-700">No notifications found</p>
             <p className="text-[11px] text-neutral-500">
               {filterMode === 'unread'
@@ -322,7 +323,7 @@ export function NotificationCentre({
         ) : (
           filteredNotifications.map((n) => {
             const meta = TYPE_METAS[n.type] || {
-              icon: '📌',
+              icon: 'bell',
               label: 'Notice',
               bgClass: 'bg-neutral-100 text-neutral-700 border-neutral-200',
               textClass: 'text-neutral-700',
@@ -334,22 +335,22 @@ export function NotificationCentre({
               <div
                 key={n.id}
                 className={`p-3.5 transition-colors flex items-start gap-3 relative group ${
-                  isUnread ? 'bg-purple-50/40' : 'hover:bg-neutral-50/70'
+                  isUnread ? 'bg-brand-100/40' : 'hover:bg-neutral-50/70'
                 }`}
               >
                 {/* Unread indicator dot */}
                 {isUnread && (
                   <span
-                    className="w-2 h-2 rounded-full bg-purple-600 shrink-0 mt-1.5 shadow-xs"
+                    className="w-2 h-2 rounded-full bg-brand-700 shrink-0 mt-1.5 shadow-xs"
                     title="Unread notification"
                   />
                 )}
 
                 {/* Category Icon Badge */}
                 <div
-                  className={`w-8 h-8 rounded-xl border flex items-center justify-center text-sm shrink-0 shadow-2xs ${meta.bgClass}`}
+                  className={`w-8 h-8 rounded-xl border flex items-center justify-center shrink-0 shadow-2xs ${meta.bgClass}`}
                 >
-                  {meta.icon}
+                  <NavIcon name={meta.icon} className="w-4 h-4" />
                 </div>
 
                 {/* Content */}
@@ -380,7 +381,7 @@ export function NotificationCentre({
                         <Link
                           href={deepLink}
                           onClick={onCloseDropdown}
-                          className="text-[11px] font-semibold text-purple-700 hover:text-purple-900 transition-colors"
+                          className="text-[11px] font-semibold text-brand-700 hover:text-brand-600 transition-colors"
                         >
                           View Details →
                         </Link>
@@ -419,7 +420,7 @@ export function NotificationCentre({
           <Link
             href="/notifications"
             onClick={onCloseDropdown}
-            className="text-xs font-semibold text-purple-700 hover:text-purple-900 block py-1"
+            className="text-xs font-semibold text-brand-700 hover:text-brand-600 block py-1"
           >
             Open Full Notification Centre →
           </Link>
@@ -494,11 +495,11 @@ export function NotificationBellTrigger({
         aria-expanded={isOpen}
         className="relative p-1.5 text-neutral-600 hover:text-neutral-900 rounded-xl hover:bg-neutral-100 transition-colors"
       >
-        <span className="text-lg">🔔</span>
+        <NavIcon name="bell" className="w-5 h-5" />
 
         {/* Dynamic Unread Badge */}
         {unreadCount > 0 && (
-          <span className="absolute top-0.5 right-0.5 min-w-4 h-4 px-1 rounded-full bg-rose-600 text-white text-[9px] font-black flex items-center justify-center shadow-xs animate-in zoom-in">
+          <span className="absolute top-0.5 right-0.5 min-w-4 h-4 px-1 rounded-full bg-absent text-white text-[9px] font-black flex items-center justify-center shadow-xs animate-in zoom-in">
             {unreadCount > 9 ? '9+' : unreadCount}
           </span>
         )}

@@ -35,6 +35,7 @@ import { AttendanceStatusControl } from './AttendanceStatusControl';
 import { AttendanceSummaryBar } from './AttendanceSummaryBar';
 import { AttendanceSaveBar } from './AttendanceSaveBar';
 import { AttendanceAuditBanner } from './AttendanceAuditBanner';
+import { NavIcon } from '@/components/shell/NavIcon';
 import { AttendanceAuditModal } from './AttendanceAuditModal';
 
 export interface AttendanceGridProps {
@@ -509,8 +510,8 @@ export function AttendanceGrid({ classId, initialDate = '2026-09-08' }: Attendan
         </div>
         <div className="flex items-center gap-2">
           <Link href={`/teacher/attendance/scan?classId=${classId}&date=${selectedDate}`}>
-            <Button variant="secondary" size="sm" className="h-7 text-xs font-semibold">
-              📷 QR Scanner Mode
+            <Button variant="secondary" size="sm" className="h-7 text-xs font-semibold" leftIcon={<NavIcon name="camera" className="w-3.5 h-3.5" />}>
+              QR Scanner Mode
             </Button>
           </Link>
           <div className="text-[11px] text-ink-500 hidden md:inline">

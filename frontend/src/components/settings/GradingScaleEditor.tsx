@@ -13,6 +13,7 @@ import { useSession } from '@/components/providers/SessionProvider';
 import { useToast } from '@/components/ui/Toast';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface GradingScaleEditorProps {
   initialScale?: GradeScaleItem[];
@@ -298,7 +299,7 @@ export function GradingScaleEditor({ initialScale, onSaved }: GradingScaleEditor
       {!validation.isValid && (
         <div role="alert" className="p-4 bg-red-50 border border-red-200 rounded-xl space-y-1 text-sm text-red-700">
           <div className="font-bold flex items-center gap-1.5">
-            <span>⚠️</span>
+            <NavIcon name="alert-triangle" className="w-4 h-4" />
             <span>Grading Scale Errors Detected:</span>
           </div>
           <ul className="list-disc list-inside text-xs space-y-0.5 ml-2">
@@ -441,7 +442,7 @@ export function GradingScaleEditor({ initialScale, onSaved }: GradingScaleEditor
                         className="p-1 text-red-500 hover:text-red-700 hover:bg-red-50 rounded"
                         title="Delete Tier"
                       >
-                        ✕
+                        <NavIcon name="trash" className="w-3.5 h-3.5" />
                       </button>
                     </div>
                   </td>
@@ -453,8 +454,8 @@ export function GradingScaleEditor({ initialScale, onSaved }: GradingScaleEditor
 
         {/* Add Tier Action */}
         <div className="p-3 bg-neutral-50/50 border-t border-neutral-200">
-          <Button size="sm" variant="secondary" onClick={handleAddTier}>
-            + Add New Tier
+          <Button size="sm" variant="secondary" onClick={handleAddTier} leftIcon={<NavIcon name="plus" className="w-3.5 h-3.5" />}>
+            Add New Tier
           </Button>
         </div>
       </div>
@@ -464,7 +465,7 @@ export function GradingScaleEditor({ initialScale, onSaved }: GradingScaleEditor
         <div className="flex items-center justify-between border-b border-neutral-100 pb-3">
           <div>
             <h3 className="font-bold text-sm text-neutral-900 flex items-center gap-2">
-              <span>🧪</span>
+              <NavIcon name="activity" className="w-4 h-4" />
               <span>Interactive Scale Tester</span>
             </h3>
             <p className="text-xs text-neutral-500">

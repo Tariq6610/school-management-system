@@ -6,6 +6,7 @@ import {
   getParentStudentFeeOverview,
   ParentStudentFeeOverview,
   EnrichedParentPaymentReceipt,
+  generateMonthlyInvoice,
 } from '@/lib/repositories/parentFees';
 import { getChildrenForParent } from '@/lib/repositories/parents';
 import { formatCurrency } from '@/lib/utils/currency';
@@ -14,6 +15,10 @@ import { StatusBadge } from '@/components/ui/StatusBadge';
 import { Button } from '@/components/ui/Button';
 import { PaymentReceiptModal } from '@/components/fees/PaymentReceiptModal';
 import { StudentFeeLedgerModal } from '@/components/fees/StudentFeeLedgerModal';
+import { OnlinePaymentModal } from '@/components/fees/OnlinePaymentModal';
+import { FeeVoucherModal } from '@/components/fees/FeeVoucherModal';
+import { NavIcon } from '@/components/shell/NavIcon';
+import { useToast } from '@/components/ui/Toast';
 
 export interface ParentFeeViewProps {
   initialStudentId?: ID;
@@ -43,6 +48,15 @@ export function ParentFeeView({ initialStudentId, initialOverview }: ParentFeeVi
   const [isReceiptModalOpen, setIsReceiptModalOpen] = useState<boolean>(false);
   const [isLedgerModalOpen, setIsLedgerModalOpen] = useState<boolean>(false);
   const [selectedInvoiceForDetail, setSelectedInvoiceForDetail] = useState<FeeInvoice | null>(null);
+  
+  // New modal states and generation states
+  const { showToast } = useToast();
+  const [isGeneratingInvoice, setIsGeneratingInvoice] = useState(false);
+  const [selectedInvoiceForPayment, setSelectedInvoiceForPayment] = useState<FeeInvoice | null>(null);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  
+  const [selectedInvoiceForVoucher, setSelectedInvoiceForVoucher] = useState<FeeInvoice | null>(null);
+  const [isVoucherModalOpen, setIsVoucherModalOpen] = useState(false);
 
   // Load parent children
   useEffect(() => {
@@ -127,6 +141,26 @@ export function ParentFeeView({ initialStudentId, initialOverview }: ParentFeeVi
     setIsReceiptModalOpen(true);
   };
 
+  // Generate Current Month Invoice
+  const handleGenerateInvoice = async () => {
+    if (!activeChildId) return;
+    setIsGeneratingInvoice(true);
+    try {
+      const res = await generateMonthlyInvoice(activeChildId, schoolId);
+      if (res.success) {
+        showToast({ title: 'Success', message: res.message, type: 'success' });
+        loadFeeOverview();
+      } else {
+        showToast({ title: 'Already Generated', message: res.message, type: 'info' });
+      }
+    } catch (err) {
+      console.error(err);
+      showToast({ title: 'Error', message: 'Failed to generate invoice', type: 'error' });
+    } finally {
+      setIsGeneratingInvoice(false);
+    }
+  };
+
   // Due status badge styling
   const dueStatusDisplay = useMemo(() => {
     if (!overview) return null;
@@ -134,27 +168,27 @@ export function ParentFeeView({ initialStudentId, initialOverview }: ParentFeeVi
       return {
         label: 'All Fees Cleared',
         color: 'bg-emerald-100 text-emerald-800 border-emerald-200',
-        glyph: '✓',
+        glyph: 'check-circle',
       };
     }
     if (overview.dueStatus === 'overdue') {
       return {
         label: 'Payment Overdue',
         color: 'bg-rose-100 text-rose-800 border-rose-200',
-        glyph: '⚠️',
+        glyph: 'alert-triangle',
       };
     }
     if (overview.dueStatus === 'due_soon') {
       return {
         label: 'Payment Due Soon',
         color: 'bg-amber-100 text-amber-800 border-amber-200',
-        glyph: '⏳',
+        glyph: 'clock',
       };
     }
     return {
       label: 'Upcoming Due Date',
       color: 'bg-blue-100 text-blue-800 border-blue-200',
-      glyph: '📅',
+      glyph: 'calendar',
     };
   }, [overview]);
 
@@ -197,8 +231,21 @@ export function ParentFeeView({ initialStudentId, initialOverview }: ParentFeeVi
         </div>
       ) : (
         <>
+          {/* Action Row: Generate Invoice */}
+          <div className="flex justify-end items-center">
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={handleGenerateInvoice}
+              isLoading={isGeneratingInvoice}
+              leftIcon={<NavIcon name="file-plus" className="w-4 h-4" />}
+            >
+              Generate Current Month Invoice
+            </Button>
+          </div>
+
           {/* 2. Hero Fee Balance & Due Date Card */}
-          <div className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+          <div className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm mt-4">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
               {/* Left: Child Details & Balance */}
               <div className="space-y-3">
@@ -239,7 +286,7 @@ export function ParentFeeView({ initialStudentId, initialOverview }: ParentFeeVi
                       <span
                         className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border ${dueStatusDisplay.color}`}
                       >
-                        <span>{dueStatusDisplay.glyph}</span>
+                        <NavIcon name={dueStatusDisplay.glyph} className="w-3.5 h-3.5" />
                         <span>{dueStatusDisplay.label}</span>
                       </span>
                     )}
@@ -285,10 +332,10 @@ export function ParentFeeView({ initialStudentId, initialOverview }: ParentFeeVi
                   variant="secondary"
                   size="sm"
                   onClick={() => setIsLedgerModalOpen(true)}
-                  className="flex items-center gap-1.5 shadow-2xs"
+                  className="shadow-2xs"
+                  leftIcon={<NavIcon name="file-text" className="w-3.5 h-3.5" />}
                 >
-                  <span>📜</span>
-                  <span>View Full Statement</span>
+                  View Full Statement
                 </Button>
               </div>
             </div>
@@ -327,7 +374,9 @@ export function ParentFeeView({ initialStudentId, initialOverview }: ParentFeeVi
                   : 'border-transparent text-neutral-500 hover:text-neutral-800'
               }`}
             >
-              <span>🧾 Invoices History</span>
+              <span className="inline-flex items-center gap-1.5">
+                <NavIcon name="receipt" className="w-4 h-4" /> Invoices History
+              </span>
               <span className="rounded-full bg-neutral-100 px-2 py-0.5 text-xs text-neutral-600">
                 {overview.invoices.length}
               </span>
@@ -341,7 +390,9 @@ export function ParentFeeView({ initialStudentId, initialOverview }: ParentFeeVi
                   : 'border-transparent text-neutral-500 hover:text-neutral-800'
               }`}
             >
-              <span>💳 Payment Receipts</span>
+              <span className="inline-flex items-center gap-1.5">
+                <NavIcon name="credit-card" className="w-4 h-4" /> Payment Receipts
+              </span>
               <span className="rounded-full bg-neutral-100 px-2 py-0.5 text-xs text-neutral-600">
                 {overview.receipts.length}
               </span>
@@ -411,13 +462,40 @@ export function ParentFeeView({ initialStudentId, initialOverview }: ParentFeeVi
                               <StatusBadge status={inv.status} />
                             </td>
                             <td className="py-3 px-4 text-center whitespace-nowrap">
-                              <button
-                                type="button"
-                                onClick={() => setSelectedInvoiceForDetail(inv)}
-                                className="text-xs font-semibold text-purple-700 hover:text-purple-900 hover:underline"
-                              >
-                                Details
-                              </button>
+                              <div className="flex items-center justify-center gap-1.5">
+                                <button
+                                  type="button"
+                                  onClick={() => setSelectedInvoiceForDetail(inv)}
+                                  className="p-1.5 rounded-lg text-neutral-500 hover:text-purple-700 hover:bg-purple-50 transition-colors"
+                                  title="View Details"
+                                >
+                                  <NavIcon name="eye" className="w-4 h-4" />
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    setSelectedInvoiceForVoucher(inv);
+                                    setIsVoucherModalOpen(true);
+                                  }}
+                                  className="p-1.5 rounded-lg text-neutral-500 hover:text-blue-700 hover:bg-blue-50 transition-colors"
+                                  title="Download / Print Voucher"
+                                >
+                                  <NavIcon name="download" className="w-4 h-4" />
+                                </button>
+                                {balance > 0 && (
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      setSelectedInvoiceForPayment(inv);
+                                      setIsPaymentModalOpen(true);
+                                    }}
+                                    className="p-1.5 rounded-lg text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 transition-colors border border-transparent hover:border-emerald-200"
+                                    title="Pay Online"
+                                  >
+                                    <NavIcon name="credit-card" className="w-4 h-4" />
+                                  </button>
+                                )}
+                              </div>
                             </td>
                           </tr>
                         );
@@ -492,7 +570,7 @@ export function ParentFeeView({ initialStudentId, initialOverview }: ParentFeeVi
                               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 transition-colors"
                               title="Download and print official receipt"
                             >
-                              <span>🖨️</span>
+                              <NavIcon name="printer" className="w-3.5 h-3.5" />
                               <span>Download / Print</span>
                             </button>
                           </td>
@@ -538,11 +616,11 @@ export function ParentFeeView({ initialStudentId, initialOverview }: ParentFeeVi
       {/* Invoice Detail Modal */}
       {selectedInvoiceForDetail && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-xs"
+          className="fixed inset-0 z-50 flex flex-col items-center justify-start bg-black/50 p-4 sm:p-6 backdrop-blur-xs overflow-y-auto"
           role="dialog"
           aria-modal="true"
         >
-          <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl border border-neutral-200 space-y-4">
+          <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl border border-neutral-200 space-y-4 my-auto shrink-0">
             <div className="flex items-center justify-between border-b border-neutral-200 pb-3">
               <div>
                 <h3 className="text-lg font-bold text-neutral-900">
@@ -556,8 +634,9 @@ export function ParentFeeView({ initialStudentId, initialOverview }: ParentFeeVi
                 type="button"
                 onClick={() => setSelectedInvoiceForDetail(null)}
                 className="rounded-lg p-1.5 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-700"
+                aria-label="Close"
               >
-                ✕
+                <NavIcon name="x" className="w-4 h-4" />
               </button>
             </div>
 
@@ -618,6 +697,34 @@ export function ParentFeeView({ initialStudentId, initialOverview }: ParentFeeVi
             </div>
           </div>
         </div>
+      )}
+
+      {/* Online Payment Prototype Modal */}
+      {selectedInvoiceForPayment && (
+        <OnlinePaymentModal
+          isOpen={isPaymentModalOpen}
+          onClose={() => {
+            setIsPaymentModalOpen(false);
+            setSelectedInvoiceForPayment(null);
+          }}
+          invoice={selectedInvoiceForPayment}
+        />
+      )}
+
+      {/* Fee Voucher Modal */}
+      {selectedInvoiceForVoucher && (
+        <FeeVoucherModal
+          isOpen={isVoucherModalOpen}
+          onClose={() => {
+            setIsVoucherModalOpen(false);
+            setSelectedInvoiceForVoucher(null);
+          }}
+          invoice={selectedInvoiceForVoucher}
+          student={overview?.student}
+          user={overview?.user}
+          cls={overview?.classInfo}
+          campus={overview?.campus}
+        />
       )}
     </div>
   );

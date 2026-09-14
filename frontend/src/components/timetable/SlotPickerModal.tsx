@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Subject, EnrichedTimetableSlot, DayOfWeek } from '@/types';
 import { Modal } from '@/components/ui/Modal';
 import { Button } from '@/components/ui/Button';
+import { NavIcon } from '@/components/shell/NavIcon';
 import {
   detectTimetableClashes,
   ClashCheckResult,
@@ -313,8 +314,9 @@ function SlotPickerForm({
           <div className="space-y-2 pl-7 text-xs">
             {clashResult.clashes.map((clash, idx) => (
               <div key={idx} className="bg-white/80 rounded-lg p-2 border border-amber-200/80">
-                <span className="font-semibold text-amber-950 block mb-0.5">
-                  {clash.type === 'teacher' ? '⚠️ Teacher Double-Booking' : '⚠️ Room Double-Booking'}
+                <span className="font-semibold text-amber-950 mb-0.5 inline-flex items-center gap-1.5">
+                  <NavIcon name="alert-triangle" className="w-3.5 h-3.5 shrink-0" />
+                  {clash.type === 'teacher' ? 'Teacher Double-Booking' : 'Room Double-Booking'}
                 </span>
                 <span className="text-amber-900 leading-relaxed block">
                   {clash.description}

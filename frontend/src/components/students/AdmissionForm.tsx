@@ -23,6 +23,7 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { Textarea } from '@/components/ui/Textarea';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 interface EnrichedParentOption {
   parentId: ID;
@@ -895,8 +896,9 @@ export function AdmissionForm() {
                 variant="ghost"
                 size="sm"
                 onClick={handleAddEmergencyContact}
+                leftIcon={<NavIcon name="plus" className="w-3.5 h-3.5" />}
               >
-                + Add Contact
+                Add Contact
               </Button>
             </div>
 

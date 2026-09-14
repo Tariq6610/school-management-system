@@ -13,6 +13,7 @@ import { formatCurrency } from '@/lib/utils/currency';
 import { useSession } from '@/components/providers/SessionProvider';
 import { Button } from '@/components/ui/Button';
 import { AnnouncementFeedView } from '@/components/communication';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface ParentDashboardViewProps {
   initialStudentId?: ID;
@@ -433,8 +434,8 @@ export function ParentDashboardView({
                         <strong className="font-mono text-neutral-900">{feesOverview.nextDueDate}</strong>
                       </>
                     ) : (
-                      <span className="text-emerald-700 font-medium">
-                        ✓ All tuition fees up to date.
+                      <span className="text-emerald-700 font-medium inline-flex items-center gap-1">
+                        <NavIcon name="check-circle" className="w-3.5 h-3.5" /> All tuition fees up to date.
                       </span>
                     )}
                   </p>
@@ -468,7 +469,7 @@ export function ParentDashboardView({
                   href={`/parent/attendance${activeChildId ? `?studentId=${activeChildId}` : ''}`}
                   className="rounded-xl border border-neutral-200 bg-white p-4 hover:border-purple-300 transition-all group"
                 >
-                  <span className="text-xl block mb-1">📅</span>
+                  <NavIcon name="calendar" className="w-5 h-5 mb-1" />
                   <p className="text-xs font-bold text-neutral-900 group-hover:text-purple-700">
                     Attendance Calendar
                   </p>
@@ -479,7 +480,7 @@ export function ParentDashboardView({
                   href={`/parent/results${activeChildId ? `?studentId=${activeChildId}` : ''}`}
                   className="rounded-xl border border-neutral-200 bg-white p-4 hover:border-purple-300 transition-all group"
                 >
-                  <span className="text-xl block mb-1">📊</span>
+                  <NavIcon name="chart-bar" className="w-5 h-5 mb-1" />
                   <p className="text-xs font-bold text-neutral-900 group-hover:text-purple-700">
                     Report Cards
                   </p>
@@ -490,7 +491,7 @@ export function ParentDashboardView({
                   href="/parent/messages"
                   className="rounded-xl border border-neutral-200 bg-white p-4 hover:border-purple-300 transition-all group"
                 >
-                  <span className="text-xl block mb-1">💬</span>
+                  <NavIcon name="message-circle" className="w-5 h-5 mb-1" />
                   <p className="text-xs font-bold text-neutral-900 group-hover:text-purple-700">
                     Teacher Messaging
                   </p>
@@ -501,7 +502,7 @@ export function ParentDashboardView({
                   href="/parent/announcements"
                   className="rounded-xl border border-neutral-200 bg-white p-4 hover:border-purple-300 transition-all group"
                 >
-                  <span className="text-xl block mb-1">📢</span>
+                  <NavIcon name="megaphone" className="w-5 h-5 mb-1" />
                   <p className="text-xs font-bold text-neutral-900 group-hover:text-purple-700">
                     Circulars
                   </p>

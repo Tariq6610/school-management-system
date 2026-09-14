@@ -299,10 +299,10 @@ export function FeeStructureForm({
                 }
               }}
               options={[
-                { value: '', label: '🌐 All Campuses (School-Wide Structure)' },
+                { value: '', label: 'All Campuses (School-Wide Structure)' },
                 ...campuses.map((cmp) => ({
                   value: cmp.id,
-                  label: `🏫 ${cmp.name}`,
+                  label: cmp.name,
                 })),
               ]}
               hint={campusId ? 'Applies only to students enrolled in this campus' : 'Applies to any matching class across the school network'}

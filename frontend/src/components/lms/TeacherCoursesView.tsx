@@ -17,6 +17,7 @@ import { listUsers } from '@/lib/repositories/users';
 import { Button } from '@/components/ui/Button';
 import { Modal } from '@/components/ui/Modal';
 import { useToast } from '@/components/ui/Toast';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 const PRESET_COVER_COLORS = [
   { label: 'Indigo', value: '#6366f1' },
@@ -350,17 +351,10 @@ export function TeacherCoursesView({
             variant="primary"
             size="sm"
             onClick={openCreateModal}
-            className="flex items-center gap-1.5 shadow-xs"
+            className="shadow-xs"
+            leftIcon={<NavIcon name="plus" className="w-4 h-4" />}
           >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 4v16m8-8H4"
-              />
-            </svg>
-            <span>Create New Course</span>
+            Create New Course
           </Button>
         </div>
       </div>
@@ -372,8 +366,8 @@ export function TeacherCoursesView({
         </div>
       ) : filteredCourses.length === 0 ? (
         <div className="bg-white border border-neutral-200 rounded-2xl p-12 text-center shadow-xs space-y-3">
-          <div className="w-12 h-12 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center mx-auto text-xl font-bold">
-            📚
+          <div className="w-12 h-12 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center mx-auto">
+            <NavIcon name="book-open" className="w-6 h-6" />
           </div>
           <h3 className="text-base font-bold text-neutral-900">No Courses Found</h3>
           <p className="text-xs sm:text-sm text-neutral-500 max-w-md mx-auto">

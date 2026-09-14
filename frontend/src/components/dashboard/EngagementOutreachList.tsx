@@ -7,6 +7,7 @@ import {
   ParentOutreachPromptItem,
 } from '@/lib/repositories/parentOutreach';
 import { Button } from '@/components/ui/Button';
+import { NavIcon } from '@/components/shell/NavIcon';
 import { LogOutreachCallModal } from './LogOutreachCallModal';
 
 export interface EngagementOutreachListProps {
@@ -136,14 +137,15 @@ export function EngagementOutreachList({ initialItems }: EngagementOutreachListP
             placeholder="Search family name, student, or phone..."
             className="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-neutral-200 focus:outline-hidden focus:ring-2 focus:ring-purple-500 bg-neutral-50/50"
           />
-          <span className="absolute left-3 top-2.5 text-neutral-500 text-xs">🔍</span>
+          <NavIcon name="search" className="w-3.5 h-3.5 absolute left-3 top-2.5 text-neutral-500" />
           {searchQuery && (
             <button
               type="button"
               onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-2.5 text-neutral-500 hover:text-neutral-700 text-xs"
+              className="absolute right-3 top-2.5 text-neutral-500 hover:text-neutral-700"
+              aria-label="Clear search"
             >
-              ✕
+              <NavIcon name="x" className="w-3.5 h-3.5" />
             </button>
           )}
         </div>
@@ -190,7 +192,7 @@ export function EngagementOutreachList({ initialItems }: EngagementOutreachListP
       <div className="space-y-4">
         {filtered.length === 0 ? (
           <div className="py-16 text-center text-neutral-500 bg-white rounded-2xl border border-dashed border-neutral-200">
-            <span className="text-3xl block mb-2">📞</span>
+            <NavIcon name="phone" className="w-8 h-8 mx-auto mb-2" />
             <p className="text-sm font-semibold text-neutral-700">No outreach prompts found</p>
             <p className="text-xs text-neutral-500 mt-1">
               {searchQuery
@@ -263,7 +265,7 @@ export function EngagementOutreachList({ initialItems }: EngagementOutreachListP
               <div className="pt-3 border-t border-neutral-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs">
                 {/* Prompt Reason Quote */}
                 <div className="flex items-center gap-2 text-neutral-700 font-medium">
-                  <span className="text-base text-amber-500">💬</span>
+                  <NavIcon name="message-circle" className="w-4 h-4 text-amber-500 shrink-0" />
                   <span className="italic bg-neutral-50 px-3 py-1.5 rounded-xl border border-neutral-200/60">
                     &ldquo;{item.promptReason}&rdquo;
                   </span>
@@ -275,7 +277,7 @@ export function EngagementOutreachList({ initialItems }: EngagementOutreachListP
                     href="/demo/whatsapp"
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-emerald-200 text-emerald-800 bg-emerald-50 hover:bg-emerald-100 text-xs font-semibold transition-colors"
                   >
-                    <span>💬</span>
+                    <NavIcon name="message-circle" className="w-3.5 h-3.5" />
                     <span>WhatsApp</span>
                   </Link>
 
@@ -284,8 +286,9 @@ export function EngagementOutreachList({ initialItems }: EngagementOutreachListP
                     size="sm"
                     onClick={() => setSelectedPrompt(item)}
                     className="bg-purple-600 hover:bg-purple-700 text-white font-bold"
+                    leftIcon={<NavIcon name="phone" className="w-3.5 h-3.5" />}
                   >
-                    📞 Log a call
+                    Log a call
                   </Button>
                 </div>
               </div>

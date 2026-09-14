@@ -121,23 +121,32 @@ export async function submitAssignment(input: SubmitAssignmentInput): Promise<Su
 }
 
 export async function gradeSubmission(
-  id: ID,
+  idOrTarget: ID | { assignmentId: ID; studentId: ID },
   marksObtained: number,
   feedback: string,
   gradedBy: ID
 ): Promise<Submission> {
-  const current = await getSubmission(id);
-  if (!current) {
-    throw new Error(`Submission with ID "${id}" not found`);
+  let current: Submission | null = null;
+  let targetAssignmentId: ID;
+
+  if (typeof idOrTarget === 'string') {
+    current = await getSubmission(idOrTarget);
+    if (!current) {
+      throw new Error(`Submission with ID "${idOrTarget}" not found`);
+    }
+    targetAssignmentId = current.assignmentId;
+  } else {
+    targetAssignmentId = idOrTarget.assignmentId;
+    current = await getStudentSubmission(idOrTarget.assignmentId, idOrTarget.studentId);
   }
 
   if (typeof marksObtained !== 'number' || isNaN(marksObtained) || marksObtained < 0) {
     throw new Error('Marks obtained must be a non-negative number');
   }
 
-  const assignment = await getAssignment(current.assignmentId);
+  const assignment = await getAssignment(targetAssignmentId);
   if (!assignment) {
-    throw new Error(`Assignment with ID "${current.assignmentId}" not found`);
+    throw new Error(`Assignment with ID "${targetAssignmentId}" not found`);
   }
 
   if (marksObtained > assignment.maxMarks) {
@@ -146,12 +155,27 @@ export async function gradeSubmission(
     );
   }
 
-  return updateSubmission(id, {
+  const payload = {
     marksObtained: Math.round(marksObtained * 100) / 100,
     feedback: feedback ? feedback.trim() : '',
     gradedBy,
     gradedAt: new Date().toISOString(),
-  });
+  };
+
+  if (current) {
+    return updateSubmission(current.id, payload);
+  } else if (typeof idOrTarget !== 'string') {
+    // Create an empty submission just to hold the grade
+    return createSubmission({
+      assignmentId: idOrTarget.assignmentId,
+      studentId: idOrTarget.studentId,
+      submittedAt: new Date().toISOString(),
+      isLate: new Date().getTime() > new Date(assignment.deadline).getTime(),
+      ...payload
+    });
+  } else {
+    throw new Error('Unreachable state in gradeSubmission');
+  }
 }
 
 /**

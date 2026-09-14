@@ -63,7 +63,7 @@ export function NewConversationModal({
                 ? 'Search by parent name, student, or grade...'
                 : 'Search by teacher name, subject, or class...'
             }
-            className="w-full px-3 py-2 text-sm rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600 transition-all placeholder:text-neutral-500"
+            className="w-full px-3 py-2 text-sm rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-600 transition-all placeholder:text-neutral-500"
             autoFocus
           />
         </div>
@@ -72,7 +72,7 @@ export function NewConversationModal({
         <div className="max-h-80 overflow-y-auto divide-y divide-neutral-100 border border-neutral-200/80 rounded-xl">
           {loading ? (
             <div className="p-8 text-center text-xs text-neutral-500">
-              <div className="inline-block w-5 h-5 border-2 border-neutral-300 border-t-purple-600 rounded-full animate-spin mb-2" />
+              <div className="inline-block w-5 h-5 border-2 border-neutral-300 border-t-primary-600 rounded-full animate-spin mb-2" />
               <p>Loading available contacts...</p>
             </div>
           ) : filteredRecipients.length === 0 ? (
@@ -91,7 +91,7 @@ export function NewConversationModal({
                 className="w-full text-left p-3.5 hover:bg-neutral-50 transition-colors flex items-center justify-between gap-3 group"
               >
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-9 h-9 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-xs shrink-0">
+                  <div className="w-9 h-9 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center font-bold text-xs shrink-0">
                     {recipient.user.name
                       .split(' ')
                       .map((n) => n[0])
@@ -101,7 +101,7 @@ export function NewConversationModal({
                   </div>
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-semibold text-neutral-900 truncate group-hover:text-purple-700 transition-colors">
+                      <span className="text-sm font-semibold text-neutral-900 truncate group-hover:text-primary-700 transition-colors">
                         {recipient.user.name}
                       </span>
                       <span className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-neutral-100 text-neutral-600 capitalize">
@@ -122,7 +122,7 @@ export function NewConversationModal({
                         <span className="text-neutral-500">({recipient.className})</span>
                       )}
                       {recipient.subjectNames && recipient.subjectNames.length > 0 && (
-                        <span className="text-purple-600 font-medium">
+                        <span className="text-primary-600 font-medium">
                           • {recipient.subjectNames.join(', ')}
                         </span>
                       )}
@@ -130,7 +130,7 @@ export function NewConversationModal({
                   </div>
                 </div>
 
-                <span className="text-xs font-semibold text-purple-600 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
+                <span className="text-xs font-semibold text-primary-600 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
                   Message →
                 </span>
               </button>

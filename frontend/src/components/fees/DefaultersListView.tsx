@@ -19,6 +19,7 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { StudentFeeLedgerModal } from './StudentFeeLedgerModal';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface DefaultersListViewProps {
   initialCampusId?: ID;
@@ -298,8 +299,9 @@ export function DefaultersListView({
             variant="secondary"
             onClick={() => loadData()}
             disabled={loading}
+            leftIcon={<NavIcon name="refresh" className="w-4 h-4" />}
           >
-            🔄 Refresh
+            Refresh
           </Button>
         </div>
       </div>
@@ -310,25 +312,25 @@ export function DefaultersListView({
           label="Total Defaulters"
           value={totalDefaultersCount}
           subtitle="Students with overdue balances"
-          icon={<span className="text-xl">⚠️</span>}
+          icon={<NavIcon name="alert-triangle" className="w-5 h-5" />}
         />
         <StatCard
           label="Total Overdue Amount"
           value={formatCurrency(totalOverdueAmount)}
           subtitle="Cumulative receivables past due"
-          icon={<span className="text-xl">💰</span>}
+          icon={<NavIcon name="credit-card" className="w-5 h-5" />}
         />
         <StatCard
           label="Average Days Overdue"
           value={`${averageDaysOverdue} days`}
           subtitle="Mean duration past payment deadline"
-          icon={<span className="text-xl">⏳</span>}
+          icon={<NavIcon name="clock" className="w-5 h-5" />}
         />
         <StatCard
           label="Critical (30+ Days)"
           value={criticalOverdueCount}
           subtitle="Severe payment delays"
-          icon={<span className="text-xl">🚨</span>}
+          icon={<NavIcon name="alert-triangle" className="w-5 h-5" />}
           className={criticalOverdueCount > 0 ? 'border-rose-300 bg-rose-50/20' : ''}
         />
       </div>
@@ -431,8 +433,9 @@ export function DefaultersListView({
               variant="primary"
               onClick={handleSendBulkReminders}
               disabled={bulkSending}
+              leftIcon={<NavIcon name="smartphone" className="w-4 h-4" />}
             >
-              {bulkSending ? 'Sending Reminders...' : `📱 Send WhatsApp Reminders (${selectedCount})`}
+              {bulkSending ? 'Sending Reminders...' : `Send WhatsApp Reminders (${selectedCount})`}
             </Button>
           </div>
         </div>
@@ -473,7 +476,9 @@ export function DefaultersListView({
               ) : defaulters.length === 0 ? (
                 <tr>
                   <td colSpan={8} className="py-16 text-center text-neutral-500">
-                    <div className="text-3xl mb-2">🎉</div>
+                    <div className="mb-2 flex justify-center text-emerald-600">
+                      <NavIcon name="check-circle" className="w-8 h-8" />
+                    </div>
                     <p className="text-base font-semibold text-neutral-800">No Defaulters Found</p>
                     <p className="text-xs text-neutral-500 mt-1 max-w-sm mx-auto">
                       All students are up-to-date with fee obligations matching your selected criteria.
@@ -581,7 +586,7 @@ export function DefaultersListView({
                             className="inline-flex items-center gap-1 text-xs font-medium text-purple-700 bg-purple-50 hover:bg-purple-100 px-2.5 py-1.5 rounded-lg border border-purple-200 transition-colors disabled:opacity-50"
                             title="Send WhatsApp Reminder"
                           >
-                            <span>📱</span>
+                            <NavIcon name="smartphone" className="w-3.5 h-3.5" />
                             <span>{isSendingThis ? 'Sending...' : 'Remind'}</span>
                           </button>
                           <button
@@ -593,7 +598,7 @@ export function DefaultersListView({
                             className="inline-flex items-center gap-1 text-xs font-medium text-neutral-700 bg-neutral-100 hover:bg-neutral-200 px-2.5 py-1.5 rounded-lg border border-neutral-200 transition-colors"
                             title="View Student Fee Ledger"
                           >
-                            <span>📜</span>
+                            <NavIcon name="file-text" className="w-3.5 h-3.5" />
                             <span>Ledger</span>
                           </button>
                         </div>

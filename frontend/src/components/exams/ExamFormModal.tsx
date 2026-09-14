@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { DatePicker } from '@/components/ui/DatePicker';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface ExamFormModalProps {
   isOpen: boolean;
@@ -269,7 +270,7 @@ export function ExamFormModal({
         <div className="flex items-center justify-between border-b border-neutral-200 px-6 py-4 bg-neutral-50/80">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-100 text-purple-700 font-bold text-lg">
-              📝
+              <NavIcon name="clipboard-check" className="w-5 h-5" />
             </div>
             <div>
               <h2 id="exam-modal-title" className="text-lg font-bold text-neutral-900">
@@ -286,7 +287,7 @@ export function ExamFormModal({
             className="rounded-lg p-2 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
             aria-label="Close"
           >
-            ✕
+            <NavIcon name="x" className="w-4 h-4" />
           </button>
         </div>
 

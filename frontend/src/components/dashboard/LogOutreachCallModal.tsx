@@ -10,6 +10,7 @@ import {
 } from '@/lib/repositories/parentOutreach';
 import { useSession } from '@/components/providers/SessionProvider';
 import { Button } from '@/components/ui/Button';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface LogOutreachCallModalProps {
   isOpen: boolean;
@@ -90,9 +91,10 @@ export function LogOutreachCallModal({
           <button
             type="button"
             onClick={onClose}
-            className="text-neutral-500 hover:text-neutral-700 text-lg font-bold p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
+            className="text-neutral-500 hover:text-neutral-700 p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
+            aria-label="Close"
           >
-            ✕
+            <NavIcon name="x" className="w-4 h-4" />
           </button>
         </div>
 

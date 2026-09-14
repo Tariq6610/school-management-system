@@ -18,6 +18,7 @@ import { useSession } from '@/components/providers/SessionProvider';
 import { useToast } from '@/components/ui/Toast';
 import { Button } from '@/components/ui/Button';
 import { StatCard } from '@/components/ui/StatCard';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface BulkInvoiceModalProps {
   isOpen: boolean;
@@ -204,7 +205,7 @@ export function BulkInvoiceModal({
         <div className="flex items-center justify-between border-b border-neutral-200 px-6 py-4 bg-neutral-50/70">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-100 text-purple-700 font-bold text-lg">
-              ⚡
+              <NavIcon name="sparkles" className="w-5 h-5" />
             </div>
             <div>
               <h2 id="modal-title" className="text-lg font-bold text-neutral-900">
@@ -223,7 +224,7 @@ export function BulkInvoiceModal({
             className="rounded-lg p-2 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
             aria-label="Close"
           >
-            ✕
+            <NavIcon name="x" className="w-4 h-4" />
           </button>
         </div>
 
@@ -245,7 +246,7 @@ export function BulkInvoiceModal({
                   >
                     {monthOptions.map((opt) => (
                       <option key={opt.value} value={opt.value}>
-                        📅 {opt.label}
+                        {opt.label}
                       </option>
                     ))}
                   </select>
@@ -281,10 +282,10 @@ export function BulkInvoiceModal({
                     onChange={(e) => setSelectedCampusId(e.target.value)}
                     className="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-800 focus:border-purple-500 focus:outline-hidden"
                   >
-                    <option value="">🌐 All Campuses (School-wide)</option>
+                    <option value="">All Campuses (School-wide)</option>
                     {campuses.map((c) => (
                       <option key={c.id} value={c.id}>
-                        🏫 {c.name}
+                        {c.name}
                       </option>
                     ))}
                   </select>
@@ -302,7 +303,7 @@ export function BulkInvoiceModal({
                     onChange={(e) => setSelectedClassId(e.target.value)}
                     className="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-800 focus:border-purple-500 focus:outline-hidden"
                   >
-                    <option value="">👥 All Classes</option>
+                    <option value="">All Classes</option>
                     {classes.map((cls) => (
                       <option key={cls.id} value={cls.id}>
                         {cls.grade} — Section {cls.section}
@@ -385,7 +386,7 @@ export function BulkInvoiceModal({
 
               {/* Idempotence guarantee notice */}
               <div className="rounded-xl border border-emerald-200 bg-emerald-50/60 p-3.5 flex items-start gap-3">
-                <span className="text-emerald-700 text-base">🛡️</span>
+                <span className="text-emerald-700"><NavIcon name="shield" className="w-5 h-5" /></span>
                 <div className="text-xs text-emerald-900">
                   <span className="font-bold">Safe & Duplicate-Proof:</span> The generation preview
                   will automatically inspect existing invoices. If invoices for this month already
@@ -404,26 +405,26 @@ export function BulkInvoiceModal({
                     label="New Invoices to Create"
                     value={preview.newInvoicesCount}
                     subtitle={formatCurrency(preview.newInvoicesTotal)}
-                    icon="✨"
+                    icon={<NavIcon name="sparkles" className="w-5 h-5" />}
                   />
                   <StatCard
                     label="Already Generated (Skip)"
                     value={preview.duplicateCount}
                     subtitle={formatCurrency(preview.duplicateTotal)}
-                    icon="⚠️"
+                    icon={<NavIcon name="alert-triangle" className="w-5 h-5" />}
                   />
                   <StatCard
                     label="Eligible Students Evaluated"
                     value={preview.totalEligibleStudents}
                     subtitle={`Due: ${preview.dueDate}`}
-                    icon="👥"
+                    icon={<NavIcon name="users" className="w-5 h-5" />}
                   />
                 </div>
 
                 {/* Status Notice */}
                 {preview.newInvoicesCount === 0 ? (
                   <div className="rounded-xl border border-amber-300 bg-amber-50 p-4 flex items-start gap-3 text-amber-900">
-                    <span className="text-xl">⚠️</span>
+                    <NavIcon name="alert-triangle" className="w-5 h-5 shrink-0" />
                     <div>
                       <h4 className="text-xs font-bold uppercase tracking-wider">
                         All Invoices Already Generated
@@ -437,7 +438,7 @@ export function BulkInvoiceModal({
                   </div>
                 ) : (
                   <div className="rounded-xl border border-purple-200 bg-purple-50/70 p-4 flex items-start gap-3 text-purple-900">
-                    <span className="text-xl">💡</span>
+                    <NavIcon name="lightbulb" className="w-5 h-5 shrink-0" />
                     <div>
                       <h4 className="text-xs font-bold uppercase tracking-wider">
                         Ready to Generate {preview.newInvoicesCount} Invoices
@@ -567,11 +568,11 @@ export function BulkInvoiceModal({
                             <td className="px-3.5 py-2 text-center">
                               {item.isDuplicate ? (
                                 <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2 py-0.5 text-2xs font-semibold text-amber-800 border border-amber-200">
-                                  ⚠️ Exists (Skip)
+                                  <NavIcon name="alert-triangle" className="w-3.5 h-3.5" /> Exists (Skip)
                                 </span>
                               ) : (
                                 <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-0.5 text-2xs font-semibold text-emerald-800 border border-emerald-200">
-                                  ✨ Ready to Create
+                                  <NavIcon name="sparkles" className="w-3.5 h-3.5" /> Ready to Create
                                 </span>
                               )}
                             </td>

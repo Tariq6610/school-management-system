@@ -17,6 +17,7 @@ import { useToast } from '@/components/ui/Toast';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface MarksEntryGridProps {
   examId: ID;
@@ -686,9 +687,10 @@ export function MarksEntryGrid({ examId, initialData, onSaved }: MarksEntryGridP
           <button
             type="button"
             onClick={handleFillSampleMarks}
-            className="px-2.5 py-1 text-xs font-medium text-purple-700 bg-purple-50 border border-purple-200 hover:bg-purple-100 rounded-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium text-purple-700 bg-purple-50 border border-purple-200 hover:bg-purple-100 rounded-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
           >
-            ✨ Fill Demo Scores
+            <NavIcon name="sparkles" className="w-3.5 h-3.5" />
+            Fill Demo Scores
           </button>
         </div>
       </div>
@@ -808,9 +810,10 @@ export function MarksEntryGrid({ examId, initialData, onSaved }: MarksEntryGridP
                           {state.isOverMax && (
                             <div
                               role="alert"
-                              className="absolute top-10 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap bg-red-600 text-white text-2xs font-bold py-0.5 px-2 rounded shadow-md pointer-events-none motion-safe:animate-bounce"
+                              className="absolute top-10 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap bg-red-600 text-white text-2xs font-bold py-0.5 px-2 rounded shadow-md pointer-events-none motion-safe:animate-bounce inline-flex items-center gap-1"
                             >
-                              ⚠️ {state.errorMessage || `Max is ${data.maxMarks}`}
+                              <NavIcon name="alert-triangle" className="w-3 h-3 shrink-0" />
+                              {state.errorMessage || `Max is ${data.maxMarks}`}
                             </div>
                           )}
                         </div>

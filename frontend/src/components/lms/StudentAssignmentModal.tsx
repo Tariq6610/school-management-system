@@ -6,6 +6,7 @@ import { Modal } from '@/components/ui/Modal';
 import { Button } from '@/components/ui/Button';
 import { submitAssignment } from '@/lib/repositories/submissions';
 import { useToast } from '@/components/ui/Toast';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface StudentAssignmentModalProps {
   isOpen: boolean;
@@ -208,7 +209,7 @@ function StudentAssignmentForm({
           data-testid="late-deadline-warning"
           className="p-3 bg-amber-50 border border-amber-200 text-amber-900 text-xs rounded-xl flex items-start gap-2.5"
         >
-          <span className="text-base leading-none">⚠️</span>
+          <NavIcon name="alert-triangle" className="w-4 h-4 shrink-0" />
           <div>
             <span className="font-bold block">Past Submission Deadline:</span>
             <span>

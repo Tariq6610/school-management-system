@@ -13,6 +13,7 @@ import { useSession } from '@/components/providers/SessionProvider';
 import { useToast } from '@/components/ui/Toast';
 import { Button } from '@/components/ui/Button';
 import { Avatar } from '@/components/ui/Avatar';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface TeacherAssignmentMatrixProps {
   teacherId: string;
@@ -371,8 +372,9 @@ export function TeacherAssignmentMatrix({
                 size="sm"
                 onClick={selectAllDepartmentSubjects}
                 title={`Select all subjects related to ${teacher.department}`}
+                leftIcon={<NavIcon name="check-circle" className="w-3.5 h-3.5" />}
               >
-                + Select All {teacher.department}
+                Select All {teacher.department}
               </Button>
             )}
             <Button
@@ -478,7 +480,9 @@ export function TeacherAssignmentMatrix({
                     onChange={() => toggleHomeroom(cls.id)}
                     className="w-4 h-4 rounded text-brand-600 focus:ring-brand-500 border-rule"
                   />
-                  <span>Nominate as Homeroom Class Teacher (★)</span>
+                  <span className="inline-flex items-center gap-1">
+                    Nominate as Homeroom Class Teacher (<NavIcon name="award" className="w-3.5 h-3.5" />)
+                  </span>
                 </label>
                 <p className="text-[11px] text-ink-500 ml-6 mt-0.5">
                   Responsible for morning roll call and primary pastoral communication.
@@ -550,8 +554,8 @@ export function TeacherAssignmentMatrix({
             {selectedHomeroomClassIds.size > 0 && (
               <>
                 <span className="text-ink-400">·</span>
-                <span className="text-brand-800 font-bold">
-                  ★ {selectedHomeroomClassIds.size} Homeroom
+                <span className="text-brand-800 font-bold inline-flex items-center gap-1">
+                  <NavIcon name="award" className="w-3.5 h-3.5" /> {selectedHomeroomClassIds.size} Homeroom
                 </span>
               </>
             )}

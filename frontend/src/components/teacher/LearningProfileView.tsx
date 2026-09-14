@@ -11,6 +11,7 @@ import {
 } from '@/lib/repositories/learningProfiles';
 import { useSession } from '@/components/providers/SessionProvider';
 import { Button } from '@/components/ui/Button';
+import { NavIcon } from '@/components/shell/NavIcon';
 import { ProposedNoteCard } from './ProposedNoteCard';
 
 export interface LearningProfileViewProps {
@@ -196,9 +197,10 @@ export function LearningProfileView({
                 variant="primary"
                 size="sm"
                 onClick={() => setShowAddModal(true)}
-                className="bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold"
+                className="text-xs font-bold"
+                leftIcon={<NavIcon name="plus" className="w-3.5 h-3.5" />}
               >
-                + Add Validated Note
+                Add Validated Note
               </Button>
             )}
           </div>
@@ -216,7 +218,7 @@ export function LearningProfileView({
       {!isTeacherView && (
         <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-xs text-emerald-900 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-base">👁️</span>
+            <NavIcon name="eye" className="w-4 h-4" />
             <span>
               <strong>Parent View Preview:</strong> Showing only confirmed, teacher-validated notes. Unconfirmed proposals sit pending in the teacher portal and are strictly hidden from parents.
             </span>
@@ -314,7 +316,9 @@ export function LearningProfileView({
           {/* Downward Trend Alert (e.g. for Bilal seed data) */}
           {data.attendanceTrend.recentTrajectory === 'declining' && (
             <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900">
-              <strong className="block font-bold">⚠️ Noticeable Attendance Drop</strong>
+              <strong className="flex items-center gap-1.5 font-bold">
+                <NavIcon name="alert-triangle" className="w-4 h-4" /> Noticeable Attendance Drop
+              </strong>
               <span>
                 Recent attendance rate has declined significantly compared to the start of term. Candidate notes propose targeted guardian follow-up.
               </span>
@@ -488,8 +492,8 @@ export function LearningProfileView({
         {isTeacherView && pendingCount > 0 && (
           <div className="p-4 rounded-xl bg-purple-50/70 border border-purple-200 text-xs text-purple-900 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div className="space-y-0.5">
-              <span className="font-bold block">
-                📝 {pendingCount} candidate proposal{pendingCount > 1 ? 's' : ''} awaiting your validation
+              <span className="font-bold flex items-center gap-1.5">
+                <NavIcon name="edit" className="w-4 h-4" /> {pendingCount} candidate proposal{pendingCount > 1 ? 's' : ''} awaiting your validation
               </span>
               <p className="text-purple-800 text-[11px]">
                 Acceptance Rule: Proposals sit pending until a teacher confirms; no auto-publish. Confirming will attribute your name ({teacherName}) and publish to the parent portal.
@@ -506,7 +510,7 @@ export function LearningProfileView({
         {/* Proposals List */}
         {filteredProposals.length === 0 ? (
           <div className="py-12 text-center text-neutral-500 bg-neutral-50/50 rounded-2xl border border-dashed border-neutral-200">
-            <span className="text-3xl block mb-2">📋</span>
+            <NavIcon name="clipboard" className="w-8 h-8 mx-auto mb-2" />
             <p className="text-sm font-semibold text-neutral-700">No notes in this category</p>
             <p className="text-xs text-neutral-500 mt-1">
               {!isTeacherView
@@ -540,9 +544,10 @@ export function LearningProfileView({
               <button
                 type="button"
                 onClick={() => setShowAddModal(false)}
-                className="text-neutral-500 hover:text-neutral-700 text-lg font-bold"
+                className="text-neutral-500 hover:text-neutral-700 p-1"
+                aria-label="Close"
               >
-                ✕
+                <NavIcon name="x" className="w-4 h-4" />
               </button>
             </div>
 
@@ -561,7 +566,9 @@ export function LearningProfileView({
                         : 'bg-white border-neutral-200 text-neutral-600'
                     }`}
                   >
-                    ★ Academic Strength
+                    <span className="inline-flex items-center gap-1.5">
+                      <NavIcon name="award" className="w-3.5 h-3.5" /> Academic Strength
+                    </span>
                   </button>
                   <button
                     type="button"

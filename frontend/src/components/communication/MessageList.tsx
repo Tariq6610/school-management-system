@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import { ID, MessageThreadSummary } from '@/types';
 import { Button } from '@/components/ui/Button';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface MessageListProps {
   threads: MessageThreadSummary[];
@@ -76,9 +77,10 @@ export function MessageList({
           variant="primary"
           size="sm"
           onClick={onOpenNew}
-          className="shadow-xs shrink-0"
+          className="shadow-xs shrink-0 text-xs font-semibold"
+          leftIcon={<NavIcon name="plus" className="w-3.5 h-3.5" />}
         >
-          <span className="text-xs font-semibold">+ New</span>
+          New
         </Button>
       </div>
 
@@ -89,7 +91,7 @@ export function MessageList({
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Filter messages or contacts..."
-          className="w-full px-3 py-1.5 text-xs rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600 transition-all placeholder:text-neutral-500"
+          className="w-full px-3 py-1.5 text-xs rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-600 transition-all placeholder:text-neutral-500"
         />
       </div>
 
@@ -97,7 +99,7 @@ export function MessageList({
       <div className="flex-1 overflow-y-auto divide-y divide-neutral-100">
         {loading ? (
           <div className="p-8 text-center text-xs text-neutral-500">
-            <div className="inline-block w-5 h-5 border-2 border-neutral-300 border-t-purple-600 rounded-full animate-spin mb-2" />
+            <div className="inline-block w-5 h-5 border-2 border-neutral-300 border-t-primary-600 rounded-full animate-spin mb-2" />
             <p>Loading conversations...</p>
           </div>
         ) : filteredThreads.length === 0 ? (
@@ -127,7 +129,7 @@ export function MessageList({
                 onClick={() => onSelectThread(thread.threadId)}
                 className={`w-full text-left p-3.5 transition-all flex items-start gap-3 relative ${
                   isActive
-                    ? 'bg-purple-50/70 border-l-4 border-l-purple-600'
+                    ? 'bg-primary-50/70 border-l-4 border-l-primary-600'
                     : 'hover:bg-neutral-50/80 border-l-4 border-l-transparent'
                 }`}
               >
@@ -135,8 +137,8 @@ export function MessageList({
                 <div
                   className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs shrink-0 ${
                     isActive
-                      ? 'bg-purple-600 text-white shadow-xs'
-                      : 'bg-purple-100 text-purple-800'
+                      ? 'bg-primary-600 text-white shadow-xs'
+                      : 'bg-primary-100 text-primary-800'
                   }`}
                 >
                   {initials}
@@ -147,7 +149,7 @@ export function MessageList({
                   <div className="flex items-center justify-between gap-1 mb-0.5">
                     <span
                       className={`text-xs font-bold truncate ${
-                        isActive ? 'text-purple-950' : 'text-neutral-900'
+                        isActive ? 'text-primary-950' : 'text-neutral-900'
                       }`}
                     >
                       {thread.otherUser.name}
@@ -187,7 +189,7 @@ export function MessageList({
 
                     {/* Unread badge */}
                     {thread.unreadCount > 0 && (
-                      <span className="px-1.5 py-0.2 rounded-full bg-purple-600 text-white text-[10px] font-black shrink-0 shadow-2xs">
+                      <span className="px-1.5 py-0.2 rounded-full bg-primary-600 text-white text-[10px] font-black shrink-0 shadow-2xs">
                         {thread.unreadCount}
                       </span>
                     )}

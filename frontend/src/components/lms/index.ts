@@ -9,3 +9,5 @@ export * from './AssignmentModal';
 export * from './AssignmentManager';
 export * from './StudentAssignmentModal';
 export * from './TeacherGradingModal';
+export * from './TeacherHomeworkView';
+export * from './TeacherAssignmentsView';

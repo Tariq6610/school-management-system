@@ -20,6 +20,7 @@ import { useSession } from '@/components/providers/SessionProvider';
 import { useToast } from '@/components/ui/Toast';
 import { Button } from '@/components/ui/Button';
 import { StatCard } from '@/components/ui/StatCard';
+import { NavIcon } from '@/components/shell/NavIcon';
 import {
   getAttendanceByClassAndDate,
   calculateClassDaySummary,
@@ -311,7 +312,7 @@ export function TeacherDashboardView({ initialDate }: TeacherDashboardViewProps)
       {unmarkedClasses.length > 0 ? (
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 bg-amber-50 border border-amber-200 rounded-xl text-amber-900 shadow-xs">
           <div className="flex items-center gap-3">
-            <span className="text-2xl">⚠️</span>
+            <NavIcon name="alert-triangle" className="w-6 h-6" />
             <div>
               <strong className="text-sm font-bold block">
                 {unmarkedClasses.length} Class Register{unmarkedClasses.length === 1 ? '' : 's'} Require Marking
@@ -334,7 +335,7 @@ export function TeacherDashboardView({ initialDate }: TeacherDashboardViewProps)
         </div>
       ) : (
         <div className="flex items-center gap-3 p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-900 text-sm shadow-xs">
-          <span className="text-xl">✅</span>
+          <NavIcon name="check-circle" className="w-5 h-5" />
           <div>
             <strong className="font-semibold">All attendance registers are up to date!</strong>
             <p className="text-xs text-emerald-800 mt-0.5">

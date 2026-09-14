@@ -22,8 +22,6 @@ export function BrandingSettingsEditor({ initialSettings }: BrandingSettingsEdit
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
   const [schoolName, setSchoolName] = useState(initialSettings?.branding?.schoolName || 'ABC School Network');
-  const [primaryColor, setPrimaryColor] = useState(initialSettings?.branding?.primaryColor || '#4B2FA8');
-  const [accentColor, setAccentColor] = useState(initialSettings?.branding?.accentColor || '#1D5F96');
   const [currency, setCurrency] = useState(initialSettings?.currency || 'PKR');
 
   useEffect(() => {
@@ -34,8 +32,6 @@ export function BrandingSettingsEditor({ initialSettings }: BrandingSettingsEdit
         const settings = await getSettings(scope);
         if (!ignore) {
           setSchoolName(settings.branding.schoolName || 'ABC School Network');
-          setPrimaryColor(settings.branding.primaryColor || '#4B2FA8');
-          setAccentColor(settings.branding.accentColor || '#1D5F96');
           setCurrency(settings.currency || 'PKR');
           setLoading(false);
         }
@@ -54,11 +50,13 @@ export function BrandingSettingsEditor({ initialSettings }: BrandingSettingsEdit
     try {
       setIsSaving(true);
       const scope: Scope = { schoolId };
+      // Preserve every other branding field (colors, fonts, radius, design mode —
+      // owned by Super Admin's Design Studio) instead of replacing the whole object.
+      const current = await getSettings(scope);
       const patch = {
         branding: {
+          ...current.branding,
           schoolName,
-          primaryColor,
-          accentColor,
         },
         currency,
       };
@@ -75,7 +73,7 @@ export function BrandingSettingsEditor({ initialSettings }: BrandingSettingsEdit
     } finally {
       setIsSaving(false);
     }
-  }, [schoolId, schoolName, primaryColor, accentColor, currency, showToast]);
+  }, [schoolId, schoolName, currency, showToast]);
 
   if (loading) {
     return (
@@ -121,28 +119,6 @@ export function BrandingSettingsEditor({ initialSettings }: BrandingSettingsEdit
               required
             />
           </div>
-          
-          <Input
-            label="Primary Theme Color"
-            type="color"
-            value={primaryColor}
-            onChange={(e) => {
-              setPrimaryColor(e.target.value);
-              setHasUnsavedChanges(true);
-            }}
-            hint="Main brand color for sidebar and primary accents"
-          />
-
-          <Input
-            label="Accent Color"
-            type="color"
-            value={accentColor}
-            onChange={(e) => {
-              setAccentColor(e.target.value);
-              setHasUnsavedChanges(true);
-            }}
-            hint="Secondary color for interactive elements"
-          />
 
           <Input
             label="Default Currency"
@@ -155,6 +131,16 @@ export function BrandingSettingsEditor({ initialSettings }: BrandingSettingsEdit
             hint="e.g. PKR, USD, GBP used for fee invoicing"
             required
           />
+        </div>
+
+        <div className="md:col-span-2 p-3.5 rounded-lg bg-neutral-50 border border-neutral-200 text-xs text-neutral-600 flex items-start gap-2.5">
+          <svg className="w-4 h-4 shrink-0 mt-0.5 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>
+            Colors, fonts, corner rounding, and per-campus design are managed centrally by your Super Admin
+            in <strong>Design Studio</strong>, to keep the network&apos;s look consistent.
+          </span>
         </div>
       </div>
     </div>

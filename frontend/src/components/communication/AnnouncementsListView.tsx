@@ -23,6 +23,7 @@ import { Button } from '@/components/ui/Button';
 import { Modal } from '@/components/ui/Modal';
 import { useToast } from '@/components/ui/Toast';
 import { useSession } from '@/components/providers/SessionProvider';
+import { NavIcon } from '@/components/shell/NavIcon';
 import { AnnouncementComposerModal } from './AnnouncementComposerModal';
 
 export interface AnnouncementsListViewProps {
@@ -188,17 +189,10 @@ export function AnnouncementsListView({
             setEditingAnnouncement(null);
             setIsComposerOpen(true);
           }}
-          className="font-bold flex items-center gap-1.5 shadow-xs shrink-0 self-start sm:self-auto"
+          className="font-bold shadow-xs shrink-0 self-start sm:self-auto"
+          leftIcon={<NavIcon name="plus" className="w-4 h-4" />}
         >
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 4v16m8-8H4"
-            />
-          </svg>
-          <span>Compose Announcement</span>
+          Compose Announcement
         </Button>
       </div>
 
@@ -474,19 +468,7 @@ export function AnnouncementsListView({
       >
         <div className="space-y-4">
           <div className="p-3 bg-rose-50 border border-rose-200 text-rose-800 text-xs rounded-xl flex items-center gap-2">
-            <svg
-              className="w-4 h-4 shrink-0 text-rose-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-              />
-            </svg>
+            <NavIcon name="alert-triangle" className="w-4 h-4 shrink-0 text-rose-500" />
             <span>This announcement will be permanently deleted. This action cannot be undone.</span>
           </div>
 

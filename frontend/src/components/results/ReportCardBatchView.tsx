@@ -16,6 +16,7 @@ import { Select } from '@/components/ui/Select';
 import { Input } from '@/components/ui/Input';
 import { StatCard } from '@/components/ui/StatCard';
 import { useSession } from '@/components/providers/SessionProvider';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface ReportCardBatchViewProps {
   initialCampusId?: ID;
@@ -198,7 +199,7 @@ export function ReportCardBatchView({
                 <span className="text-xs text-ink-500 font-medium">Results & Assessment</span>
               </div>
               <h1 className="text-xl font-bold text-ink-900 tracking-tight flex items-center gap-2">
-                <span>📄</span> Report Card Generation & Batch Print
+                <NavIcon name="file-text" className="w-5 h-5" /> Report Card Generation & Batch Print
               </h1>
               <p className="text-xs text-ink-600 mt-0.5">
                 Produces branded, publication-ready report cards for an entire class cohort in one printable document.
@@ -212,8 +213,9 @@ export function ReportCardBatchView({
                 size="sm"
                 onClick={() => fetchReportCards()}
                 disabled={loading}
+                leftIcon={<NavIcon name="refresh" className="w-4 h-4" />}
               >
-                ⟳ Refresh Data
+                Refresh Data
               </Button>
 
               <Button
@@ -221,26 +223,12 @@ export function ReportCardBatchView({
                 size="md"
                 onClick={handlePrint}
                 disabled={loading || !payload || filteredReportCards.length === 0}
-                className="gap-2 shadow-sm font-semibold"
+                className="shadow-sm font-semibold"
+                leftIcon={<NavIcon name="printer" className="w-4 h-4" />}
               >
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
-                  />
-                </svg>
-                <span>
-                  {singleStudentFilter !== 'all'
-                    ? 'Print Student Report Card'
-                    : `Batch Print Class (${filteredReportCards.length})`}
-                </span>
+                {singleStudentFilter !== 'all'
+                  ? 'Print Student Report Card'
+                  : `Batch Print Class (${filteredReportCards.length})`}
               </Button>
             </div>
           </div>
@@ -314,7 +302,7 @@ export function ReportCardBatchView({
             </div>
 
             <div className="text-[11px] text-ink-500 bg-amber-50 border border-amber-200 px-3 py-1.5 rounded-control flex items-center gap-1.5">
-              <span>💡</span>
+              <NavIcon name="lightbulb" className="w-3.5 h-3.5 shrink-0" />
               <span>
                 <strong>Browser Print Tip:</strong> For crisp branded printing, check <em>&ldquo;Background graphics&rdquo;</em> in your browser print options.
               </span>
@@ -387,7 +375,10 @@ export function ReportCardBatchView({
                   {/* Visual Page Break Indicator (Screen only) */}
                   <div className="no-print flex items-center justify-between text-[11px] font-mono text-ink-400 my-4 max-w-4xl mx-auto px-2">
                     <span className="flex items-center gap-1.5">
-                      <span>📄 Sheet {index + 1} of {filteredReportCards.length}</span>
+                      <span className="inline-flex items-center gap-1">
+                        <NavIcon name="file-text" className="w-3.5 h-3.5" />
+                        Sheet {index + 1} of {filteredReportCards.length}
+                      </span>
                       <span>&bull;</span>
                       <span>{reportCard.user.name}</span>
                     </span>
@@ -398,6 +389,7 @@ export function ReportCardBatchView({
                   <ReportCardDocument
                     data={reportCard}
                     isBatchItem={!isLast}
+                    allowEditRemarks={true}
                     onRemarksChange={handleCustomRemarksChange}
                   />
                 </div>

@@ -7,6 +7,7 @@ import { formatCurrency } from '@/lib/utils/currency';
 import { useSession } from '@/components/providers/SessionProvider';
 import { useToast } from '@/components/ui/Toast';
 import { Button } from '@/components/ui/Button';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface RecordPaymentModalProps {
   isOpen: boolean;
@@ -112,8 +113,8 @@ export function RecordPaymentModal({
         {/* Header */}
         <div className="flex items-center justify-between border-b border-neutral-200 px-6 py-4 bg-neutral-50/70">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700 font-bold text-lg">
-              💳
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
+              <NavIcon name="credit-card" className="w-5 h-5" />
             </div>
             <div>
               <h2 id="payment-modal-title" className="text-lg font-bold text-neutral-900">
@@ -130,7 +131,7 @@ export function RecordPaymentModal({
             className="rounded-lg p-2 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
             aria-label="Close"
           >
-            ✕
+            <NavIcon name="x" className="w-4 h-4" />
           </button>
         </div>
 
@@ -199,8 +200,11 @@ export function RecordPaymentModal({
                     onChange={() => setMethod(m)}
                     className="sr-only"
                   />
-                  <span className="text-base mb-0.5">
-                    {m === 'cash' ? '💵' : m === 'bank' ? '🏦' : '📝'}
+                  <span className="mb-0.5">
+                    <NavIcon
+                      name={m === 'cash' ? 'credit-card' : m === 'bank' ? 'building' : 'edit'}
+                      className="w-5 h-5"
+                    />
                   </span>
                   <span className="capitalize">{m}</span>
                 </label>

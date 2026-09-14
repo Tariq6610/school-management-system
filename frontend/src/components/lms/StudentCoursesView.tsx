@@ -7,6 +7,7 @@ import { useSession } from '@/components/providers/SessionProvider';
 import { getStudentCoursesWithProgress } from '@/lib/repositories/lessonCompletions';
 import { getStudent } from '@/lib/repositories/students';
 import { listClasses } from '@/lib/repositories/classes';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface StudentCoursesViewProps {
   initialCourses?: (EnrichedCourse | EnrichedCourseWithProgress)[];
@@ -84,8 +85,8 @@ export function StudentCoursesView({
       {/* Top Automatic Enrolment Banner */}
       <div className="bg-purple-50 border border-purple-200 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-start gap-3">
-          <div className="w-9 h-9 rounded-xl bg-purple-600 text-white flex items-center justify-center shrink-0 text-base shadow-xs">
-            🎓
+          <div className="w-9 h-9 rounded-xl bg-purple-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+            <NavIcon name="book-open" className="w-5 h-5" />
           </div>
           <div>
             <h2 className="text-sm font-bold text-purple-950">
@@ -139,8 +140,8 @@ export function StudentCoursesView({
         </div>
       ) : filteredCourses.length === 0 ? (
         <div className="bg-white border border-neutral-200 rounded-2xl p-12 text-center shadow-xs space-y-3">
-          <div className="w-12 h-12 rounded-full bg-neutral-100 text-neutral-500 flex items-center justify-center mx-auto text-xl">
-            📖
+          <div className="w-12 h-12 rounded-full bg-neutral-100 text-neutral-500 flex items-center justify-center mx-auto">
+            <NavIcon name="book-open" className="w-6 h-6" />
           </div>
           <h3 className="text-base font-bold text-neutral-900">No Courses Available</h3>
           <p className="text-xs sm:text-sm text-neutral-500 max-w-md mx-auto">

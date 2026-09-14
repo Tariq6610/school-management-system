@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { ClassAttendanceMatrixRow, ISODate } from '@/types';
 import { formatDate, getWeekdayName } from '@/lib/utils';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface AdminAttendanceGridProps {
   rows: ClassAttendanceMatrixRow[];
@@ -109,8 +110,9 @@ export function AdminAttendanceGrid({
                     <div className="mt-1 flex items-center gap-1.5 text-xs text-neutral-500">
                       {row.teacherName ? (
                         <>
-                          <span className="text-neutral-700 font-medium truncate max-w-[150px]" title={row.teacherName}>
-                            👤 {row.teacherName}
+                          <span className="inline-flex items-center gap-1 text-neutral-700 font-medium truncate max-w-[150px]" title={row.teacherName}>
+                            <NavIcon name="user" className="w-3.5 h-3.5 shrink-0" />
+                            {row.teacherName}
                           </span>
                           {row.teacherEmployeeNumber && (
                             <span className="text-[11px] text-neutral-500">
@@ -119,8 +121,9 @@ export function AdminAttendanceGrid({
                           )}
                         </>
                       ) : (
-                        <span className="italic text-amber-700">
-                          ⚠ No teacher assigned
+                        <span className="inline-flex items-center gap-1 italic text-amber-700">
+                          <NavIcon name="alert-triangle" className="w-3.5 h-3.5 shrink-0" />
+                          No teacher assigned
                         </span>
                       )}
                     </div>
@@ -211,8 +214,8 @@ export function AdminAttendanceGrid({
                             <span className="font-mono text-xs font-bold text-emerald-700">
                               {`${cell.summary?.percentage ?? 100}%`}
                             </span>
-                            <span className="rounded-full bg-emerald-100 px-1.5 py-0.2 text-[10px] font-semibold text-emerald-800">
-                              ✓
+                            <span className="inline-flex items-center rounded-full bg-emerald-100 px-1.5 py-0.2 text-[10px] font-semibold text-emerald-800">
+                              <NavIcon name="check-circle" className="w-3 h-3" />
                             </span>
                           </div>
 

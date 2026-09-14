@@ -14,6 +14,7 @@ import {
 } from '@/lib/repositories/timetableSlots';
 import { useSession } from '@/components/providers/SessionProvider';
 import { useToast } from '@/components/ui/Toast';
+import { NavIcon } from '@/components/shell/NavIcon';
 import { SlotPickerModal, TeacherOption } from './SlotPickerModal';
 
 const DAY_NAMES: Record<DayOfWeek, string> = {
@@ -342,7 +343,10 @@ export function TimetableGrid({
                         colSpan={activeDays.length}
                         className="py-2 px-4 text-center text-xs font-semibold text-amber-800 uppercase tracking-widest bg-amber-50/70 select-none"
                       >
-                        ☕ {period.name} ({period.startTime} – {period.endTime}) — Non-Instructional Break
+                        <span className="inline-flex items-center gap-1.5">
+                          <NavIcon name="clock" className="w-3.5 h-3.5" />
+                          {period.name} ({period.startTime} – {period.endTime}) — Non-Instructional Break
+                        </span>
                       </td>
                     </tr>
                   );
@@ -419,8 +423,8 @@ export function TimetableGrid({
                             </div>
                           ) : (
                             <div className="h-full flex items-center justify-center rounded-lg border border-dashed border-neutral-200 group-hover:border-purple-300 group-hover:bg-purple-50/20 text-neutral-500 group-hover:text-purple-600 transition-colors">
-                              <span className="text-xs font-medium flex items-center gap-1">
-                                <span className="text-sm leading-none">+</span> Assign
+                              <span className="text-xs font-medium inline-flex items-center gap-1">
+                                <NavIcon name="plus" className="w-3 h-3" /> Assign
                               </span>
                             </div>
                           )}

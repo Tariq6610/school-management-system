@@ -15,6 +15,7 @@ import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { useToast } from '@/components/ui/Toast';
+import { NavIcon } from '@/components/shell/NavIcon';
 import { formatCurrency } from '@/lib/utils/currency';
 import {
   listStudentConcessions,
@@ -193,8 +194,13 @@ export function StudentConcessionsModal({
               Assigned Concession Profiles ({concessions.length})
             </h4>
             {!isAdding && (
-              <Button variant="secondary" size="sm" onClick={() => setIsAdding(true)}>
-                + Assign New Concession
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => setIsAdding(true)}
+                leftIcon={<NavIcon name="plus" className="w-3.5 h-3.5" />}
+              >
+                Assign New Concession
               </Button>
             )}
           </div>

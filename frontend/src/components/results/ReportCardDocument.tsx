@@ -2,20 +2,24 @@
 
 import React, { useState } from 'react';
 import { StudentReportCardData } from '@/lib/repositories/reportCards';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface ReportCardDocumentProps {
   data: StudentReportCardData;
   isBatchItem?: boolean;
   onRemarksChange?: (studentId: string, newRemarks: string) => void;
+  allowEditRemarks?: boolean;
 }
 
 export function ReportCardDocument({
   data,
   isBatchItem = true,
   onRemarksChange,
+  allowEditRemarks = false,
 }: ReportCardDocumentProps) {
   const [isEditingRemarks, setIsEditingRemarks] = useState(false);
   const [remarksText, setRemarksText] = useState(data.classTeacherRemarks);
+  const [logoFailed, setLogoFailed] = useState(false);
 
   const handleSaveRemarks = () => {
     setIsEditingRemarks(false);
@@ -24,7 +28,7 @@ export function ReportCardDocument({
     }
   };
 
-  const primaryColor = data.branding.primaryColor || '#4B2FA8';
+  const primaryColor = data.branding.primaryColor || '#f97316';
   const isPassed = data.overallPercentage >= 50;
 
   return (
@@ -47,12 +51,13 @@ export function ReportCardDocument({
       <header className="flex items-start justify-between gap-4 border-b border-ink-200 pb-5 mb-5">
         <div className="flex items-center gap-4">
           {/* Logo or Authoritative Institutional Crest SVG */}
-          {data.branding.logoUrl ? (
+          {data.branding.logoUrl && !logoFailed ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src={data.branding.logoUrl}
               alt={data.branding.schoolName}
               className="w-16 h-16 object-contain rounded"
+              onError={() => setLogoFailed(true)}
             />
           ) : (
             <div
@@ -246,7 +251,14 @@ export function ReportCardDocument({
                       isPassed ? 'text-emerald-700' : 'text-rose-700'
                     }`}
                   >
-                    {isPassed ? '✓ Passed & Qualified' : '⚠ Academic Reinforcement Advised'}
+                    {isPassed ? (
+                      '✓ Passed & Qualified'
+                    ) : (
+                      <span className="inline-flex items-center gap-1">
+                        <NavIcon name="alert-triangle" className="w-3.5 h-3.5" />
+                        Academic Reinforcement Advised
+                      </span>
+                    )}
                   </span>
                 </td>
               </tr>
@@ -261,7 +273,7 @@ export function ReportCardDocument({
         <div className="md:col-span-4 print:col-span-4 border border-ink-200 rounded-control p-3.5 bg-ink-50/50 flex flex-col justify-between">
           <div>
             <h3 className="text-xs font-bold uppercase tracking-wider text-ink-700 mb-2.5 flex items-center gap-1.5">
-              <span>📅</span> Attendance Summary
+              <NavIcon name="calendar" className="w-3.5 h-3.5" /> Attendance Summary
             </h3>
             <div className="space-y-1.5 text-xs text-ink-700">
               <div className="flex justify-between">
@@ -304,29 +316,31 @@ export function ReportCardDocument({
           <div>
             <div className="flex items-center justify-between mb-2">
               <h3 className="text-xs font-bold uppercase tracking-wider text-ink-700 flex items-center gap-1.5">
-                <span>💬</span> Class Teacher&apos;s Remarks
+                <NavIcon name="message-circle" className="w-3.5 h-3.5" /> Class Teacher&apos;s Remarks
               </h3>
 
               {/* Remarks inline edit toggle (Screen only) */}
-              <div className="print:hidden">
-                {!isEditingRemarks ? (
-                  <button
-                    type="button"
-                    onClick={() => setIsEditingRemarks(true)}
-                    className="text-[11px] text-primary-700 hover:text-primary-900 underline font-medium cursor-pointer"
-                  >
-                    Edit Remarks
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={handleSaveRemarks}
-                    className="text-[11px] bg-primary-700 text-white px-2 py-0.5 rounded font-semibold cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
-                  >
-                    Done
-                  </button>
-                )}
-              </div>
+              {allowEditRemarks && (
+                <div className="print:hidden">
+                  {!isEditingRemarks ? (
+                    <button
+                      type="button"
+                      onClick={() => setIsEditingRemarks(true)}
+                      className="text-[11px] text-primary-700 hover:text-primary-900 underline font-medium cursor-pointer"
+                    >
+                      Edit Remarks
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={handleSaveRemarks}
+                      className="text-[11px] bg-primary-700 text-white px-2 py-0.5 rounded font-semibold cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
+                    >
+                      Done
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
 
             {isEditingRemarks ? (

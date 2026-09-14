@@ -22,6 +22,7 @@ import { useSession } from '@/components/providers/SessionProvider';
 import { StatCard } from '@/components/ui/StatCard';
 import { Button } from '@/components/ui/Button';
 import { SkeletonCard, SkeletonTable } from '@/components/ui/Skeleton';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface ParentAttendanceCalendarProps {
   initialStudentId?: string;
@@ -337,7 +338,7 @@ export function ParentAttendanceCalendar({
 
           <div className="flex items-center gap-1.5">
             <span className="inline-flex items-center gap-1 rounded bg-indigo-100 px-2 py-0.5 text-[11px] font-bold text-indigo-800 border border-indigo-200">
-              📋 Leave
+              <NavIcon name="clipboard" className="w-3 h-3" /> Leave
             </span>
             <span className="text-neutral-500">Approved leave</span>
           </div>
@@ -384,7 +385,7 @@ export function ParentAttendanceCalendar({
                       ? 'bg-neutral-50/70 text-neutral-500'
                       : 'bg-white text-neutral-800'
                   } ${
-                    isSelected ? 'ring-2 ring-purple-500 bg-purple-50/20' : ''
+                    isSelected ? 'ring-2 ring-purple-500 bg-purple-50/20 relative z-10' : 'relative'
                   }`}
                 >
                   {/* Day Number Header */}
@@ -433,7 +434,7 @@ export function ParentAttendanceCalendar({
 
                     {status === 'leave' && (
                       <span className="inline-flex items-center justify-center gap-1 rounded bg-indigo-100 px-1.5 py-1 text-[11px] font-bold text-indigo-900 border border-indigo-200">
-                        <span>📋</span>
+                        <NavIcon name="clipboard" className="w-3 h-3" />
                         <span>Leave</span>
                       </span>
                     )}

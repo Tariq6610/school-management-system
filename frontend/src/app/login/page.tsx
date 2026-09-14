@@ -6,6 +6,26 @@ import { Input, Button, StatusBadge } from '@/components/ui';
 import { DEMO_ACCOUNTS, DemoAccount, getRoleDashboardRoute } from '@/lib/auth/auth';
 import { useSession } from '@/components/providers/SessionProvider';
 import { useBranding } from '@/components/providers/BrandingProvider';
+import { Logo } from '@/components/shell/Logo';
+import { NavIcon } from '@/components/shell/NavIcon';
+
+const HERO_HIGHLIGHTS: { iconName: string; title: string; description: string }[] = [
+  {
+    iconName: 'building',
+    title: 'Multi-campus network',
+    description: 'One login, every campus — students, faculty, and finances in one place.',
+  },
+  {
+    iconName: 'clipboard-check',
+    title: 'Live attendance & results',
+    description: 'Daily registers, exam marks, and report cards, always up to date.',
+  },
+  {
+    iconName: 'bell',
+    title: 'Parents kept in the loop',
+    description: 'Announcements and updates reach families the moment they publish.',
+  },
+];
 
 export default function LoginPage() {
   const router = useRouter();
@@ -64,36 +84,80 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="relative min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 bg-canvas text-ink-900 overflow-hidden">
-      {/* Ambient background accents */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-        <div className="absolute -top-32 -left-24 h-72 w-72 rounded-full bg-brand-700/10 blur-3xl" />
-        <div className="absolute -bottom-32 -right-24 h-72 w-72 rounded-full bg-brand-600/10 blur-3xl" />
-      </div>
-
-      <div className="relative w-full max-w-xl space-y-6">
-        {/* Brand lockup above the card */}
-        <div className="flex flex-col items-center text-center gap-2">
-          <div className="w-12 h-12 rounded-card bg-brand-700 text-surface flex items-center justify-center font-bold text-lg shadow-overlay">
-            {schoolName.substring(0, 3).toUpperCase()}
-          </div>
-          <h1 className="text-page-title text-ink-900">{schoolName}</h1>
-          <p className="text-secondary-meta text-ink-500">Institutional management portal</p>
+    <main className="min-h-screen bg-canvas text-ink-900 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
+      {/* Left: brand hero panel (desktop only) */}
+      <div className="hidden lg:flex relative flex-col justify-between overflow-hidden bg-brand-700 p-10 text-white">
+        <div className="pointer-events-none absolute inset-0 opacity-[0.06]" aria-hidden>
+          <div className="absolute -top-24 -right-16 h-80 w-80 rounded-full bg-white blur-3xl" />
+          <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-white blur-3xl" />
         </div>
 
-        {/* Card Container */}
-        <div className="rounded-card bg-surface p-6 sm:p-8 border border-rule shadow-overlay space-y-6">
+        <div className="relative flex items-center gap-3">
+          <Logo size="lg" />
+          <div>
+            <p className="text-xs font-medium uppercase tracking-wider text-white/70">Phase 0 Prototype</p>
+            <h1 className="text-xl font-semibold">{schoolName}</h1>
+          </div>
+        </div>
+
+        <div className="relative space-y-8 max-w-md">
+          <div>
+            <h2 className="text-3xl font-semibold leading-tight">
+              Everything your school runs on, in one portal.
+            </h2>
+            <p className="mt-3 text-white/80 text-body-custom">
+              Institutional management for campuses, classrooms, and families — built for the people who run them.
+            </p>
+          </div>
+
+          <ul className="space-y-5">
+            {HERO_HIGHLIGHTS.map((item) => (
+              <li key={item.title} className="flex items-start gap-3">
+                <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-control bg-white/15">
+                  <NavIcon name={item.iconName} className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <p className="font-semibold text-white">{item.title}</p>
+                  <p className="text-white/75 text-secondary-meta mt-0.5">{item.description}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <p className="relative text-white/60 text-secondary-meta">
+          Institutional record system prototype · offline-first
+        </p>
+      </div>
+
+      {/* Right: open sign-in area (no boxed card — full-width, breathing room) */}
+      <div className="relative flex flex-col items-center justify-center p-5 sm:p-8 lg:p-14 overflow-hidden">
+        {/* Ambient accents (mobile / narrow layouts) */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden lg:hidden" aria-hidden>
+          <div className="absolute -top-32 -left-24 h-72 w-72 rounded-full bg-brand-700/10 blur-3xl" />
+          <div className="absolute -bottom-32 -right-24 h-72 w-72 rounded-full bg-brand-600/10 blur-3xl" />
+        </div>
+
+        <div className="relative w-full max-w-2xl space-y-7">
+          {/* Brand lockup (mobile only — desktop shows the hero panel instead) */}
+          <div className="flex flex-col items-center text-center gap-2 lg:hidden">
+            <Logo size="lg" />
+            <h1 className="text-page-title text-ink-900">{schoolName}</h1>
+            <p className="text-secondary-meta text-ink-500">Institutional management portal</p>
+          </div>
+
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-rule pb-4">
-            <h2 className="text-section-heading text-ink-900">Sign In</h2>
-            <span className="inline-flex items-center rounded-control bg-brand-100 px-2.5 py-1 text-secondary-meta font-medium text-brand-700">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-page-title text-ink-900">Sign In</h2>
+              <p className="text-secondary-meta text-ink-600 mt-1">
+                Enter credentials or select a seeded demo role below to explore the portal.
+              </p>
+            </div>
+            <span className="hidden sm:inline-flex shrink-0 items-center rounded-control bg-brand-100 px-2.5 py-1 text-secondary-meta font-medium text-brand-700">
               Phase 0 Prototype
             </span>
           </div>
-
-          <p className="text-secondary-meta text-ink-600 -mt-2">
-            Enter credentials or select a seeded demo role below to explore the portal.
-          </p>
 
           {/* Active Session Notice */}
           {isAuthenticated && user && (
@@ -134,40 +198,44 @@ export default function LoginPage() {
           )}
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <Input
-              label="Email Address"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="e.g. admin@abcschool.pk"
-              required
-              autoComplete="email"
-            />
+          <form onSubmit={handleSubmit} className="space-y-4 sm:flex sm:items-end sm:gap-3 sm:space-y-0">
+            <div className="sm:flex-1">
+              <Input
+                label="Email Address"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="e.g. admin@abcschool.pk"
+                required
+                autoComplete="email"
+              />
+            </div>
 
-            <Input
-              label="Password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              required
-              autoComplete="current-password"
-            />
+            <div className="sm:flex-1">
+              <Input
+                label="Password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                required
+                autoComplete="current-password"
+              />
+            </div>
 
             <Button
               type="submit"
               variant="primary"
               size="md"
-              fullWidth
               isLoading={isLoading}
+              className="w-full sm:w-auto shrink-0"
             >
-              Sign In to Portal
+              Sign In
             </Button>
           </form>
 
           {/* Demo Accounts Panel */}
-          <div className="pt-5 border-t border-rule space-y-3">
+          <div className="pt-6 border-t border-rule space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold uppercase tracking-wider text-ink-500">
                 Demo accounts
@@ -182,7 +250,7 @@ export default function LoginPage() {
                   type="button"
                   onClick={() => handleSelectDemoAccount(acc)}
                   disabled={isLoading}
-                  className="p-3 text-left rounded-card bg-canvas border border-rule hover:border-brand-600/50 hover:bg-brand-100/20 transition-all cursor-pointer group flex flex-col justify-between"
+                  className="p-3 text-left rounded-card bg-surface border border-rule hover:border-brand-600/50 hover:bg-brand-100/20 transition-all cursor-pointer group flex flex-col justify-between"
                 >
                   <div className="flex items-start justify-between gap-1 mb-1.5">
                     <StatusBadge
@@ -218,7 +286,6 @@ export default function LoginPage() {
             </div>
           </div>
         </div>
-
       </div>
     </main>
   );

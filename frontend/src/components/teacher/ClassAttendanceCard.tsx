@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { AttendanceDay, AttendanceSummary, Class } from '@/types';
 import { Button } from '@/components/ui/Button';
+import { NavIcon } from '@/components/shell/NavIcon';
 import { formatDateTime } from '@/lib/utils';
 
 export interface ClassAttendanceCardProps {
@@ -114,7 +115,7 @@ export function ClassAttendanceCard({
         ) : (
           <div className="p-3 bg-amber-100/40 rounded-lg border border-amber-200 text-xs text-amber-900 flex flex-col gap-1">
             <div className="font-semibold flex items-center gap-1.5">
-              <span>⚠️</span> Register Pending
+              <NavIcon name="alert-triangle" className="w-4 h-4" /> Register Pending
             </div>
             <p className="text-neutral-600">
               Attendance has not been recorded for {selectedDate}. All active students will default to present upon opening.

@@ -9,3 +9,4 @@ export * from './fees';
 export * from './currency';
 export * from './dates';
 export * from './csv';
+export * from './color';

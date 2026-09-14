@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Message, MessageThreadSummary, ID } from '@/types';
 import { Button } from '@/components/ui/Button';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface MessageThreadProps {
   thread: MessageThreadSummary | null;
@@ -81,7 +82,7 @@ export function MessageThread({
   if (!thread) {
     return (
       <div className="h-full flex flex-col items-center justify-center p-8 bg-neutral-50/50 text-neutral-500">
-        <span className="text-4xl mb-3">💬</span>
+        <NavIcon name="message-circle" className="w-8 h-8 mb-3" />
         <h3 className="text-sm font-bold text-neutral-700">No conversation selected</h3>
         <p className="text-xs text-neutral-500 max-w-xs text-center mt-1">
           Select an active conversation from the list or start a new thread to contact a parent or teacher.
@@ -106,14 +107,14 @@ export function MessageThread({
             <button
               type="button"
               onClick={onBack}
-              className="lg:hidden p-1.5 -ml-1 text-neutral-500 hover:text-neutral-900 rounded-lg hover:bg-neutral-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
+              className="lg:hidden p-1.5 -ml-1 text-neutral-500 hover:text-neutral-900 rounded-lg hover:bg-neutral-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/50"
               aria-label="Back to conversations list"
             >
               ←
             </button>
           )}
 
-          <div className="w-10 h-10 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-2xs">
+          <div className="w-10 h-10 rounded-full bg-primary-600 text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-2xs">
             {initials}
           </div>
 
@@ -122,7 +123,7 @@ export function MessageThread({
               <h2 className="text-sm font-bold text-neutral-900 truncate">
                 {thread.otherUser.name}
               </h2>
-              <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-purple-100 text-purple-700 capitalize">
+              <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-primary-100 text-primary-700 capitalize">
                 {thread.otherUser.role}
               </span>
             </div>
@@ -145,7 +146,7 @@ export function MessageThread({
 
         {/* Safeguarding Notice Pill (Mandatory Acceptance Requirement §13) */}
         <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 bg-amber-50 border border-amber-200/60 rounded-full text-[11px] text-amber-800 shrink-0">
-          <span className="text-xs">🛡️</span>
+          <NavIcon name="shield" className="w-3.5 h-3.5" />
           <span className="font-medium">Safeguarding Monitored</span>
           <span
             className="cursor-help text-amber-600 hover:text-amber-900 font-bold ml-0.5"
@@ -158,7 +159,7 @@ export function MessageThread({
 
       {/* Safeguarding mobile banner */}
       <div className="sm:hidden px-3 py-1 bg-amber-50 border-b border-amber-200/40 text-[10px] text-amber-800 flex items-center justify-center gap-1">
-        <span>🛡️</span>
+        <NavIcon name="shield" className="w-3 h-3" />
         <span>Threads are logged for student safeguarding compliance</span>
       </div>
 
@@ -169,7 +170,7 @@ export function MessageThread({
       >
         {loading ? (
           <div className="h-full flex items-center justify-center text-xs text-neutral-500">
-            <div className="inline-block w-5 h-5 border-2 border-neutral-300 border-t-purple-600 rounded-full animate-spin mr-2" />
+            <div className="inline-block w-5 h-5 border-2 border-neutral-300 border-t-primary-600 rounded-full animate-spin mr-2" />
             Loading messages...
           </div>
         ) : messages.length === 0 ? (
@@ -199,7 +200,7 @@ export function MessageThread({
                   <div
                     className={`max-w-md md:max-w-lg rounded-2xl px-4 py-2.5 shadow-2xs text-xs leading-relaxed break-words ${
                       isMe
-                        ? 'bg-purple-600 text-white rounded-br-xs'
+                        ? 'bg-primary-600 text-white rounded-br-xs'
                         : 'bg-white text-neutral-900 border border-neutral-200/80 rounded-bl-xs'
                     }`}
                   >
@@ -217,7 +218,7 @@ export function MessageThread({
                       <span className="font-medium">
                         {msg.readAt ? (
                           <span
-                            className="text-purple-600 font-semibold"
+                            className="text-primary-600 font-semibold"
                             title={`Read at ${new Date(msg.readAt).toLocaleTimeString()}`}
                           >
                             ✓✓ Read
@@ -245,7 +246,7 @@ export function MessageThread({
               onChange={(e) => setInputText(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Type your message... (Press Enter to send, Shift+Enter for new line)"
-              className="w-full px-3.5 py-2 text-xs rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600 transition-all resize-none placeholder:text-neutral-500 leading-relaxed"
+              className="w-full px-3.5 py-2 text-xs rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-600 transition-all resize-none placeholder:text-neutral-500 leading-relaxed"
             />
           </div>
 

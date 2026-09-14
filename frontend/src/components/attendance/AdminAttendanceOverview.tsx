@@ -24,6 +24,7 @@ import { StatCard } from '@/components/ui/StatCard';
 import { Button } from '@/components/ui/Button';
 import { SkeletonCard, SkeletonTable } from '@/components/ui/Skeleton';
 import { AdminAttendanceGrid } from './AdminAttendanceGrid';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface AdminAttendanceOverviewProps {
   initialScope?: Scope;
@@ -237,7 +238,7 @@ export function AdminAttendanceOverview({
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div className="flex items-start gap-3">
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-amber-500 text-white font-bold text-lg">
-                ⚠
+                <NavIcon name="alert-triangle" className="w-5 h-5" />
               </span>
               <div>
                 <h3 className="font-bold text-amber-950 text-base">
@@ -466,7 +467,7 @@ export function AdminAttendanceOverview({
                       <td className="px-4 py-3">
                         {isMarked ? (
                           <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2.5 py-0.5 text-[11px] font-bold text-emerald-800">
-                            ✓ Marked
+                            <NavIcon name="check-circle" className="w-3.5 h-3.5" /> Marked
                           </span>
                         ) : isOverdue ? (
                           <span className="inline-flex items-center gap-1 rounded-full bg-amber-200 px-2.5 py-0.5 text-[11px] font-black text-amber-950 border border-amber-400">

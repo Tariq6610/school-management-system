@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { ISODate } from '@/types';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface AttendanceSummaryBarProps {
   classNameTitle: string;
@@ -121,7 +122,7 @@ export function AttendanceSummaryBar({
         <div className="text-xs text-ink-500 flex items-center gap-2">
           {markedByName && (
             <span className="inline-flex items-center gap-1 text-emerald-700 bg-emerald-50/70 px-2 py-0.5 rounded border border-emerald-200/60 text-[11px]">
-              ✓ Marked by {markedByName}
+              <NavIcon name="check-circle" className="w-3 h-3" /> Marked by {markedByName}
               {markedAt && ` on ${new Date(markedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`}
             </span>
           )}
@@ -133,7 +134,7 @@ export function AttendanceSummaryBar({
           )}
           {!canEdit && (
             <span className="inline-flex items-center gap-1 text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 text-[11px] font-medium">
-              🔒 Read Only (Edit Window Closed)
+              <NavIcon name="lock" className="w-3 h-3" /> Read Only (Edit Window Closed)
             </span>
           )}
         </div>

@@ -25,6 +25,7 @@ import { Table, TableColumn } from '@/components/ui/Table';
 import { Pagination } from '@/components/ui/Pagination';
 import { Modal } from '@/components/ui/Modal';
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 const PAGE_SIZE = 20;
 
@@ -395,8 +396,12 @@ export function ParentDirectory() {
             Manage guardian contact profiles, many-to-many student linkages, and sibling cohorts.
           </p>
         </div>
-        <Button variant="primary" onClick={() => setIsAddModalOpen(true)}>
-          + Add Parent Record
+        <Button
+          variant="primary"
+          onClick={() => setIsAddModalOpen(true)}
+          leftIcon={<NavIcon name="plus" className="w-4 h-4" />}
+        >
+          Add Parent Record
         </Button>
       </div>
 

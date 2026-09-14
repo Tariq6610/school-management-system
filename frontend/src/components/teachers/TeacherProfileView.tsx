@@ -16,6 +16,7 @@ import { StatCard } from '@/components/ui/StatCard';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { Table, TableColumn } from '@/components/ui/Table';
 import { Tabs } from '@/components/ui/Tabs';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface EnrichedSubject extends Subject {
   className: string;
@@ -252,8 +253,14 @@ export function TeacherProfileView({
               </div>
 
               <div className="flex flex-wrap gap-4 text-xs text-ink-500 pt-1">
-                <span>📧 {user?.email}</span>
-                {user?.phone && <span>📞 {user?.phone}</span>}
+                <span className="inline-flex items-center gap-1">
+                  <NavIcon name="mail" className="w-3.5 h-3.5" /> {user?.email}
+                </span>
+                {user?.phone && (
+                  <span className="inline-flex items-center gap-1">
+                    <NavIcon name="phone" className="w-3.5 h-3.5" /> {user?.phone}
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -348,8 +355,8 @@ export function TeacherProfileView({
                     </div>
 
                     {ac.isClassTeacher ? (
-                      <span className="text-[11px] px-2 py-0.5 rounded-full bg-brand-100 text-brand-900 font-bold border border-brand-300">
-                        ★ Class Teacher
+                      <span className="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full bg-brand-100 text-brand-900 font-bold border border-brand-300">
+                        <NavIcon name="award" className="w-3 h-3" /> Class Teacher
                       </span>
                     ) : (
                       <span className="text-[11px] px-2 py-0.5 rounded-full bg-surface-subtle text-ink-700 font-medium border border-rule">

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { ID } from '@/types';
 import { LearningProfileProposal } from '@/lib/repositories/learningProfiles';
 import { Button } from '@/components/ui/Button';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface ProposedNoteCardProps {
   proposal: LearningProfileProposal;
@@ -70,13 +71,19 @@ export function ProposedNoteCard({
         <div className="flex items-center gap-2">
           {/* Category Badge */}
           <span
-            className={`text-xs px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider ${
+            className={`inline-flex items-center gap-1 text-xs px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider ${
               isStrength
                 ? 'bg-emerald-100 text-emerald-800 border border-emerald-200'
                 : 'bg-amber-100 text-amber-800 border border-amber-200'
             }`}
           >
-            {isStrength ? '★ Strength' : '▲ Area for Improvement'}
+            {isStrength ? (
+              <>
+                <NavIcon name="award" className="w-3.5 h-3.5" /> Strength
+              </>
+            ) : (
+              '▲ Area for Improvement'
+            )}
           </span>
 
           {/* Metric Source Badge */}
@@ -96,7 +103,8 @@ export function ProposedNoteCard({
           <div>
             {isConfirmed ? (
               <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 bg-emerald-100/80 px-2.5 py-1 rounded-lg border border-emerald-300/60">
-                <span>✓ Confirmed &amp; Published</span>
+                <NavIcon name="check-circle" className="w-3.5 h-3.5" />
+                <span>Confirmed &amp; Published</span>
               </span>
             ) : isPending ? (
               <span className="inline-flex items-center gap-1 text-xs font-bold text-amber-800 bg-amber-50 px-2.5 py-1 rounded-lg border border-amber-300/70">

@@ -12,6 +12,7 @@ import {
 import { listCollection } from './base';
 import { listCampuses } from './campuses';
 import { listClasses } from './classes';
+import { createCollectionItem } from './base';
 
 export interface EnrichedParentPaymentReceipt {
   id: ID;
@@ -161,5 +162,60 @@ export async function getParentStudentFeeOverview(
     daysUntilDue,
     invoices: sortedInvoices,
     receipts,
+  };
+}
+
+/**
+ * Generates an invoice for the current month if it doesn't already exist.
+ * This is a prototype feature that MOCKS the generation process.
+ */
+export async function generateMonthlyInvoice(
+  studentId: ID,
+  schoolId: ID
+): Promise<{ success: boolean; message: string; invoice?: FeeInvoice }> {
+  const now = new Date();
+  const currentMonthName = now.toLocaleString('default', { month: 'long', year: 'numeric' });
+
+  const existingInvoices = await listCollection<FeeInvoice>(
+    STORAGE_KEYS.FEE_INVOICES,
+    { schoolId },
+    (inv) => inv.studentId === studentId && inv.billingMonth === currentMonthName
+  );
+
+  if (existingInvoices.length > 0) {
+    return {
+      success: false,
+      message: `Invoice for ${currentMonthName} is already generated.`,
+      invoice: existingInvoices[0],
+    };
+  }
+
+  const dueDate = new Date(now);
+  dueDate.setDate(dueDate.getDate() + 7);
+
+  const newInvoice: Omit<FeeInvoice, 'id'> = {
+    schoolId,
+    studentId,
+    invoiceNumber: `INV-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}-${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`,
+    totalAmount: 5000,
+    paidAmount: 0,
+    discountAmount: 0,
+    dueDate: dueDate.toISOString().split('T')[0],
+    status: 'unpaid',
+    billingMonth: currentMonthName,
+    lineItems: [
+      { label: 'Tuition Fee (Prototype)', amount: 5000 },
+    ],
+    payments: [],
+    createdAt: now.toISOString(),
+    updatedAt: now.toISOString(),
+  };
+
+  const created = await createCollectionItem<FeeInvoice>(STORAGE_KEYS.FEE_INVOICES, newInvoice);
+
+  return {
+    success: true,
+    message: `Successfully generated invoice for ${currentMonthName}.`,
+    invoice: created,
   };
 }

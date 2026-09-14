@@ -128,7 +128,7 @@ export async function getClassReportCards(
 
   const branding: BrandingSettings = {
     schoolName: settings.branding.schoolName || effectiveSchool.name,
-    primaryColor: settings.branding.primaryColor || '#4B2FA8',
+    primaryColor: settings.branding.primaryColor || '#f97316',
     accentColor: settings.branding.accentColor || '#1D5F96',
     logoUrl: settings.branding.logoUrl || effectiveSchool.logoUrl,
   };

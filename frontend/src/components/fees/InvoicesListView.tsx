@@ -26,6 +26,7 @@ import { Button } from '@/components/ui/Button';
 import { Pagination } from '@/components/ui/Pagination';
 import { InvoicesTable } from './InvoicesTable';
 import { BulkInvoiceModal } from './BulkInvoiceModal';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface InvoicesListViewProps {
   initialCampusId?: ID;
@@ -256,20 +257,19 @@ export function InvoicesListView({
             <Button
               variant="secondary"
               size="md"
-              className="flex items-center gap-2"
+              leftIcon={<NavIcon name="alert-triangle" className="w-4 h-4" />}
             >
-              <span>⚠️</span>
-              <span>Defaulter Report</span>
+              Defaulter Report
             </Button>
           </Link>
           <Button
             variant="primary"
             size="md"
             onClick={() => setIsBulkModalOpen(true)}
-            className="flex items-center gap-2 shadow-xs"
+            className="shadow-xs"
+            leftIcon={<NavIcon name="sparkles" className="w-4 h-4" />}
           >
-            <span>⚡</span>
-            <span>Generate Invoices (Bulk)</span>
+            Generate Invoices (Bulk)
           </Button>
         </div>
       </div>
@@ -280,7 +280,7 @@ export function InvoicesListView({
           label="Total Invoiced"
           value={formatCurrency(stats.totalBilled)}
           subtitle={`${stats.totalCount} total invoices`}
-          icon="🧾"
+          icon={<NavIcon name="receipt" className="w-5 h-5" />}
         />
         <StatCard
           label="Total Collected"
@@ -290,19 +290,19 @@ export function InvoicesListView({
               ? `${Math.round((stats.totalCollected / stats.totalBilled) * 100)}% collection rate`
               : '0%'
           }
-          icon="💳"
+          icon={<NavIcon name="credit-card" className="w-5 h-5" />}
         />
         <StatCard
           label="Pending Receivables"
           value={formatCurrency(stats.totalPending)}
           subtitle="Current active dues"
-          icon="⏳"
+          icon={<NavIcon name="clock" className="w-5 h-5" />}
         />
         <StatCard
           label="Overdue Defaulters"
           value={formatCurrency(stats.overdueAmount)}
           subtitle={`${stats.overdueCount} overdue invoices`}
-          icon="🚨"
+          icon={<NavIcon name="alert-triangle" className="w-5 h-5" />}
         />
       </div>
 
@@ -336,8 +336,8 @@ export function InvoicesListView({
               <option value="">All Statuses</option>
               <option value="paid">✓ Paid</option>
               <option value="partial">⏱ Partial</option>
-              <option value="pending">⏳ Pending</option>
-              <option value="overdue">🚨 Overdue</option>
+              <option value="pending">Pending</option>
+              <option value="overdue">Overdue</option>
             </select>
           </div>
 
@@ -351,10 +351,10 @@ export function InvoicesListView({
               }}
               className="w-full rounded-lg border border-neutral-300 bg-white px-3 py-1.5 text-xs text-neutral-800 focus:border-purple-500 focus:outline-hidden shadow-2xs"
             >
-              <option value="">🌐 All Campuses</option>
+              <option value="">All Campuses</option>
               {campuses.map((c) => (
                 <option key={c.id} value={c.id}>
-                  🏫 {c.name}
+                  {c.name}
                 </option>
               ))}
             </select>
@@ -370,7 +370,7 @@ export function InvoicesListView({
               }}
               className="w-full rounded-lg border border-neutral-300 bg-white px-3 py-1.5 text-xs text-neutral-800 focus:border-purple-500 focus:outline-hidden shadow-2xs"
             >
-              <option value="">👥 All Classes</option>
+              <option value="">All Classes</option>
               {classes.map((cls) => (
                 <option key={cls.id} value={cls.id}>
                   {cls.grade} — Section {cls.section}
@@ -389,7 +389,7 @@ export function InvoicesListView({
               }}
               className="w-full rounded-lg border border-neutral-300 bg-white px-3 py-1.5 text-xs text-neutral-800 focus:border-purple-500 focus:outline-hidden shadow-2xs"
             >
-              <option value="">📅 All Months</option>
+              <option value="">All Months</option>
               <option value="2026-09">September 2026</option>
               <option value="2026-08">August 2026</option>
               <option value="2026-07">July 2026</option>

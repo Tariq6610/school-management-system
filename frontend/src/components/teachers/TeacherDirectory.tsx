@@ -17,6 +17,7 @@ import { Select } from '@/components/ui/Select';
 import { Avatar } from '@/components/ui/Avatar';
 import { Table, TableColumn } from '@/components/ui/Table';
 import { Pagination } from '@/components/ui/Pagination';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface EnrichedTeacher extends Teacher {
   user?: User;
@@ -252,8 +253,10 @@ export function TeacherDirectory({
                   }`}
                   title={ac.isClassTeacher ? 'Class / Homeroom Teacher' : 'Subject Teacher'}
                 >
-                  {ac.classInfo.grade}-{ac.classInfo.section}
-                  {ac.isClassTeacher && ' ★'}
+                  <span className="inline-flex items-center gap-1">
+                    {ac.classInfo.grade}-{ac.classInfo.section}
+                    {ac.isClassTeacher && <NavIcon name="award" className="w-3 h-3" />}
+                  </span>
                 </span>
               ))
             ) : (
@@ -292,8 +295,8 @@ export function TeacherDirectory({
         </div>
 
         <Link href="/admin/teachers/new">
-          <Button variant="primary">
-            + Add New Faculty
+          <Button variant="primary" leftIcon={<NavIcon name="plus" className="w-4 h-4" />}>
+            Add New Faculty
           </Button>
         </Link>
       </div>

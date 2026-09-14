@@ -11,6 +11,7 @@ import {
 } from '@/lib/repositories/networkDashboard';
 import { RecentActivityFeed } from './RecentActivityFeed';
 import { formatPKR } from '@/lib/utils';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface SuperAdminDashboardViewProps {
   schoolId?: string;
@@ -62,7 +63,7 @@ export function SuperAdminDashboardView({
   if (loading || !stats) {
     return (
       <div className="p-8 text-center text-neutral-500 text-sm">
-        <div className="inline-block animate-spin text-xl mb-2">⚙️</div>
+        <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-brand-600 border-t-transparent mb-2" />
         <p>Loading network overview...</p>
       </div>
     );
@@ -93,9 +94,9 @@ export function SuperAdminDashboardView({
         <div className="flex items-center gap-2 flex-wrap">
           <Link
             href="/super-admin/campus-comparison"
-            className="px-3.5 py-2 rounded-xl bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold shadow-xs transition-colors flex items-center gap-1.5"
+            className="px-3.5 py-2 rounded-xl bg-brand-700 hover:bg-brand-600 text-white text-xs font-bold shadow-xs transition-colors flex items-center gap-1.5"
           >
-            <span>📊</span> Compare Campuses
+            <NavIcon name="chart-bar" className="w-3.5 h-3.5" /> Compare Campuses
           </Link>
           <Link
             href="/super-admin/schools"
@@ -115,82 +116,92 @@ export function SuperAdminDashboardView({
       {/* 2. Five Canonical Stats Cards (FEATURE_SPECIFICATIONS.md §2) */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5">
         {/* Stat 1: Schools */}
-        <div className="bg-white rounded-2xl p-4 border border-neutral-200/80 shadow-2xs flex flex-col justify-between">
+        <div className="bg-surface rounded-card p-4 border border-rule shadow-2xs flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold text-neutral-500 uppercase tracking-wider">
+            <span className="text-[11px] font-bold text-ink-500 uppercase tracking-wider">
               1. Schools
             </span>
-            <span className="text-base p-1.5 rounded-lg bg-neutral-100 text-neutral-700">🏫</span>
+            <span className="flex h-7 w-7 items-center justify-center rounded-control bg-brand-100 text-brand-700">
+              <NavIcon name="building" className="w-4 h-4" />
+            </span>
           </div>
           <div className="mt-3">
-            <span className="text-2xl font-black text-neutral-900 block tracking-tight">
+            <span className="text-2xl font-black text-ink-900 block tracking-tight">
               {stats.schoolsCount}
             </span>
-            <span className="text-[10px] text-neutral-500 font-medium">Institutions in network</span>
+            <span className="text-[10px] text-ink-500 font-medium">Institutions in network</span>
           </div>
         </div>
 
         {/* Stat 2: Campuses */}
-        <div className="bg-white rounded-2xl p-4 border border-neutral-200/80 shadow-2xs flex flex-col justify-between">
+        <div className="bg-surface rounded-card p-4 border border-rule shadow-2xs flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold text-neutral-500 uppercase tracking-wider">
+            <span className="text-[11px] font-bold text-ink-500 uppercase tracking-wider">
               2. Campuses
             </span>
-            <span className="text-base p-1.5 rounded-lg bg-indigo-50 text-indigo-700">📍</span>
+            <span className="flex h-7 w-7 items-center justify-center rounded-control bg-accent-100 text-accent-700">
+              <NavIcon name="map-pin" className="w-4 h-4" />
+            </span>
           </div>
           <div className="mt-3">
-            <span className="text-2xl font-black text-indigo-950 block tracking-tight">
+            <span className="text-2xl font-black text-accent-700 block tracking-tight">
               {stats.campusesCount}
             </span>
-            <span className="text-[10px] text-neutral-500 font-medium">Operational branches</span>
+            <span className="text-[10px] text-ink-500 font-medium">Operational branches</span>
           </div>
         </div>
 
         {/* Stat 3: Students */}
-        <div className="bg-white rounded-2xl p-4 border border-neutral-200/80 shadow-2xs flex flex-col justify-between">
+        <div className="bg-surface rounded-card p-4 border border-rule shadow-2xs flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold text-neutral-500 uppercase tracking-wider">
+            <span className="text-[11px] font-bold text-ink-500 uppercase tracking-wider">
               3. Students
             </span>
-            <span className="text-base p-1.5 rounded-lg bg-emerald-50 text-emerald-700">🎓</span>
+            <span className="flex h-7 w-7 items-center justify-center rounded-control bg-present-bg text-present">
+              <NavIcon name="users" className="w-4 h-4" />
+            </span>
           </div>
           <div className="mt-3">
-            <span className="text-2xl font-black text-emerald-950 block tracking-tight">
+            <span className="text-2xl font-black text-present block tracking-tight">
               {stats.studentsCount}
             </span>
-            <span className="text-[10px] text-emerald-700 font-medium">Enrolled network-wide</span>
+            <span className="text-[10px] text-present font-medium">Enrolled network-wide</span>
           </div>
         </div>
 
         {/* Stat 4: Teachers */}
-        <div className="bg-white rounded-2xl p-4 border border-neutral-200/80 shadow-2xs flex flex-col justify-between">
+        <div className="bg-surface rounded-card p-4 border border-rule shadow-2xs flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold text-neutral-500 uppercase tracking-wider">
+            <span className="text-[11px] font-bold text-ink-500 uppercase tracking-wider">
               4. Teachers
             </span>
-            <span className="text-base p-1.5 rounded-lg bg-sky-50 text-sky-700">👨‍🏫</span>
+            <span className="flex h-7 w-7 items-center justify-center rounded-control bg-brand-100 text-brand-700">
+              <NavIcon name="user-check" className="w-4 h-4" />
+            </span>
           </div>
           <div className="mt-3">
-            <span className="text-2xl font-black text-sky-950 block tracking-tight">
+            <span className="text-2xl font-black text-ink-900 block tracking-tight">
               {stats.teachersCount}
             </span>
-            <span className="text-[10px] text-sky-700 font-medium">Active instructional staff</span>
+            <span className="text-[10px] text-ink-500 font-medium">Active instructional staff</span>
           </div>
         </div>
 
         {/* Stat 5: Fee Collection This Month */}
-        <div className="bg-white rounded-2xl p-4 border border-neutral-200/80 shadow-2xs flex flex-col justify-between col-span-2 sm:col-span-1 lg:col-span-1">
+        <div className="bg-surface rounded-card p-4 border border-rule shadow-2xs flex flex-col justify-between col-span-2 sm:col-span-1 lg:col-span-1">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold text-neutral-500 uppercase tracking-wider">
+            <span className="text-[11px] font-bold text-ink-500 uppercase tracking-wider">
               5. Month Fees
             </span>
-            <span className="text-base p-1.5 rounded-lg bg-amber-50 text-amber-700">💳</span>
+            <span className="flex h-7 w-7 items-center justify-center rounded-control bg-late-bg text-late">
+              <NavIcon name="credit-card" className="w-4 h-4" />
+            </span>
           </div>
           <div className="mt-3">
-            <span className="text-xl font-black text-amber-950 block tracking-tight truncate">
+            <span className="text-xl font-black text-late block tracking-tight truncate">
               {formatPKR(stats.feeCollectionThisMonth)}
             </span>
-            <span className="text-[10px] text-amber-700 font-bold">
+            <span className="text-[10px] text-late font-bold">
               {stats.overallCollectionRate}% collection rate
             </span>
           </div>
@@ -202,7 +213,7 @@ export function SuperAdminDashboardView({
         <div className="p-4 border-b border-neutral-100 flex items-center justify-between gap-3 bg-neutral-50/50">
           <div>
             <h3 className="text-sm font-bold text-neutral-900 flex items-center gap-2">
-              <span>🏫</span> Campus Health Register
+              <NavIcon name="clipboard-check" className="w-4 h-4 text-brand-700" /> Campus Health Register
             </h3>
             <p className="text-xs text-neutral-500 mt-0.5">
               Comparative overview of students, faculty, collection rate, and attendance per campus.

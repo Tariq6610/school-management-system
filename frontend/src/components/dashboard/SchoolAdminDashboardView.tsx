@@ -7,6 +7,7 @@ import {
   getSchoolAdminDashboardStats,
 } from '@/lib/repositories/schoolAdminDashboard';
 import { Button } from '@/components/ui/Button';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface SchoolAdminDashboardViewProps {
   schoolId?: string;
@@ -52,8 +53,8 @@ export function SchoolAdminDashboardView({
 
   if (isLoading || !data) {
     return (
-      <div className="p-8 text-center text-gray-500">
-        <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-emerald-500 border-t-transparent mb-2" />
+      <div className="p-8 text-center text-ink-500">
+        <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-brand-600 border-t-transparent mb-2" />
         <p className="text-sm">Loading school administration dashboard...</p>
       </div>
     );
@@ -79,17 +80,17 @@ export function SchoolAdminDashboardView({
   return (
     <div className="space-y-8 pb-12">
       {/* Welcome & Quick Action Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-200 pb-5">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-rule pb-5">
         <div>
           <div className="flex items-center gap-2.5">
-            <h1 className="text-2xl font-bold text-gray-900 tracking-tight">
+            <h1 className="text-page-title text-ink-900">
               School Admin Dashboard
             </h1>
-            <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-semibold border border-emerald-200">
+            <span className="text-xs px-2.5 py-0.5 rounded-full bg-present-bg text-present font-semibold border border-present/20">
               {campusName}
             </span>
           </div>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="text-secondary-meta text-ink-500 mt-1">
             Real-time daily operations overview • Academic Session 2026–2027
           </p>
         </div>
@@ -97,8 +98,8 @@ export function SchoolAdminDashboardView({
         {/* Quick Launch Buttons */}
         <div className="flex flex-wrap items-center gap-2">
           <Link href="/admin/students/new">
-            <Button variant="primary" size="sm">
-              + Admit Student
+            <Button variant="primary" size="sm" leftIcon={<NavIcon name="plus" className="w-3.5 h-3.5" />}>
+              Admit Student
             </Button>
           </Link>
           <Link href="/admin/attendance">
@@ -122,94 +123,114 @@ export function SchoolAdminDashboardView({
       {/* Four Core Pillars KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Pillar 1: Students */}
-        <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-xs hover:border-emerald-300 transition-colors">
+        <div className="bg-surface p-5 rounded-card border border-rule shadow-overlay hover:border-brand-600/40 transition-colors">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-              Enrolled Students
-            </span>
-            <Link href="/admin/students" className="text-xs text-emerald-600 hover:underline font-medium">
+            <div className="flex items-center gap-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-control bg-brand-100 text-brand-700">
+                <NavIcon name="users" className="w-4.5 h-4.5" />
+              </div>
+              <span className="text-xs font-semibold text-ink-500 uppercase tracking-wider">
+                Enrolled Students
+              </span>
+            </div>
+            <Link href="/admin/students" className="text-xs text-brand-700 hover:underline font-medium shrink-0">
               View All →
             </Link>
           </div>
-          <div className="flex items-baseline gap-2 mt-2">
-            <span className="text-3xl font-extrabold text-gray-900 tabular-nums">
+          <div className="flex items-baseline gap-2 mt-3">
+            <span className="text-3xl font-extrabold text-ink-900 tabular-nums">
               {activeStudents}
             </span>
-            <span className="text-xs text-gray-500">/ {totalStudents} total</span>
+            <span className="text-xs text-ink-500">/ {totalStudents} total</span>
           </div>
-          <div className="mt-2 flex items-center justify-between text-xs text-gray-500 pt-2 border-t border-gray-100">
+          <div className="mt-2 flex items-center justify-between text-xs text-ink-500 pt-2 border-t border-rule">
             <span>+{newAdmissionsThisMonth} this month</span>
             <span>Ratio {studentTeacherRatio}:1</span>
           </div>
         </div>
 
         {/* Pillar 2: Today's Attendance */}
-        <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-xs hover:border-emerald-300 transition-colors">
+        <div className="bg-surface p-5 rounded-card border border-rule shadow-overlay hover:border-brand-600/40 transition-colors">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-              Today&apos;s Attendance
-            </span>
-            <Link href="/admin/attendance" className="text-xs text-emerald-600 hover:underline font-medium">
+            <div className="flex items-center gap-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-control bg-present-bg text-present">
+                <NavIcon name="clipboard-check" className="w-4.5 h-4.5" />
+              </div>
+              <span className="text-xs font-semibold text-ink-500 uppercase tracking-wider">
+                Today&apos;s Attendance
+              </span>
+            </div>
+            <Link href="/admin/attendance" className="text-xs text-brand-700 hover:underline font-medium shrink-0">
               Register →
             </Link>
           </div>
-          <div className="flex items-baseline gap-2 mt-2">
-            <span className="text-3xl font-extrabold text-emerald-600 tabular-nums">
+          <div className="flex items-baseline gap-2 mt-3">
+            <span className="text-3xl font-extrabold text-present tabular-nums">
               {todayAttendance.attendancePercentage.toFixed(1)}%
             </span>
-            <span className="text-xs text-gray-500">present</span>
+            <span className="text-xs text-ink-500">present</span>
           </div>
-          <div className="mt-2 flex items-center justify-between text-xs text-gray-500 pt-2 border-t border-gray-100">
+          <div className="mt-2 flex items-center justify-between text-xs text-ink-500 pt-2 border-t border-rule">
             <span>
               {todayAttendance.markedClassesCount} of {todayAttendance.totalClasses} classes marked
             </span>
             {todayAttendance.absentCount > 0 && (
-              <span className="text-red-600 font-semibold">{todayAttendance.absentCount} absent</span>
+              <span className="text-absent font-semibold">{todayAttendance.absentCount} absent</span>
             )}
           </div>
         </div>
 
         {/* Pillar 3: Pending Fees */}
-        <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-xs hover:border-emerald-300 transition-colors">
+        <div className="bg-surface p-5 rounded-card border border-rule shadow-overlay hover:border-brand-600/40 transition-colors">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-              Pending Fees
-            </span>
-            <Link href="/admin/fees/defaulters" className="text-xs text-red-600 hover:underline font-medium">
+            <div className="flex items-center gap-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-control bg-absent-bg text-absent">
+                <NavIcon name="credit-card" className="w-4.5 h-4.5" />
+              </div>
+              <span className="text-xs font-semibold text-ink-500 uppercase tracking-wider">
+                Pending Fees
+              </span>
+            </div>
+            <Link href="/admin/fees/defaulters" className="text-xs text-absent hover:underline font-medium shrink-0">
               Defaulters →
             </Link>
           </div>
-          <div className="flex items-baseline gap-1 mt-2">
-            <span className="text-xs text-gray-500 font-semibold">PKR</span>
-            <span className="text-2xl font-extrabold text-red-600 tabular-nums">
+          <div className="flex items-baseline gap-1 mt-3">
+            <span className="text-xs text-ink-500 font-semibold">PKR</span>
+            <span className="text-2xl font-extrabold text-absent tabular-nums">
               {pendingFees.pendingAmount.toLocaleString('en-PK')}
             </span>
           </div>
-          <div className="mt-2 flex items-center justify-between text-xs text-gray-500 pt-2 border-t border-gray-100">
+          <div className="mt-2 flex items-center justify-between text-xs text-ink-500 pt-2 border-t border-rule">
             <span>{pendingFees.collectionRate}% collected</span>
-            <span className="text-amber-700 font-medium">{pendingFees.defaultersCount} defaulters</span>
+            <span className="text-late font-medium">{pendingFees.defaultersCount} defaulters</span>
           </div>
         </div>
 
         {/* Pillar 4: Upcoming Exams */}
-        <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-xs hover:border-emerald-300 transition-colors">
+        <div className="bg-surface p-5 rounded-card border border-rule shadow-overlay hover:border-brand-600/40 transition-colors">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-              Upcoming Exams
-            </span>
-            <Link href="/admin/exams" className="text-xs text-emerald-600 hover:underline font-medium">
+            <div className="flex items-center gap-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-control bg-accent-100 text-accent-700">
+                <NavIcon name="award" className="w-4.5 h-4.5" />
+              </div>
+              <span className="text-xs font-semibold text-ink-500 uppercase tracking-wider">
+                Upcoming Exams
+              </span>
+            </div>
+            <Link href="/admin/exams" className="text-xs text-brand-700 hover:underline font-medium shrink-0">
               Schedule →
             </Link>
           </div>
-          <div className="flex items-baseline gap-2 mt-2">
-            <span className="text-3xl font-extrabold text-purple-700 tabular-nums">
+          <div className="flex items-baseline gap-2 mt-3">
+            <span className="text-3xl font-extrabold text-accent-700 tabular-nums">
               {upcomingExams.length}
             </span>
-            <span className="text-xs text-gray-500">scheduled</span>
+            <span className="text-xs text-ink-500">scheduled</span>
           </div>
-          <div className="mt-2 flex items-center justify-between text-xs text-gray-500 pt-2 border-t border-gray-100">
+          <div className="mt-2 flex items-center justify-between text-xs text-ink-500 pt-2 border-t border-rule">
             <span>Next: {upcomingExams[0]?.date || 'None'}</span>
-            <span className="text-purple-600 font-medium">Term Exams</span>
+            <span className="text-accent-700 font-medium">Term Exams</span>
           </div>
         </div>
       </div>

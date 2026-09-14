@@ -25,6 +25,7 @@ import { Avatar } from '@/components/ui/Avatar';
 import { Button } from '@/components/ui/Button';
 import { StatCard } from '@/components/ui/StatCard';
 import { AttendanceGrid } from './AttendanceGrid';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface QRScannerMockProps {
   initialClassId?: ID;
@@ -427,7 +428,7 @@ export function QRScannerMock({
         <div className="flex items-center justify-between p-3.5 rounded-xl bg-purple-50 border border-purple-200 shadow-xs">
           <div className="flex items-center gap-2.5">
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-600 text-white font-bold text-sm">
-              📷
+              <NavIcon name="camera" className="w-4 h-4" />
             </span>
             <div>
               <h3 className="text-sm font-bold text-purple-950">Manual Attendance Grid Mode</h3>
@@ -516,8 +517,9 @@ export function QRScannerMock({
             onClick={handleSwitchToManual}
             className="flex items-center gap-1.5"
             title="Switch to manual attendance grid without reloading the page"
+            leftIcon={<NavIcon name="clipboard" className="w-3.5 h-3.5" />}
           >
-            📋 Manual Grid View
+            Manual Grid View
           </Button>
         </div>
       </div>
@@ -567,7 +569,10 @@ export function QRScannerMock({
                 className="flex items-center gap-1.5 bg-neutral-900/80 backdrop-blur-xs hover:bg-neutral-800 px-3 py-1.5 rounded-lg border border-neutral-700/60 text-xs font-semibold transition-colors"
                 title="Toggle scan audio chime"
               >
-                <span>{soundEnabled ? '🔔 Chime On' : '🔕 Chime Off'}</span>
+                <span className="inline-flex items-center gap-1.5">
+                  <NavIcon name="bell" className={`w-3.5 h-3.5 ${soundEnabled ? '' : 'opacity-40'}`} />
+                  {soundEnabled ? 'Chime On' : 'Chime Off'}
+                </span>
               </button>
             </div>
 
@@ -628,7 +633,7 @@ export function QRScannerMock({
                   className="text-neutral-500 hover:text-white p-1 rounded transition-colors text-sm"
                   aria-label="Dismiss scan card"
                 >
-                  ✕
+                  <NavIcon name="x" className="w-3.5 h-3.5" />
                 </button>
               </div>
             )}
@@ -661,7 +666,7 @@ export function QRScannerMock({
                 disabled={pendingStudents.length === 0}
                 className="w-full flex items-center justify-center gap-2 py-3 font-bold"
               >
-                <span>⚡</span> Simulate Scan (Next Student)
+                <NavIcon name="activity" className="w-4 h-4" /> Simulate Scan (Next Student)
               </Button>
 
               <Button
@@ -671,7 +676,7 @@ export function QRScannerMock({
                 disabled={pendingStudents.length === 0}
                 className="w-full flex items-center justify-center gap-2 py-3 font-semibold"
               >
-                <span>🎲</span> Random Scan
+                <NavIcon name="shuffle" className="w-4 h-4" /> Random Scan
               </Button>
             </div>
 
@@ -766,7 +771,7 @@ export function QRScannerMock({
                   : 'text-neutral-600 hover:text-neutral-900'
               }`}
             >
-              RFID Concept 🏷️
+              <span className="inline-flex items-center gap-1">RFID Concept <NavIcon name="tag" className="w-3.5 h-3.5" /></span>
             </button>
           </div>
 
@@ -784,7 +789,7 @@ export function QRScannerMock({
 
               {scannedEvents.length === 0 ? (
                 <div className="flex-1 flex flex-col items-center justify-center text-center p-8 text-neutral-500">
-                  <span className="text-3xl mb-2">📸</span>
+                  <NavIcon name="camera" className="w-8 h-8 mb-2 text-neutral-400" />
                   <p className="text-sm font-semibold text-neutral-700">No students scanned yet</p>
                   <p className="text-xs text-neutral-500 mt-1 max-w-xs">
                     Click &ldquo;Simulate Scan&rdquo; or use the barcode field to record student entry.
@@ -850,7 +855,7 @@ export function QRScannerMock({
 
               {pendingStudents.length === 0 ? (
                 <div className="flex-1 flex flex-col items-center justify-center text-center p-8 text-neutral-500">
-                  <span className="text-3xl mb-2">🎉</span>
+                  <NavIcon name="check-circle" className="w-8 h-8 mb-2 text-emerald-500" />
                   <p className="text-sm font-semibold text-emerald-700">100% Attendance Complete</p>
                   <p className="text-xs text-neutral-500 mt-1">
                     All students in this class have scanned their badges.
@@ -895,7 +900,7 @@ export function QRScannerMock({
             <div className="p-5 rounded-2xl bg-indigo-50/50 border border-indigo-200 shadow-xs flex flex-col gap-4">
               {/* Prominent Concept Disclaimer */}
               <div className="flex items-center gap-2.5 p-3 bg-amber-100 border border-amber-300 rounded-xl text-amber-950">
-                <span className="text-lg">⚠️</span>
+                <NavIcon name="alert-triangle" className="w-5 h-5 shrink-0" />
                 <div>
                   <h4 className="text-xs font-black uppercase tracking-wider text-amber-900">
                     CONCEPT ONLY — Hardware Integration Not Implemented
@@ -910,8 +915,8 @@ export function QRScannerMock({
               <div className="space-y-3 text-xs">
                 <div className="p-3.5 rounded-xl bg-white border border-indigo-100 shadow-2xs">
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-neutral-900">
-                      🏷️ UHF RFID Gate Reader (865–868 MHz)
+                    <span className="inline-flex items-center gap-1.5 font-bold text-neutral-900">
+                      <NavIcon name="tag" className="w-3.5 h-3.5" /> UHF RFID Gate Reader (865–868 MHz)
                     </span>
                     <span className="rounded bg-emerald-100 text-emerald-800 text-[10px] font-black px-2 py-0.5">
                       Spec Ready
@@ -924,8 +929,8 @@ export function QRScannerMock({
 
                 <div className="p-3.5 rounded-xl bg-white border border-indigo-100 shadow-2xs">
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-neutral-900">
-                      ⚡ WhatsApp Arrival Webhook Dispatch
+                    <span className="inline-flex items-center gap-1.5 font-bold text-neutral-900">
+                      <NavIcon name="activity" className="w-3.5 h-3.5" /> WhatsApp Arrival Webhook Dispatch
                     </span>
                     <span className="rounded bg-purple-100 text-purple-800 text-[10px] font-black px-2 py-0.5">
                       Automated
@@ -938,8 +943,8 @@ export function QRScannerMock({
 
                 <div className="p-3.5 rounded-xl bg-white border border-indigo-100 shadow-2xs">
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-neutral-900">
-                      🔋 Offline Buffer & 4-Hour Battery UPS
+                    <span className="inline-flex items-center gap-1.5 font-bold text-neutral-900">
+                      <NavIcon name="battery" className="w-3.5 h-3.5" /> Offline Buffer & 4-Hour Battery UPS
                     </span>
                     <span className="rounded bg-neutral-100 text-neutral-700 text-[10px] font-black px-2 py-0.5">
                       Fail-safe
@@ -987,8 +992,9 @@ export function QRScannerMock({
               onClick={handleSaveAttendance}
               disabled={isSaving || students.length === 0}
               className="px-5 font-bold"
+              rightIcon={isSaving ? undefined : <NavIcon name="check-circle" className="w-4 h-4" />}
             >
-              {isSaving ? 'Saving...' : 'Commit Register ✓'}
+              {isSaving ? 'Saving...' : 'Commit Register'}
             </Button>
           </div>
         </div>

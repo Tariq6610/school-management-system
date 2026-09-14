@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import Link from 'next/link';
+import { NavIcon } from '@/components/shell/NavIcon';
 import {
   Campus,
   Class,
@@ -848,16 +849,16 @@ export function StudentProfileView({
                       {student.health.allergies.map((allergy, i) => (
                         <span
                           key={i}
-                          className="inline-flex items-center px-3 py-1 rounded-full bg-absent text-white text-xs font-bold shadow-xs"
+                          className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-absent text-white text-xs font-bold shadow-xs"
                         >
-                          ⚠️ {allergy}
+                          <NavIcon name="alert-triangle" className="w-3.5 h-3.5" /> {allergy}
                         </span>
                       ))}
                     </div>
                   </div>
                 ) : (
-                  <p className="text-xs text-present font-semibold">
-                    ✓ No known medical or food allergies recorded for this student.
+                  <p className="text-xs text-present font-semibold inline-flex items-center gap-1">
+                    <NavIcon name="check-circle" className="w-4 h-4" /> No known medical or food allergies recorded for this student.
                   </p>
                 )}
               </div>

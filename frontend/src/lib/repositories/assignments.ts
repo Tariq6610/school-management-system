@@ -7,7 +7,7 @@ import {
   listCollection,
   updateCollectionItem,
 } from './base';
-import { getCourse } from './courses';
+import { getCourse, listCourses } from './courses';
 import { getLesson, listLessons } from './lessons';
 import { listActiveStudents } from './students';
 import { listSubmissions } from './submissions';
@@ -66,6 +66,7 @@ export async function createAssignment(input: NewAssignment): Promise<Assignment
     deadline: new Date(input.deadline).toISOString(),
     maxMarks: Math.round(input.maxMarks),
     lessonId: normalizedLessonId,
+    submissionType: input.submissionType || 'online',
   };
 
   const created = await createCollectionItem<Assignment>(STORAGE_KEYS.ASSIGNMENTS, payload, 'asn');
@@ -135,6 +136,7 @@ export async function updateAssignment(
     ...(patch.deadline !== undefined ? { deadline: new Date(patch.deadline).toISOString() } : {}),
     ...(patch.maxMarks !== undefined ? { maxMarks: Math.round(patch.maxMarks) } : {}),
     ...(patch.lessonId !== undefined ? { lessonId: normalizedLessonId } : {}),
+    ...(patch.submissionType !== undefined ? { submissionType: patch.submissionType } : {}),
   });
 }
 
@@ -198,4 +200,31 @@ export async function getEnrichedAssignments(
       missingCount,
     };
   });
+}
+
+export interface TeacherAssignmentOverviewItem extends EnrichedAssignment {
+  courseTitle: string;
+}
+
+/**
+ * Aggregates assignments across every course a teacher owns, for the
+ * cross-course /teacher/homework and /teacher/assignments views.
+ * Sorted soonest-deadline first.
+ */
+export async function getTeacherAssignmentsOverview(
+  scope: Scope,
+  teacherId: ID
+): Promise<TeacherAssignmentOverviewItem[]> {
+  const courses = await listCourses(scope, { teacherId });
+
+  const perCourse = await Promise.all(
+    courses.map(async (course) => {
+      const enriched = await getEnrichedAssignments(scope, course.id);
+      return enriched.map((a) => ({ ...a, courseTitle: course.title }));
+    })
+  );
+
+  return perCourse
+    .flat()
+    .sort((a, b) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime());
 }

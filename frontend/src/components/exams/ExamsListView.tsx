@@ -21,6 +21,7 @@ import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { ExamFormModal } from './ExamFormModal';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface ExamsListViewProps {
   initialCampusId?: ID;
@@ -259,9 +260,11 @@ export function ExamsListView({ initialCampusId, initialExams }: ExamsListViewPr
 
         <div className="flex items-center gap-3">
           <Link href="/admin/results/report-cards">
-            <Button variant="secondary" className="flex items-center gap-1.5">
-              <span>📄</span>
-              <span>Report Cards & Batch Print</span>
+            <Button
+              variant="secondary"
+              leftIcon={<NavIcon name="file-text" className="w-4 h-4" />}
+            >
+              Report Cards & Batch Print
             </Button>
           </Link>
 
@@ -271,10 +274,10 @@ export function ExamsListView({ initialCampusId, initialExams }: ExamsListViewPr
               setExamToEdit(null);
               setIsModalOpen(true);
             }}
-            className="flex items-center gap-2 shadow-xs"
+            className="shadow-xs"
+            leftIcon={<NavIcon name="plus" className="w-4 h-4" />}
           >
-            <span>➕</span>
-            <span>Schedule New Exam</span>
+            Schedule New Exam
           </Button>
         </div>
       </div>
@@ -285,13 +288,13 @@ export function ExamsListView({ initialCampusId, initialExams }: ExamsListViewPr
           label="Total Scheduled"
           value={stats.total}
           subtitle="Assessments this academic year"
-          icon={<span className="text-xl">📝</span>}
+          icon={<NavIcon name="clipboard-check" className="w-5 h-5" />}
         />
         <StatCard
           label="Upcoming Exams"
           value={stats.upcoming}
           subtitle="Scheduled on or after today"
-          icon={<span className="text-xl">📅</span>}
+          icon={<NavIcon name="calendar" className="w-5 h-5" />}
         />
         <StatCard
           label="Marks Pending (Draft)"
@@ -303,7 +306,7 @@ export function ExamsListView({ initialCampusId, initialExams }: ExamsListViewPr
           label="Published Results"
           value={stats.published}
           subtitle="Visible on report cards"
-          icon={<span className="text-xl">🏆</span>}
+          icon={<NavIcon name="award" className="w-5 h-5" />}
         />
       </div>
 
@@ -401,7 +404,9 @@ export function ExamsListView({ initialCampusId, initialExams }: ExamsListViewPr
               ) : exams.length === 0 ? (
                 <tr>
                   <td colSpan={8} className="py-16 text-center text-neutral-500">
-                    <div className="text-3xl mb-2">📋</div>
+                    <div className="flex justify-center mb-2 text-neutral-400">
+                      <NavIcon name="clipboard" className="w-8 h-8" />
+                    </div>
                     <p className="text-base font-semibold text-neutral-800">No Exams Scheduled</p>
                     <p className="text-xs text-neutral-500 mt-1 max-w-sm mx-auto">
                       No assessment schedules match your selected filters. Click &quot;Schedule New Exam&quot; to configure one.
@@ -480,28 +485,31 @@ export function ExamsListView({ initialCampusId, initialExams }: ExamsListViewPr
                         <div className="flex items-center justify-center gap-2">
                           <Link
                             href={`/teacher/exams/${exam.id}/marks`}
-                            className="inline-flex items-center gap-1 text-xs font-semibold text-purple-700 bg-purple-50 hover:bg-purple-100 px-2.5 py-1.5 rounded-lg border border-purple-200 transition-colors"
+                            className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-700 bg-purple-50 hover:bg-purple-100 px-2.5 py-1.5 rounded-lg border border-purple-200 transition-colors"
                           >
-                            <span>✍️ Marks</span>
+                            <NavIcon name="edit" className="w-3.5 h-3.5" />
+                            <span>Marks</span>
                           </Link>
                           {exam.status === 'marks_entered' && (
                             <button
                               type="button"
                               onClick={() => handlePublishExam(exam)}
-                              className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1.5 rounded-lg border border-emerald-200 transition-colors"
+                              className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1.5 rounded-lg border border-emerald-200 transition-colors"
                               title="Publish exam results to parents"
                             >
-                              <span>📢 Publish</span>
+                              <NavIcon name="megaphone" className="w-3.5 h-3.5" />
+                              <span>Publish</span>
                             </button>
                           )}
                           {exam.status === 'published' && (
                             <button
                               type="button"
                               onClick={() => handleUnpublishExam(exam)}
-                              className="inline-flex items-center gap-1 text-xs font-semibold text-amber-700 bg-amber-50 hover:bg-amber-100 px-2.5 py-1.5 rounded-lg border border-amber-200 transition-colors"
+                              className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-700 bg-amber-50 hover:bg-amber-100 px-2.5 py-1.5 rounded-lg border border-amber-200 transition-colors"
                               title="Unpublish exam results (hide from parents)"
                             >
-                              <span>🔒 Unpublish</span>
+                              <NavIcon name="lock" className="w-3.5 h-3.5" />
+                              <span>Unpublish</span>
                             </button>
                           )}
                           <button
@@ -513,7 +521,7 @@ export function ExamsListView({ initialCampusId, initialExams }: ExamsListViewPr
                             className="p-1.5 text-neutral-500 hover:text-neutral-800 hover:bg-neutral-100 rounded-lg transition-colors"
                             title="Edit exam details"
                           >
-                            ✏️
+                            <NavIcon name="edit" className="w-4 h-4" />
                           </button>
                           {exam.status === 'draft' && (
                             <button
@@ -522,7 +530,7 @@ export function ExamsListView({ initialCampusId, initialExams }: ExamsListViewPr
                               className="p-1.5 text-neutral-500 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
                               title="Delete schedule"
                             >
-                              🗑️
+                              <NavIcon name="trash" className="w-4 h-4" />
                             </button>
                           )}
                         </div>

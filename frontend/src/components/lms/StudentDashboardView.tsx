@@ -7,6 +7,7 @@ import { useSession } from '@/components/providers/SessionProvider';
 import { getStudentDashboardData } from '@/lib/repositories/studentDashboard';
 import { getStudent } from '@/lib/repositories/students';
 import { AnnouncementFeedView } from '@/components/communication';
+import { NavIcon } from '@/components/shell/NavIcon';
 import { StudentAssignmentModal } from './StudentAssignmentModal';
 
 export interface StudentDashboardViewProps {
@@ -151,8 +152,8 @@ export function StudentDashboardView({
             </p>
             <p className="text-xs text-neutral-500">Upcoming lessons & assignments</p>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0 text-xl font-bold border border-purple-100">
-            ✍️
+          <div className="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0 border border-purple-100">
+            <NavIcon name="edit" className="w-5 h-5" />
           </div>
         </div>
 
@@ -170,8 +171,8 @@ export function StudentDashboardView({
             </p>
             <p className="text-xs text-neutral-500">Subject curriculums</p>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 text-xl font-bold border border-indigo-100">
-            📚
+          <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 border border-indigo-100">
+            <NavIcon name="book-open" className="w-5 h-5" />
           </div>
         </div>
 
@@ -194,8 +195,8 @@ export function StudentDashboardView({
               />
             </div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 text-xl font-bold border border-emerald-100">
-            🎯
+          <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-100">
+            <NavIcon name="chart-bar" className="w-5 h-5" />
           </div>
         </div>
       </div>
@@ -268,8 +269,8 @@ export function StudentDashboardView({
         {/* Subject Group Cards */}
         {filteredSubjectGroups.length === 0 ? (
           <div className="bg-white border border-neutral-200 rounded-2xl p-12 text-center shadow-xs space-y-3">
-            <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto text-xl font-bold">
-              🎉
+            <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto">
+              <NavIcon name="sparkles" className="w-6 h-6" />
             </div>
             <h3 className="text-base font-bold text-neutral-900">All Tasks Completed!</h3>
             <p className="text-xs sm:text-sm text-neutral-500 max-w-md mx-auto">

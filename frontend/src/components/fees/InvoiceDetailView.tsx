@@ -24,6 +24,7 @@ import { StatCard } from '@/components/ui/StatCard';
 import { Button } from '@/components/ui/Button';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { Avatar } from '@/components/ui/Avatar';
+import { NavIcon } from '@/components/shell/NavIcon';
 import { RecordPaymentModal } from './RecordPaymentModal';
 import { PaymentReceiptModal } from './PaymentReceiptModal';
 import { ApplyConcessionModal } from './ApplyConcessionModal';
@@ -127,8 +128,8 @@ export function InvoiceDetailView({
   if (!invoice) {
     return (
       <div className="rounded-2xl border border-neutral-200 bg-white p-12 text-center">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 text-rose-600 text-xl font-bold mb-3">
-          ⚠️
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 text-rose-600 mb-3">
+          <NavIcon name="alert-triangle" className="w-6 h-6" />
         </div>
         <h3 className="text-base font-bold text-neutral-900">Invoice Not Found</h3>
         <p className="mt-1 text-xs text-neutral-500">
@@ -218,9 +219,9 @@ export function InvoiceDetailView({
             size="sm"
             onClick={() => setIsRecordModalOpen(true)}
             disabled={isFullyPaid}
-            className="flex items-center gap-1.5"
+            leftIcon={<NavIcon name="credit-card" className="w-4 h-4" />}
           >
-            💳 Record Payment
+            Record Payment
           </Button>
         </div>
       </div>
@@ -309,8 +310,9 @@ export function InvoiceDetailView({
                 variant="secondary"
                 size="sm"
                 onClick={() => setIsConcessionModalOpen(true)}
+                leftIcon={<NavIcon name="plus" className="w-3.5 h-3.5" />}
               >
-                + Add Concession
+                Add Concession
               </Button>
             )}
           </div>
@@ -412,7 +414,7 @@ export function InvoiceDetailView({
 
         {(!invoice.payments || invoice.payments.length === 0) ? (
           <div className="rounded-xl border border-dashed border-neutral-300 p-8 text-center text-neutral-500">
-            <span className="text-2xl mb-1 block">⏳</span>
+            <span className="mb-1 flex justify-center"><NavIcon name="clock" className="w-6 h-6" /></span>
             <p className="text-xs font-semibold text-neutral-800">No Payments Recorded Yet</p>
             <p className="text-2xs text-neutral-500 mt-0.5">
               Click &quot;Record Payment&quot; above to log an installment or full fee settlement.
@@ -472,7 +474,7 @@ export function InvoiceDetailView({
                           }}
                           className="inline-flex items-center gap-1 rounded-lg border border-neutral-200 bg-white px-2.5 py-1 text-xs font-semibold text-purple-700 hover:bg-purple-50 hover:border-purple-300 transition-colors shadow-2xs cursor-pointer"
                         >
-                          <span>🖨️</span>
+                          <NavIcon name="printer" className="w-3.5 h-3.5" />
                           <span>Print Receipt</span>
                         </button>
                       </td>

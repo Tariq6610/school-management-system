@@ -25,6 +25,7 @@ import { Table, TableColumn } from '@/components/ui/Table';
 import { Pagination } from '@/components/ui/Pagination';
 import { Modal } from '@/components/ui/Modal';
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface EnrichedClass extends Class {
   campusName: string;
@@ -540,15 +541,8 @@ export function ClassManager({
         <Button
           onClick={handleOpenCreateModal}
           className="shadow-sm"
+          leftIcon={<NavIcon name="plus" className="w-4 h-4" />}
         >
-          <svg
-            className="w-4 h-4 mr-2"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-          </svg>
           Add Class
         </Button>
       </div>

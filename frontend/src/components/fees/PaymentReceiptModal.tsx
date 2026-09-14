@@ -11,6 +11,7 @@ import {
 } from '@/types';
 import { Button } from '@/components/ui/Button';
 import { useBranding } from '@/components/providers/BrandingProvider';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface PaymentReceiptModalProps {
   isOpen: boolean;
@@ -45,11 +46,7 @@ export function PaymentReceiptModal({
     window.print();
   };
 
-  const handleCopyReceiptNumber = () => {
-    if (typeof navigator !== 'undefined' && navigator.clipboard) {
-      navigator.clipboard.writeText(payment.receiptNumber);
-    }
-  };
+
 
   const studentName = user?.name || `Student ${student?.admissionNumber || invoice.studentId}`;
   const className = cls ? `${cls.grade} - Section ${cls.section}` : 'Class —';
@@ -61,38 +58,34 @@ export function PaymentReceiptModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-xs overflow-y-auto print:p-0 print:bg-white"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-start bg-black/50 p-4 sm:p-6 backdrop-blur-xs overflow-y-auto print:p-0 print:bg-white"
       role="dialog"
       aria-modal="true"
       aria-labelledby="receipt-modal-title"
     >
-      <div className="relative w-full max-w-xl rounded-2xl bg-white shadow-2xl border border-neutral-200 overflow-hidden my-8 print:border-none print:shadow-none print:my-0">
+      <div className="relative w-full max-w-xl rounded-2xl bg-white shadow-2xl border border-neutral-200 overflow-hidden my-auto shrink-0 print:border-none print:shadow-none print:my-0">
         {/* Actions bar (hidden in print) */}
-        <div className="flex items-center justify-between border-b border-neutral-200 px-6 py-3 bg-neutral-50 print:hidden">
+        <div className="flex items-center justify-between gap-2 border-b border-neutral-200 px-4 sm:px-6 py-3 bg-neutral-50 print:hidden overflow-x-auto">
           <div className="flex items-center gap-2">
-            <span className="text-sm font-bold text-neutral-800">Official Payment Receipt</span>
-            <span className="rounded bg-emerald-100 px-2 py-0.5 text-2xs font-mono font-bold text-emerald-800 border border-emerald-200">
+            <span className="text-sm font-bold text-neutral-800 whitespace-nowrap hidden sm:inline">Payment Receipt</span>
+            <span className="text-sm font-bold text-neutral-800 whitespace-nowrap sm:hidden">Receipt</span>
+          </div>
+          <div className="flex items-center gap-1.5 ml-auto shrink-0">
+            <span className="rounded bg-emerald-100 px-1.5 py-0.5 text-3xs font-mono font-bold text-emerald-800 border border-emerald-200 mr-1 hidden sm:inline-block">
               {payment.receiptNumber}
             </span>
             {isReprint && (
-              <span className="rounded bg-amber-100 px-2 py-0.5 text-2xs font-mono font-bold text-amber-800 border border-amber-200">
+              <span className="rounded bg-amber-100 px-1.5 py-0.5 text-3xs font-mono font-bold text-amber-800 border border-amber-200 mr-1">
                 REPRINT
               </span>
             )}
-          </div>
-          <div className="flex items-center gap-2">
             <Button
               variant="secondary"
               size="sm"
-              onClick={handleCopyReceiptNumber}
-              className="text-xs"
-              title="Copy Receipt Identifier"
+              onClick={handlePrint}
+              leftIcon={<NavIcon name="printer" className="w-4 h-4" />}
             >
-              📋 Copy #
-            </Button>
-            <Button variant="secondary" size="sm" onClick={handlePrint} className="flex items-center gap-1.5">
-              <span>🖨️</span>
-              <span>Print Receipt</span>
+              <span className="hidden sm:inline">Print</span>
             </Button>
             <button
               type="button"
@@ -100,7 +93,7 @@ export function PaymentReceiptModal({
               className="rounded-lg p-1.5 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50"
               aria-label="Close"
             >
-              ✕
+              <NavIcon name="x" className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -124,7 +117,7 @@ export function PaymentReceiptModal({
 
               <div className="text-right">
                 <div className="flex items-center justify-end gap-1.5">
-                  <span className="inline-block border border-neutral-800 bg-neutral-900 text-white font-mono font-bold px-2.5 py-1 text-2xs rounded">
+                  <span className="inline-block border border-neutral-800 bg-neutral-900 text-white font-mono font-bold px-2 py-0.5 text-3xs rounded whitespace-nowrap">
                     FEE RECEIPT
                   </span>
                   {isReprint && (

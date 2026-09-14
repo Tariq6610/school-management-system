@@ -4,6 +4,7 @@ import React from 'react';
 import { AttendanceDay, User } from '@/types';
 import { AttendanceEditWindowCheck } from '@/lib/repositories/attendance';
 import { formatDateTime } from '@/lib/utils';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 interface AttendanceAuditBannerProps {
   attendanceRecord: AttendanceDay | null;
@@ -52,7 +53,7 @@ export function AttendanceAuditBanner({
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-2 text-sm text-neutral-800">
             <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold">
-              ✓
+              <NavIcon name="check-circle" className="w-3.5 h-3.5" />
             </span>
             <span>
               Marked by <strong className="font-semibold text-neutral-900">{markerName}</strong>{' '}
@@ -109,7 +110,7 @@ export function AttendanceAuditBanner({
       {/* Lock Notice or Admin Override Notice */}
       {isExpired && !isAdminOverride && (
         <div className="mt-1 flex items-start gap-2 p-2.5 bg-rose-50/80 border border-rose-200 rounded text-xs text-rose-800">
-          <span className="font-bold text-rose-600">🔒</span>
+          <span className="font-bold text-rose-600"><NavIcon name="lock" className="w-3.5 h-3.5" /></span>
           <div>
             <strong>Read-Only Mode:</strong> The {editWindowCheck?.windowHours ?? 48}-hour edit window for this register has expired. All controls are locked. If an error needs correction, please contact an administrator.
           </div>
@@ -118,7 +119,7 @@ export function AttendanceAuditBanner({
 
       {isAdminOverride && (
         <div className="mt-1 flex items-start gap-2 p-2.5 bg-amber-50/80 border border-amber-200 rounded text-xs text-amber-800">
-          <span className="font-bold text-amber-600">⚡</span>
+          <span className="font-bold text-amber-600"><NavIcon name="activity" className="w-3.5 h-3.5" /></span>
           <div>
             <strong>Administrator Override:</strong> The standard edit window for teachers has expired. You are authorized to modify this register as an administrator. Any saves will update the audit trail with your account details.
           </div>

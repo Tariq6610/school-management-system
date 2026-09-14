@@ -7,6 +7,7 @@ import {
   getSchoolAdminDashboardStats,
 } from '@/lib/repositories/schoolAdminDashboard';
 import { Button } from '@/components/ui/Button';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface PrincipalDashboardViewProps {
   schoolId?: string;
@@ -52,8 +53,8 @@ export function PrincipalDashboardView({
 
   if (isLoading || !data) {
     return (
-      <div className="p-8 text-center text-gray-500">
-        <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-emerald-500 border-t-transparent mb-2" />
+      <div className="p-8 text-center text-ink-500">
+        <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-brand-600 border-t-transparent mb-2" />
         <p className="text-sm">Loading principal dashboard for campus...</p>
       </div>
     );
@@ -80,20 +81,20 @@ export function PrincipalDashboardView({
   return (
     <div className="space-y-8 pb-12">
       {/* Principal Header & Campus Jurisdiction Pill */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-200 pb-5">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-rule pb-5">
         <div>
           <div className="flex items-center gap-2.5">
-            <h1 className="text-2xl font-bold text-gray-900 tracking-tight">
+            <h1 className="text-page-title text-ink-900">
               Principal Dashboard
             </h1>
-            <span className="text-xs px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700 font-semibold border border-indigo-200">
+            <span className="text-xs px-2.5 py-0.5 rounded-full bg-accent-100 text-accent-700 font-semibold border border-accent-700/20">
               {campusName}
             </span>
-            <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 font-medium">
+            <span className="text-xs px-2 py-0.5 rounded-full bg-canvas text-ink-600 font-medium border border-rule">
               Own Campus Only
             </span>
           </div>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="text-secondary-meta text-ink-500 mt-1">
             Campus-scoped administrative control • Academic Session 2026–2027
           </p>
         </div>
@@ -126,7 +127,7 @@ export function PrincipalDashboardView({
       {/* Scope Security Alert Banner */}
       <div className="p-3.5 bg-blue-50/70 border border-blue-200 rounded-xl flex items-center justify-between text-xs text-blue-900">
         <div className="flex items-center gap-2">
-          <span className="text-base">🛡️</span>
+          <NavIcon name="shield" className="w-4 h-4" />
           <span>
             <strong>Campus Isolation Active:</strong> All metrics, rosters, attendance registers, and exams reflect <strong>{campusName}</strong> only.
           </span>
@@ -139,91 +140,111 @@ export function PrincipalDashboardView({
       {/* Four Campus-Scoped Metric Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Metric 1: Campus Students */}
-        <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-xs hover:border-emerald-300 transition-colors">
+        <div className="bg-surface p-5 rounded-card border border-rule shadow-overlay hover:border-brand-600/40 transition-colors">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-              Campus Students
-            </span>
-            <span className="text-xs text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded">
+            <div className="flex items-center gap-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-control bg-brand-100 text-brand-700">
+                <NavIcon name="users" className="w-4.5 h-4.5" />
+              </div>
+              <span className="text-xs font-semibold text-ink-500 uppercase tracking-wider">
+                Campus Students
+              </span>
+            </div>
+            <span className="text-xs text-present font-bold bg-present-bg px-2 py-0.5 rounded shrink-0">
               Active
             </span>
           </div>
-          <div className="flex items-baseline gap-2 mt-2">
-            <span className="text-3xl font-extrabold text-gray-900 tabular-nums">
+          <div className="flex items-baseline gap-2 mt-3">
+            <span className="text-3xl font-extrabold text-ink-900 tabular-nums">
               {activeStudents}
             </span>
-            <span className="text-xs text-gray-500">/ {totalStudents} total</span>
+            <span className="text-xs text-ink-500">/ {totalStudents} total</span>
           </div>
-          <div className="mt-2 flex items-center justify-between text-xs text-gray-500 pt-2 border-t border-gray-100">
+          <div className="mt-2 flex items-center justify-between text-xs text-ink-500 pt-2 border-t border-rule">
             <span>+{newAdmissionsThisMonth} this month</span>
             <span>Ratio {studentTeacherRatio}:1</span>
           </div>
         </div>
 
         {/* Metric 2: Today's Campus Attendance */}
-        <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-xs hover:border-emerald-300 transition-colors">
+        <div className="bg-surface p-5 rounded-card border border-rule shadow-overlay hover:border-brand-600/40 transition-colors">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-              Today&apos;s Attendance
-            </span>
-            <Link href="/principal/attendance" className="text-xs text-emerald-600 hover:underline font-medium">
+            <div className="flex items-center gap-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-control bg-present-bg text-present">
+                <NavIcon name="clipboard-check" className="w-4.5 h-4.5" />
+              </div>
+              <span className="text-xs font-semibold text-ink-500 uppercase tracking-wider">
+                Today&apos;s Attendance
+              </span>
+            </div>
+            <Link href="/principal/attendance" className="text-xs text-brand-700 hover:underline font-medium shrink-0">
               Details →
             </Link>
           </div>
-          <div className="flex items-baseline gap-2 mt-2">
-            <span className="text-3xl font-extrabold text-emerald-600 tabular-nums">
+          <div className="flex items-baseline gap-2 mt-3">
+            <span className="text-3xl font-extrabold text-present tabular-nums">
               {todayAttendance.attendancePercentage.toFixed(1)}%
             </span>
-            <span className="text-xs text-gray-500">present</span>
+            <span className="text-xs text-ink-500">present</span>
           </div>
-          <div className="mt-2 flex items-center justify-between text-xs text-gray-500 pt-2 border-t border-gray-100">
+          <div className="mt-2 flex items-center justify-between text-xs text-ink-500 pt-2 border-t border-rule">
             <span>{todayAttendance.markedClassesCount} of {todayAttendance.totalClasses} marked</span>
             {todayAttendance.absentCount > 0 && (
-              <span className="text-red-600 font-semibold">{todayAttendance.absentCount} absent</span>
+              <span className="text-absent font-semibold">{todayAttendance.absentCount} absent</span>
             )}
           </div>
         </div>
 
         {/* Metric 3: Campus Fee Collection */}
-        <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-xs hover:border-emerald-300 transition-colors">
+        <div className="bg-surface p-5 rounded-card border border-rule shadow-overlay hover:border-brand-600/40 transition-colors">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-              Fee Efficiency
-            </span>
-            <span className="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded">
+            <div className="flex items-center gap-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-control bg-accent-100 text-accent-700">
+                <NavIcon name="credit-card" className="w-4.5 h-4.5" />
+              </div>
+              <span className="text-xs font-semibold text-ink-500 uppercase tracking-wider">
+                Fee Efficiency
+              </span>
+            </div>
+            <span className="text-xs font-bold text-accent-700 bg-accent-100 px-2 py-0.5 rounded shrink-0">
               {pendingFees.collectionRate}%
             </span>
           </div>
-          <div className="flex items-baseline gap-1 mt-2">
-            <span className="text-xs text-gray-500 font-semibold">PKR</span>
-            <span className="text-2xl font-extrabold text-blue-700 tabular-nums">
+          <div className="flex items-baseline gap-1 mt-3">
+            <span className="text-xs text-ink-500 font-semibold">PKR</span>
+            <span className="text-2xl font-extrabold text-accent-700 tabular-nums">
               {pendingFees.totalCollected.toLocaleString('en-PK')}
             </span>
           </div>
-          <div className="mt-2 flex items-center justify-between text-xs text-gray-500 pt-2 border-t border-gray-100">
+          <div className="mt-2 flex items-center justify-between text-xs text-ink-500 pt-2 border-t border-rule">
             <span>Pending: PKR {pendingFees.pendingAmount.toLocaleString('en-PK')}</span>
           </div>
         </div>
 
         {/* Metric 4: Campus Assessments */}
-        <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-xs hover:border-emerald-300 transition-colors">
+        <div className="bg-surface p-5 rounded-card border border-rule shadow-overlay hover:border-brand-600/40 transition-colors">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-              Campus Exams
-            </span>
-            <span className="text-xs text-purple-700 font-bold bg-purple-50 px-2 py-0.5 rounded">
+            <div className="flex items-center gap-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-control bg-brand-100 text-brand-700">
+                <NavIcon name="award" className="w-4.5 h-4.5" />
+              </div>
+              <span className="text-xs font-semibold text-ink-500 uppercase tracking-wider">
+                Campus Exams
+              </span>
+            </div>
+            <span className="text-xs text-brand-700 font-bold bg-brand-100 px-2 py-0.5 rounded shrink-0">
               {upcomingExams.length} Total
             </span>
           </div>
-          <div className="flex items-baseline gap-2 mt-2">
-            <span className="text-3xl font-extrabold text-purple-700 tabular-nums">
+          <div className="flex items-baseline gap-2 mt-3">
+            <span className="text-3xl font-extrabold text-brand-700 tabular-nums">
               {upcomingExams.filter((e) => e.status === 'published').length}
             </span>
-            <span className="text-xs text-gray-500">published results</span>
+            <span className="text-xs text-ink-500">published results</span>
           </div>
-          <div className="mt-2 flex items-center justify-between text-xs text-gray-500 pt-2 border-t border-gray-100">
+          <div className="mt-2 flex items-center justify-between text-xs text-ink-500 pt-2 border-t border-rule">
             <span>Next: {upcomingExams[0]?.date || 'None'}</span>
-            <span className="text-gray-500">Class terms</span>
+            <span className="text-ink-500">Class terms</span>
           </div>
         </div>
       </div>

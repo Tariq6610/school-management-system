@@ -21,6 +21,7 @@ export const SUPER_ADMIN_NAV: NavSection[] = [
       { id: 'sa_schools', label: 'Schools', href: '/super-admin/schools', iconName: 'building', isPrimaryMobile: true },
       { id: 'sa_campuses', label: 'Campuses', href: '/super-admin/campuses', iconName: 'map-pin', isPrimaryMobile: true },
       { id: 'sa_compare', label: 'Campus Comparison', href: '/super-admin/campus-comparison', iconName: 'chart-bar', isPrimaryMobile: true },
+      { id: 'sa_design', label: 'Design Studio', href: '/super-admin/design', iconName: 'palette' },
     ],
   },
 ];
@@ -80,7 +81,6 @@ export const TEACHER_NAV: NavSection[] = [
       { id: 'tch_qr', label: 'QR Scan', href: '/teacher/attendance/scan', iconName: 'qr-code', isPrimaryMobile: true },
       { id: 'tch_hw', label: 'Homework', href: '/teacher/homework', iconName: 'file-text' },
       { id: 'tch_courses', label: 'LMS Courses', href: '/teacher/courses', iconName: 'book-open' },
-      { id: 'tch_assignments', label: 'Assignments', href: '/teacher/assignments', iconName: 'folder' },
       { id: 'tch_messages', label: 'Messages', href: '/teacher/messages', iconName: 'mail', isPrimaryMobile: true },
     ],
   },

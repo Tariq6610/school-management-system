@@ -127,7 +127,10 @@ test('TASK-069: Notification Centre (Read/unread, Filters, SSR)', async () => {
       role: 'parent',
     })
   );
-  assert.ok(bellHtml.includes('🔔'), 'Rendered Bell HTML should include bell icon');
+  assert.ok(
+    bellHtml.includes('aria-label="Open notifications"') && bellHtml.includes('<svg'),
+    'Rendered Bell HTML should include the bell trigger button with an SVG icon'
+  );
 
   console.log('All Notification tests passed cleanly!');
 });

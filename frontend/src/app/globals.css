@@ -3,10 +3,24 @@
 @theme {
   --font-sans: var(--font-noto-sans), "Noto Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-  /* Brand Palette */
-  --color-brand-700: #4B2FA8;
-  --color-brand-600: #5B41C7;
-  --color-brand-100: #EDE9FB;
+  /* Brand Palette (kept in sync with "primary-*" below — see BrandingProvider) */
+  --color-brand-700: #f97316;
+  --color-brand-600: #db6510;
+  --color-brand-100: #fde3cd;
+
+  /* "primary-*" is an alias of the brand scale for components that predate the
+     brand-* naming (Sidebar, BottomNav active states). BrandingProvider injects
+     all of these at runtime so both names always track the live theme. */
+  --color-primary-50: #fef3e8;
+  --color-primary-100: #fde3cd;
+  --color-primary-200: #fbcb9e;
+  --color-primary-300: #f8ac66;
+  --color-primary-400: #f88f3d;
+  --color-primary-500: #f97316;
+  --color-primary-600: #db6510;
+  --color-primary-700: #f97316;
+  --color-primary-800: #c2540d;
+  --color-primary-900: #9c440b;
 
   /* Secondary Accent */
   --color-accent-700: #1D5F96;
@@ -14,8 +28,15 @@
 
   /* Neutrals & Surfaces */
   --color-ink-900: #1A1B23;
+  --color-ink-800: #292B36;
+  --color-ink-700: #3D4050;
   --color-ink-600: #565A68;
+  --color-ink-500: #6C7080;
   --color-ink-400: #8B90A0;
+  --color-ink-300: #B0B4C0;
+  --color-ink-200: #D3D5DC;
+  --color-ink-100: #E7E8ED;
+  --color-ink-50: #F4F4F7;
   --color-rule: #E2E4EA;
   --color-surface: #FFFFFF;
   --color-canvas: #F6F6F9;

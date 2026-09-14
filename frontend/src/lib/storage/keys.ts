@@ -38,6 +38,7 @@ export const STORAGE_KEYS = {
   LEARNING_PROFILES: 'sp:v1:learningProfiles',
   OUTREACH_LOGS: 'sp:v1:outreachLogs',
   LEAVE_REQUESTS: 'sp:v1:leaveRequests',
+  CAMPUS_THEMES: 'sp:v1:campusThemes',
 } as const;
 
 export type StorageKey = (typeof STORAGE_KEYS)[keyof typeof STORAGE_KEYS] | string;

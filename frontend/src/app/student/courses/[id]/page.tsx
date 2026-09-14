@@ -6,6 +6,7 @@ import { RouteGuard } from '@/components/auth/RouteGuard';
 import { AppShell } from '@/components/shell/AppShell';
 import { StudentCourseView } from '@/components/lms';
 import { getEnrichedCourse, EnrichedCourse } from '@/lib/repositories/courses';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -58,8 +59,8 @@ export default function StudentCourseLessonViewerPage({ params }: PageProps) {
             <StudentCourseView course={course} />
           ) : (
             <div className="p-10 text-center bg-white border border-neutral-200 rounded-2xl space-y-3">
-              <div className="w-12 h-12 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center mx-auto text-xl">
-                ⚠️
+              <div className="w-12 h-12 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center mx-auto">
+                <NavIcon name="alert-triangle" className="w-6 h-6" />
               </div>
               <h3 className="text-base font-bold text-neutral-900">Course Not Found</h3>
               <p className="text-xs text-neutral-500 max-w-md mx-auto">

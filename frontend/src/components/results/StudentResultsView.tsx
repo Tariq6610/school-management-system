@@ -19,6 +19,7 @@ import { Button } from '@/components/ui/Button';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { Modal } from '@/components/ui/Modal';
 import { useSession } from '@/components/providers/SessionProvider';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface StudentResultsViewProps {
   mode: 'parent' | 'student';
@@ -195,7 +196,7 @@ export function StudentResultsView({ mode, initialStudentId }: StudentResultsVie
             <span className="text-xs text-ink-500 font-medium">Academic Assessment</span>
           </div>
           <h1 className="text-2xl font-bold text-ink-900 tracking-tight flex items-center gap-2">
-            <span>🏆</span> Examination Results & Report Cards
+            <NavIcon name="award" className="w-5 h-5" /> Examination Results & Report Cards
           </h1>
           <p className="text-xs text-ink-600 mt-1">
             Official academic assessment scores and downloadable term report cards.
@@ -208,10 +209,10 @@ export function StudentResultsView({ mode, initialStudentId }: StudentResultsVie
             variant="primary"
             size="md"
             onClick={() => handleOpenReportCard()}
-            className="flex items-center gap-2 shadow-xs font-semibold shrink-0"
+            className="shadow-xs font-semibold shrink-0"
+            leftIcon={<NavIcon name="file-text" className="w-4 h-4" />}
           >
-            <span>📄</span>
-            <span>View Official Report Card</span>
+            View Official Report Card
           </Button>
         )}
       </div>
@@ -343,8 +344,8 @@ export function StudentResultsView({ mode, initialStudentId }: StudentResultsVie
           </div>
         ) : filteredResults.length === 0 ? (
           <div className="p-12 text-center">
-            <div className="w-12 h-12 rounded-full bg-ink-100 text-ink-400 mx-auto flex items-center justify-center text-xl mb-3">
-              🔒
+            <div className="w-12 h-12 rounded-full bg-ink-100 text-ink-400 mx-auto flex items-center justify-center mb-3">
+              <NavIcon name="lock" className="w-6 h-6" />
             </div>
             <h3 className="text-sm font-bold text-ink-800">
               No Published Results Available
@@ -452,10 +453,9 @@ export function StudentResultsView({ mode, initialStudentId }: StudentResultsVie
                 variant="primary"
                 size="sm"
                 onClick={handlePrintModal}
-                className="flex items-center gap-1.5"
+                leftIcon={<NavIcon name="printer" className="w-4 h-4" />}
               >
-                <span>🖨️</span>
-                <span>Print Report Card</span>
+                Print Report Card
               </Button>
             </div>
           </div>

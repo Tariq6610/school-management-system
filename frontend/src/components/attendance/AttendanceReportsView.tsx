@@ -32,6 +32,7 @@ import { Button } from '@/components/ui/Button';
 import { useToast } from '@/components/ui/Toast';
 import { SkeletonCard, SkeletonTable } from '@/components/ui/Skeleton';
 import { EmptyState } from '@/components/ui/EmptyState';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export type ReportTab = 'class' | 'student' | 'range';
 
@@ -307,8 +308,9 @@ export function AttendanceReportsView({ initialScope }: AttendanceReportsViewPro
             size="sm"
             onClick={() => window.print()}
             aria-label="Print Report"
+            leftIcon={<NavIcon name="printer" className="w-3.5 h-3.5" />}
           >
-            🖨 Print Report
+            Print Report
           </Button>
 
           <Button
@@ -317,8 +319,9 @@ export function AttendanceReportsView({ initialScope }: AttendanceReportsViewPro
             onClick={handleExportCSV}
             aria-label="Export CSV"
             className="font-bold"
+            leftIcon={<NavIcon name="file-text" className="w-3.5 h-3.5" />}
           >
-            📥 Export CSV
+            Export CSV
           </Button>
         </div>
       </div>
@@ -783,7 +786,7 @@ export function AttendanceReportsView({ initialScope }: AttendanceReportsViewPro
                           {h.status === 'present' && '✓'}
                           {h.status === 'absent' && '✕'}
                           {h.status === 'late' && '⏱'}
-                          {h.status === 'leave' && '📋'}
+                          {h.status === 'leave' && <NavIcon name="clipboard" className="w-3 h-3" />}
                           {h.status.toUpperCase()}
                         </span>
                       </td>

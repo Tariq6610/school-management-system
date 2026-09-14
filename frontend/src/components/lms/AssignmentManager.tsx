@@ -115,6 +115,7 @@ export function AssignmentManager({
     deadline: string;
     maxMarks: number;
     lessonId?: string;
+    submissionType: 'online' | 'offline';
   }) => {
     if (editingAssignment) {
       await updateAssignment(editingAssignment.id, {
@@ -123,6 +124,7 @@ export function AssignmentManager({
         deadline: data.deadline,
         maxMarks: data.maxMarks,
         lessonId: data.lessonId,
+        submissionType: data.submissionType,
       });
       showToast({ type: 'success', title: 'Assignment updated' });
       setEditingAssignment(null);
@@ -135,6 +137,7 @@ export function AssignmentManager({
         deadline: data.deadline,
         maxMarks: data.maxMarks,
         lessonId: data.lessonId,
+        submissionType: data.submissionType,
       });
       showToast({ type: 'success', title: 'Assignment created' });
       setIsAddModalOpen(false);
@@ -187,11 +190,13 @@ export function AssignmentManager({
             setIsAddModalOpen(true);
           }}
           className="shrink-0"
+          leftIcon={
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+            </svg>
+          }
         >
-          <svg className="w-4 h-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-          </svg>
-          <span>New Assignment</span>
+          New Assignment
         </Button>
       </div>
 

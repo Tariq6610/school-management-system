@@ -27,6 +27,7 @@ import { Select } from '@/components/ui/Select';
 import { Avatar } from '@/components/ui/Avatar';
 import { Modal } from '@/components/ui/Modal';
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface ParentProfileViewProps {
   parentId: ID;
@@ -329,8 +330,13 @@ export function ParentProfileView({ parentId }: ParentProfileViewProps) {
           <Button variant="secondary" size="sm" onClick={openEditModal}>
             Edit Details
           </Button>
-          <Button variant="primary" size="sm" onClick={() => setIsLinkModalOpen(true)}>
-            + Link Student
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={() => setIsLinkModalOpen(true)}
+            leftIcon={<NavIcon name="plus" className="w-3.5 h-3.5" />}
+          >
+            Link Student
           </Button>
         </div>
       </div>
@@ -339,7 +345,7 @@ export function ParentProfileView({ parentId }: ParentProfileViewProps) {
       {isSiblingFamily && (
         <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 flex items-start gap-3">
           <div className="p-2 bg-emerald-100 rounded-lg text-emerald-800 font-bold text-sm">
-            👨‍👩‍👧‍👦
+            <NavIcon name="users" className="w-5 h-5" />
           </div>
           <div>
             <h3 className="text-sm font-semibold text-emerald-900">
@@ -419,8 +425,9 @@ export function ParentProfileView({ parentId }: ParentProfileViewProps) {
                 variant="secondary"
                 size="sm"
                 onClick={() => setIsLinkModalOpen(true)}
+                leftIcon={<NavIcon name="plus" className="w-3.5 h-3.5" />}
               >
-                + Link Another Child
+                Link Another Child
               </Button>
             </div>
 

@@ -27,8 +27,14 @@ const DEFAULT_SETTINGS: Settings = {
   attendanceEditWindowHours: 48, // 2 days default per FEATURE_SPECIFICATIONS.md §8
   branding: {
     schoolName: 'ABC School Network',
-    primaryColor: '#4B2FA8',
+    primaryColor: '#f97316',
     accentColor: '#1D5F96',
+    backgroundColor: '#f1f5f9',
+    cardBackground: '#ffffff',
+    fontFamily: 'inter',
+    borderRadius: 'md',
+    templateId: 'sunset',
+    designMode: 'unified',
   },
   currency: 'PKR',
   periods: DEFAULT_PERIODS,
@@ -48,6 +54,17 @@ export async function getSettings(scope?: Scope): Promise<Settings> {
     }
     if (!current.periods || current.periods.length === 0) {
       current.periods = DEFAULT_PERIODS;
+      modified = true;
+    }
+    if (current.branding && !current.branding.backgroundColor) {
+      current.branding = {
+        ...current.branding,
+        backgroundColor: current.branding.backgroundColor ?? DEFAULT_SETTINGS.branding.backgroundColor,
+        cardBackground: current.branding.cardBackground ?? DEFAULT_SETTINGS.branding.cardBackground,
+        fontFamily: current.branding.fontFamily ?? DEFAULT_SETTINGS.branding.fontFamily,
+        borderRadius: current.branding.borderRadius ?? DEFAULT_SETTINGS.branding.borderRadius,
+        designMode: current.branding.designMode ?? DEFAULT_SETTINGS.branding.designMode,
+      };
       modified = true;
     }
     if (modified) {

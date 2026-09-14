@@ -7,7 +7,9 @@ import { Avatar, StatusBadge } from '@/components/ui';
 import { CampusSwitcher } from './CampusSwitcher';
 import { ChildSwitcher } from './ChildSwitcher';
 import { FontSwitcher } from './FontSwitcher';
+import { Logo } from './Logo';
 import { useOptionalSession } from '@/components/providers/SessionProvider';
+import { useBranding } from '@/components/providers/BrandingProvider';
 import { NotificationBellTrigger } from '@/components/communication';
 
 export interface TopBarProps {
@@ -26,10 +28,12 @@ export function TopBar({
   campusName = 'Main Campus',
   childName,
   pageTitle,
-  schoolName = 'Beaconhouse Model School',
+  schoolName,
   className = '',
 }: TopBarProps) {
   const sessionContext = useOptionalSession();
+  const { schoolName: brandedSchoolName } = useBranding();
+  const displaySchoolName = schoolName ?? brandedSchoolName;
   const [profileOpen, setProfileOpen] = useState(false);
 
   // Synchronize browser document.title with selected campus and page title
@@ -37,13 +41,13 @@ export function TopBar({
   useEffect(() => {
     if (typeof document === 'undefined') return;
     const campusPart = campusName ? ` · ${campusName}` : '';
-    const schoolPart = schoolName ? ` · ${schoolName}` : '';
+    const schoolPart = displaySchoolName ? ` · ${displaySchoolName}` : '';
     if (pageTitle) {
       document.title = `${pageTitle}${campusPart}${schoolPart}`;
     } else if (campusName) {
-      document.title = `${schoolName}${campusPart}`;
+      document.title = `${displaySchoolName}${campusPart}`;
     }
-  }, [pageTitle, campusName, schoolName]);
+  }, [pageTitle, campusName, displaySchoolName]);
 
   const displayName = user?.name ?? 'Account User';
   const displayEmail = user?.email ?? '';
@@ -59,15 +63,13 @@ export function TopBar({
       {/* Left: Mobile Brand & Context Title */}
       <div className="flex items-center gap-3 min-w-0">
         <div className="md:hidden flex items-center gap-2">
-          <div className="w-7 h-7 rounded-control bg-primary-600 text-white font-bold flex items-center justify-center text-xs">
-            SM
-          </div>
+          <Logo size="sm" />
         </div>
 
         <div className="min-w-0">
           <div className="flex items-center gap-2">
             <h2 className="text-sm font-semibold text-ink-900 truncate">
-              {pageTitle ?? schoolName}
+              {pageTitle ?? displaySchoolName}
             </h2>
           </div>
         </div>

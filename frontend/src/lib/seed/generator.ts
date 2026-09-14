@@ -74,7 +74,7 @@ export function generateSeedData(): SeedData {
     name: 'ABC School Network',
     address: 'Sector F-8/3, Islamabad, Pakistan',
     timezone: 'Asia/Karachi',
-    logoUrl: '/logo.png',
+    logoUrl: '/logo.svg',
     status: 'active',
   };
 
@@ -1085,8 +1085,16 @@ export function generateSeedData(): SeedData {
     attendanceStatuses: ['present', 'absent', 'late', 'leave'],
     branding: {
       schoolName: 'ABC School Network',
-      primaryColor: '#4B2FA8',
+      primaryColor: '#f97316',
       accentColor: '#1D5F96',
+      backgroundColor: '#f1f5f9',
+      cardBackground: '#ffffff',
+      fontFamily: 'inter',
+      borderRadius: 'md',
+      templateId: 'sunset',
+      designMode: 'unified',
+      // No default logoUrl: the live UI shows a theme-colored initials mark
+      // (see components/shell/Logo.tsx) until a real logo is uploaded.
     },
     currency: 'PKR',
   };

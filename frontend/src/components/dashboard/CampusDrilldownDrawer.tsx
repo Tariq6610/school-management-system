@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Drawer } from '@/components/ui/Drawer';
 import { Button } from '@/components/ui/Button';
+import { NavIcon } from '@/components/shell/NavIcon';
 import { CampusComparisonRecord } from '@/lib/repositories/networkDashboard';
 
 interface CampusDrilldownDrawerProps {
@@ -54,7 +55,8 @@ export function CampusDrilldownDrawer({
               )}
             </div>
             <p className="text-xs text-gray-500 mt-1 flex items-center gap-1">
-              <span>📍 {campus.address}</span>
+              <NavIcon name="map-pin" className="w-3.5 h-3.5" />
+              <span>{campus.address}</span>
             </p>
           </div>
           <div className="text-right">

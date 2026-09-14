@@ -66,7 +66,7 @@ export function TeacherGradingModal({
   );
 }
 
-interface TeacherGradingContentProps {
+export interface TeacherGradingContentProps {
   assignment: Assignment;
   schoolId: string;
   campusId?: string;
@@ -74,7 +74,7 @@ interface TeacherGradingContentProps {
   onGraded?: () => void | Promise<void>;
 }
 
-function TeacherGradingContent({
+export function TeacherGradingContent({
   assignment,
   schoolId,
   campusId,
@@ -142,13 +142,13 @@ function TeacherGradingContent({
   const selectedEvaluation = evaluations.find((e) => e.studentId === selectedStudentId);
 
   const handleSaveGrade = async (
-    submissionId: string,
+    target: string | { assignmentId: string; studentId: string },
     marks: number,
     feedback: string
   ) => {
     const teacherId = session?.userId || 'usr_teacher';
     try {
-      await gradeSubmission(submissionId, marks, feedback, teacherId);
+      await gradeSubmission(target, marks, feedback, teacherId);
       showToast({
         type: 'success',
         title: 'Grade saved',
@@ -343,7 +343,7 @@ function TeacherGradingContent({
 interface StudentEvaluationPaneProps {
   assignment: Assignment;
   evaluation: TeacherSubmissionEvaluation;
-  onSave: (submissionId: string, marks: number, feedback: string) => Promise<void>;
+  onSave: (target: string | { assignmentId: string; studentId: string }, marks: number, feedback: string) => Promise<void>;
 }
 
 function StudentEvaluationPane({
@@ -359,27 +359,8 @@ function StudentEvaluationPane({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  // If student has not submitted
-  if (!submission) {
-    return (
-      <div className="h-72 flex flex-col items-center justify-center text-center p-6 space-y-2">
-        <div className="w-12 h-12 rounded-full bg-neutral-200/60 flex items-center justify-center text-neutral-500 mb-1">
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={1.5}
-              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-        </div>
-        <h4 className="font-bold text-neutral-800 text-sm">No Submission Yet</h4>
-        <p className="text-xs text-neutral-500 max-w-xs leading-relaxed">
-          {evaluation.studentName} has not submitted any response for this assignment.
-        </p>
-      </div>
-    );
-  }
+  // If student has not submitted (e.g., offline assignment or missing)
+  const isMissing = !submission;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -397,7 +378,8 @@ function StudentEvaluationPane({
 
     setIsSubmitting(true);
     try {
-      await onSave(submission.id, numericMarks, feedback);
+      const target = submission ? submission.id : { assignmentId: assignment.id, studentId: evaluation.studentId };
+      await onSave(target, numericMarks, feedback);
     } catch {
       // Error handled by parent toast
     } finally {
@@ -420,14 +402,18 @@ function StudentEvaluationPane({
             <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-200">
               Late Submission
             </span>
-          ) : (
+          ) : submission ? (
             <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
               On Time
+            </span>
+          ) : (
+            <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-neutral-100 text-neutral-600 border border-neutral-200">
+              Missing File
             </span>
           )}
         </div>
         <p className="text-[10px] text-neutral-500 mt-1">
-          Submitted on: {formatDateTime(submission.submittedAt)}
+          {submission ? `Submitted on: ${formatDateTime(submission.submittedAt)}` : 'No file submission on record.'}
         </p>
       </div>
 
@@ -438,14 +424,14 @@ function StudentEvaluationPane({
         </span>
 
         {/* Written Response */}
-        {submission.body ? (
+        {submission?.body ? (
           <div className="bg-white p-3.5 rounded-xl border border-neutral-200/80 text-xs text-neutral-800 whitespace-pre-wrap leading-relaxed shadow-2xs max-h-48 overflow-y-auto">
             {submission.body}
           </div>
         ) : null}
 
         {/* Attached File */}
-        {submission.fileName ? (
+        {submission?.fileName ? (
           <div className="flex items-center gap-2.5 p-2.5 bg-white rounded-xl border border-neutral-200/80 shadow-2xs">
             <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center shrink-0">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -469,7 +455,7 @@ function StudentEvaluationPane({
           </div>
         ) : null}
 
-        {!submission.body && !submission.fileName && (
+        {(!submission || (!submission.body && !submission.fileName)) && (
           <p className="text-xs text-neutral-500 italic">No text or file attachments found.</p>
         )}
       </div>
@@ -524,7 +510,7 @@ function StudentEvaluationPane({
         </div>
 
         {/* Graded Metadata */}
-        {submission.gradedAt && (
+        {submission?.gradedAt && (
           <p className="text-[10px] text-neutral-500 italic">
             Previously graded on {formatDateTime(submission.gradedAt)}. You may update marks and feedback at any time.
           </p>
@@ -545,7 +531,7 @@ function StudentEvaluationPane({
             disabled={isSubmitting}
             className="px-5 font-bold"
           >
-            {isSubmitting ? 'Saving...' : submission.marksObtained !== undefined ? 'Update Grade & Feedback' : 'Save Grade & Feedback'}
+            {isSubmitting ? 'Saving...' : submission?.marksObtained !== undefined ? 'Update Grade & Feedback' : 'Save Grade & Feedback'}
           </Button>
         </div>
       </div>

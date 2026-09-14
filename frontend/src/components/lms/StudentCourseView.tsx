@@ -19,6 +19,7 @@ import {
 import { getStudentCourseAssignments } from '@/lib/repositories/submissions';
 import { Button } from '@/components/ui/Button';
 import { useToast } from '@/components/ui/Toast';
+import { NavIcon } from '@/components/shell/NavIcon';
 import { StudentAssignmentModal } from './StudentAssignmentModal';
 
 function isDeadlineOverdue(deadlineIso: string): boolean {
@@ -338,8 +339,8 @@ export function StudentCourseView({
         ) : lessons.length === 0 ? (
         /* Empty State */
         <div className="bg-white border-2 border-dashed border-neutral-200 rounded-2xl p-12 text-center shadow-xs space-y-3">
-          <div className="w-12 h-12 rounded-full bg-neutral-100 text-neutral-500 flex items-center justify-center mx-auto text-xl">
-            📚
+          <div className="w-12 h-12 rounded-full bg-neutral-100 text-neutral-500 flex items-center justify-center mx-auto">
+            <NavIcon name="book-open" className="w-6 h-6" />
           </div>
           <h3 className="text-base font-bold text-neutral-900">No Lessons Published Yet</h3>
           <p className="text-xs text-neutral-500 max-w-md mx-auto">
@@ -779,8 +780,8 @@ export function StudentCourseView({
 
           {assignments.length === 0 ? (
             <div className="bg-white border-2 border-dashed border-neutral-200 rounded-2xl p-12 text-center shadow-xs space-y-2">
-              <div className="w-12 h-12 rounded-full bg-neutral-100 text-neutral-500 flex items-center justify-center mx-auto text-xl">
-                📝
+              <div className="w-12 h-12 rounded-full bg-neutral-100 text-neutral-500 flex items-center justify-center mx-auto">
+                <NavIcon name="clipboard-check" className="w-6 h-6" />
               </div>
               <h3 className="text-sm font-bold text-neutral-900">No Assignments Yet</h3>
               <p className="text-xs text-neutral-500 max-w-sm mx-auto">

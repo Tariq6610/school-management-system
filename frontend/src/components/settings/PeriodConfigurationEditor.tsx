@@ -13,6 +13,7 @@ import {
 import { useSession } from '@/components/providers/SessionProvider';
 import { useToast } from '@/components/ui/Toast';
 import { Button } from '@/components/ui/Button';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface PeriodConfigurationEditorProps {
   initialPeriods?: PeriodDefinition[];
@@ -370,8 +371,8 @@ export function PeriodConfigurationEditor({
           </select>
         </div>
 
-        <Button variant="secondary" size="sm" onClick={handleAddPeriod}>
-          + Add New Slot
+        <Button variant="secondary" size="sm" onClick={handleAddPeriod} leftIcon={<NavIcon name="plus" className="w-3.5 h-3.5" />}>
+          Add New Slot
         </Button>
       </div>
 

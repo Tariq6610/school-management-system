@@ -7,7 +7,9 @@ import { Role, User } from '@/types';
 import { Avatar, StatusBadge } from '@/components/ui';
 import { getRoleNavSections, NavItem } from '@/lib/navigation/nav-items';
 import { NavIcon } from './NavIcon';
+import { Logo } from './Logo';
 import { useOptionalSession } from '@/components/providers/SessionProvider';
+import { useBranding } from '@/components/providers/BrandingProvider';
 
 export interface SidebarProps {
   role: Role;
@@ -19,11 +21,13 @@ export interface SidebarProps {
 export function Sidebar({
   role,
   user,
-  schoolName = 'Beaconhouse Model School',
+  schoolName,
   className = '',
 }: SidebarProps) {
   const pathname = usePathname();
   const sessionContext = useOptionalSession();
+  const { schoolName: brandedSchoolName } = useBranding();
+  const displaySchoolName = schoolName ?? brandedSchoolName;
   const sections = getRoleNavSections(role);
 
   const roleLabel = role.replace('_', ' ').toUpperCase();
@@ -46,12 +50,10 @@ export function Sidebar({
       {/* Header / Brand */}
       <div className="p-4 border-b border-ink-100 flex flex-col gap-1.5">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-control bg-primary-600 text-white font-bold flex items-center justify-center text-sm shadow-sm">
-            SM
-          </div>
+          <Logo size="md" />
           <div className="min-w-0 flex-1">
-            <h1 className="text-sm font-semibold text-ink-900 truncate" title={schoolName}>
-              {schoolName}
+            <h1 className="text-sm font-semibold text-ink-900 truncate" title={displaySchoolName}>
+              {displaySchoolName}
             </h1>
             <p className="text-[11px] text-ink-500 truncate">School Management</p>
           </div>

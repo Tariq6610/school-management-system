@@ -43,11 +43,38 @@ export interface GradeScaleItem {
   description?: string;
 }
 
-export interface BrandingSettings {
+export type FontFamily = 'noto' | 'inter' | 'fraunces' | 'jetbrains';
+
+export type BorderRadiusScale = 'none' | 'sm' | 'md' | 'lg' | 'full';
+
+/**
+ * "Same design for all campuses" vs "each campus can have its own design".
+ * Controlled only by super_admin (DESIGN_SYSTEM customization).
+ */
+export type DesignMode = 'unified' | 'per-campus';
+
+/**
+ * The full set of visual design tokens a super admin can customize —
+ * either school-wide (BrandingSettings) or per-campus (CampusTheme).
+ */
+export interface DesignTokens {
+  primaryColor: string; // Primary accent — buttons, links, active states
+  accentColor: string; // Secondary accent
+  backgroundColor: string; // Page/canvas background
+  cardBackground: string; // Card/surface background
+  fontFamily: FontFamily;
+  borderRadius: BorderRadiusScale;
+  /** Which preset template this matches, if any (undefined = fully custom). */
+  templateId?: string;
+}
+
+export interface BrandingSettings extends Partial<DesignTokens> {
   schoolName: string;
   primaryColor: string;
   accentColor: string;
   logoUrl?: string;
+  /** Only meaningful for the school-wide Settings.branding record. */
+  designMode?: DesignMode;
 }
 
 import type { PeriodDefinition } from './academics';

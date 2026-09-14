@@ -9,6 +9,7 @@ import {
   Scope,
 } from '@/types';
 import { useSession } from '@/components/providers/SessionProvider';
+import { NavIcon } from '@/components/shell/NavIcon';
 import {
   getClassTimetableGrid,
   getTeacherTimetableGrid,
@@ -274,7 +275,10 @@ export function TimetableScheduleViews({
                   : 'text-neutral-600 hover:text-neutral-900'
               }`}
             >
-              🏫 By Class
+              <span className="inline-flex items-center gap-1.5">
+                <NavIcon name="building" className="w-3.5 h-3.5" />
+                By Class
+              </span>
             </button>
             <button
               type="button"
@@ -285,7 +289,10 @@ export function TimetableScheduleViews({
                   : 'text-neutral-600 hover:text-neutral-900'
               }`}
             >
-              👨‍🏫 By Teacher
+              <span className="inline-flex items-center gap-1.5">
+                <NavIcon name="user" className="w-3.5 h-3.5" />
+                By Teacher
+              </span>
             </button>
             <button
               type="button"
@@ -296,7 +303,10 @@ export function TimetableScheduleViews({
                   : 'text-neutral-600 hover:text-neutral-900'
               }`}
             >
-              🚪 By Room
+              <span className="inline-flex items-center gap-1.5">
+                <NavIcon name="map-pin" className="w-3.5 h-3.5" />
+                By Room
+              </span>
             </button>
           </div>
 
@@ -316,17 +326,10 @@ export function TimetableScheduleViews({
               variant="primary"
               size="sm"
               onClick={handlePrint}
-              className="flex items-center gap-1.5 shadow-xs"
+              className="shadow-xs"
+              leftIcon={<NavIcon name="printer" className="w-4 h-4" />}
             >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
-                />
-              </svg>
-              <span>Print Timetable</span>
+              Print Timetable
             </Button>
           </div>
         </div>
@@ -473,7 +476,10 @@ export function TimetableScheduleViews({
                         colSpan={activeDays.length}
                         className="p-2.5 text-center font-semibold text-xs text-amber-800 print:text-black tracking-wider uppercase"
                       >
-                        ☕ {periodDef.name} ({periodDef.startTime} – {periodDef.endTime}) &bull; Non-Instructional Break
+                        <span className="inline-flex items-center gap-1.5">
+                          <NavIcon name="clock" className="w-3.5 h-3.5" />
+                          {periodDef.name} ({periodDef.startTime} – {periodDef.endTime}) &bull; Non-Instructional Break
+                        </span>
                       </td>
                     </tr>
                   );
@@ -516,7 +522,8 @@ export function TimetableScheduleViews({
                                       )}
                                     </div>
                                     <div className="text-[11px] text-neutral-700 print:text-black flex items-center gap-1">
-                                      <span>👨‍🏫 {slot.teacherName}</span>
+                                      <NavIcon name="user" className="w-3 h-3 shrink-0" />
+                                      <span>{slot.teacherName}</span>
                                     </div>
                                   </>
                                 ) : viewMode === 'teacher' ? (
@@ -531,8 +538,9 @@ export function TimetableScheduleViews({
                                         </span>
                                       )}
                                     </div>
-                                    <div className="text-[11px] text-neutral-700 print:text-black">
-                                      <span>📖 {slot.subjectName}</span>
+                                    <div className="text-[11px] text-neutral-700 print:text-black flex items-center gap-1">
+                                      <NavIcon name="book-open" className="w-3 h-3 shrink-0" />
+                                      <span>{slot.subjectName}</span>
                                     </div>
                                   </>
                                 ) : (
@@ -547,16 +555,18 @@ export function TimetableScheduleViews({
                                         </span>
                                       )}
                                     </div>
-                                    <div className="text-[11px] text-neutral-700 print:text-black">
-                                      <span>👨‍🏫 {slot.teacherName}</span>
+                                    <div className="text-[11px] text-neutral-700 print:text-black flex items-center gap-1">
+                                      <NavIcon name="user" className="w-3 h-3 shrink-0" />
+                                      <span>{slot.teacherName}</span>
                                     </div>
                                   </>
                                 )}
                               </div>
 
                               <div className="mt-2 pt-1 border-t border-purple-100 print:border-neutral-300 flex items-center justify-between text-[10px] text-neutral-500 print:text-neutral-800">
-                                <span className="font-medium truncate">
-                                  📍 {slot.room || 'Room TBD'}
+                                <span className="font-medium truncate inline-flex items-center gap-1">
+                                  <NavIcon name="map-pin" className="w-3 h-3 shrink-0" />
+                                  {slot.room || 'Room TBD'}
                                 </span>
                               </div>
                             </div>

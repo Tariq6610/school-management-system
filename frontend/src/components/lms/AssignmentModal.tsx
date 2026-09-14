@@ -14,9 +14,12 @@ export interface AssignmentModalProps {
     deadline: string;
     maxMarks: number;
     lessonId?: string;
+    submissionType: 'online' | 'offline';
+    courseId?: string;
   }) => Promise<void>;
   initialAssignment?: Assignment | null;
   lessons: Lesson[];
+  courses?: { id: string; title: string }[];
 }
 
 export function AssignmentModal({
@@ -25,6 +28,7 @@ export function AssignmentModal({
   onSave,
   initialAssignment,
   lessons,
+  courses,
 }: AssignmentModalProps) {
   if (!isOpen) return null;
 
@@ -40,6 +44,7 @@ export function AssignmentModal({
         key={initialAssignment?.id ?? 'new-assignment'}
         initialAssignment={initialAssignment}
         lessons={lessons}
+        courses={courses}
         onClose={onClose}
         onSave={onSave}
       />
@@ -50,6 +55,7 @@ export function AssignmentModal({
 interface AssignmentFormProps {
   initialAssignment?: Assignment | null;
   lessons: Lesson[];
+  courses?: { id: string; title: string }[];
   onClose: () => void;
   onSave: (data: {
     title: string;
@@ -57,6 +63,8 @@ interface AssignmentFormProps {
     deadline: string;
     maxMarks: number;
     lessonId?: string;
+    submissionType: 'online' | 'offline';
+    courseId?: string;
   }) => Promise<void>;
 }
 
@@ -79,6 +87,7 @@ function formatDatetimeForInput(isoString?: string): string {
 function AssignmentForm({
   initialAssignment,
   lessons,
+  courses,
   onClose,
   onSave,
 }: AssignmentFormProps) {
@@ -87,6 +96,8 @@ function AssignmentForm({
   const [deadline, setDeadline] = useState(formatDatetimeForInput(initialAssignment?.deadline));
   const [maxMarks, setMaxMarks] = useState<number | ''>(initialAssignment?.maxMarks ?? 100);
   const [lessonId, setLessonId] = useState<string>(initialAssignment?.lessonId || '');
+  const [submissionType, setSubmissionType] = useState<'online' | 'offline'>(initialAssignment?.submissionType || 'online');
+  const [courseId, setCourseId] = useState<string>(initialAssignment?.courseId || (courses?.[0]?.id ?? ''));
 
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -109,6 +120,11 @@ function AssignmentForm({
       return;
     }
 
+    if (courses && !courseId) {
+      setError('Please select a course for this assignment');
+      return;
+    }
+
     try {
       setIsSubmitting(true);
       setError(null);
@@ -118,6 +134,8 @@ function AssignmentForm({
         deadline: new Date(deadline).toISOString(),
         maxMarks: Number(maxMarks),
         lessonId: lessonId.trim() || undefined,
+        submissionType,
+        courseId: courses ? courseId : undefined,
       });
       onClose();
     } catch (err: unknown) {
@@ -164,6 +182,29 @@ function AssignmentForm({
         />
       </div>
 
+      {/* Course Selection (only if courses provided) */}
+      {courses && (
+        <div>
+          <label className="block text-xs font-semibold text-neutral-800 mb-1">
+            Course <span className="text-rose-600">*</span>
+          </label>
+          <select
+            value={courseId}
+            onChange={(e) => setCourseId(e.target.value)}
+            className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-600/30 focus:border-purple-600 transition-colors bg-white"
+            required
+            disabled={!!initialAssignment}
+          >
+            <option value="">-- Select Course --</option>
+            {courses.map((course) => (
+              <option key={course.id} value={course.id}>
+                {course.title}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
       {/* Optional Lesson Link */}
       <div>
         <div className="flex items-center justify-between mb-1">
@@ -180,7 +221,7 @@ function AssignmentForm({
           className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-600/30 focus:border-purple-600 transition-colors bg-white"
         >
           <option value="">No linked lesson (Course-wide)</option>
-          {lessons.map((lesson, idx) => (
+          {lessons.filter(l => !courses || l.courseId === courseId).map((lesson, idx) => (
             <option key={lesson.id} value={lesson.id}>
               Unit {idx + 1}: {lesson.title} ({lesson.contentType.toUpperCase()})
             </option>
@@ -188,6 +229,40 @@ function AssignmentForm({
         </select>
         <p className="text-[11px] text-neutral-500 mt-1.5">
           Attach this task to a specific lesson or leave unlinked as a broad course milestone.
+        </p>
+      </div>
+
+      {/* Submission Type */}
+      <div>
+        <label className="block text-xs font-semibold text-neutral-800 mb-1">
+          Submission Type <span className="text-rose-600">*</span>
+        </label>
+        <div className="flex items-center gap-4">
+          <label className="flex items-center gap-2 text-sm text-neutral-700 cursor-pointer">
+            <input
+              type="radio"
+              name="submissionType"
+              value="online"
+              checked={submissionType === 'online'}
+              onChange={() => setSubmissionType('online')}
+              className="w-4 h-4 text-purple-600 border-neutral-300 focus:ring-purple-600"
+            />
+            <span>Online Submission (Soft Copy)</span>
+          </label>
+          <label className="flex items-center gap-2 text-sm text-neutral-700 cursor-pointer">
+            <input
+              type="radio"
+              name="submissionType"
+              value="offline"
+              checked={submissionType === 'offline'}
+              onChange={() => setSubmissionType('offline')}
+              className="w-4 h-4 text-purple-600 border-neutral-300 focus:ring-purple-600"
+            />
+            <span>Offline (Physical Copy / Classwork)</span>
+          </label>
+        </div>
+        <p className="text-[11px] text-neutral-500 mt-1.5">
+          Online submissions require students to upload files or text. Offline submissions can be directly graded by the teacher without student uploads.
         </p>
       </div>
 

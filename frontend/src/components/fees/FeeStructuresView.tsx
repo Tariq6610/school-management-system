@@ -23,6 +23,7 @@ import { Button } from '@/components/ui/Button';
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
 import { FeeStructureForm } from './FeeStructureForm';
 import { FeeStructuresTable } from './FeeStructuresTable';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface FeeStructuresViewProps {
   initialCampusId?: ID;
@@ -233,9 +234,10 @@ export function FeeStructuresView({
         <Button
           variant="primary"
           onClick={handleOpenCreate}
-          className="flex items-center gap-2 font-bold self-start sm:self-auto"
+          className="font-bold self-start sm:self-auto"
+          leftIcon={<NavIcon name="plus" className="w-4 h-4" />}
         >
-          <span>+</span> Create Fee Structure
+          Create Fee Structure
         </Button>
       </div>
 
@@ -284,10 +286,10 @@ export function FeeStructuresView({
               onChange={(e) => setSelectedCampusFilter(e.target.value)}
               className="w-full rounded-lg border border-neutral-300 bg-white px-3 py-1.5 text-xs text-neutral-800 focus:border-purple-500 focus:outline-hidden shadow-2xs"
             >
-              <option value="">🌐 All Campuses</option>
+              <option value="">All Campuses</option>
               {campuses.map((c) => (
                 <option key={c.id} value={c.id}>
-                  🏫 {c.name}
+                  {c.name}
                 </option>
               ))}
             </select>

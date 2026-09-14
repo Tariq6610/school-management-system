@@ -11,6 +11,7 @@ import {
 import { getAuditMessageThreads } from '@/lib/repositories/messages';
 import { listCampuses } from '@/lib/repositories/campuses';
 import { Button } from '@/components/ui/Button';
+import { NavIcon } from '@/components/shell/NavIcon';
 
 export interface MessageAuditViewProps {
   schoolId: ID;
@@ -145,8 +146,8 @@ export function MessageAuditView({
       {/* 1. Mandatory Safeguarding Compliance Banner */}
       <div className="bg-amber-50/80 border border-amber-200/80 rounded-2xl p-5 shadow-2xs">
         <div className="flex items-start gap-4">
-          <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-800 flex items-center justify-center text-xl shrink-0">
-            🛡️
+          <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-800 flex items-center justify-center shrink-0">
+            <NavIcon name="shield" className="w-5 h-5" />
           </div>
           <div className="space-y-1">
             <div className="flex items-center gap-2">
@@ -287,8 +288,9 @@ export function MessageAuditView({
           onClick={handlePrintAudit}
           disabled={!activeThread}
           className="shadow-2xs text-xs"
+          leftIcon={<NavIcon name="printer" className="w-3.5 h-3.5" />}
         >
-          <span>🖨️ Print Audit Record</span>
+          Print Audit Record
         </Button>
       </div>
 
@@ -376,7 +378,7 @@ export function MessageAuditView({
         <div className="flex-1 h-full min-w-0 flex flex-col bg-white">
           {!activeThread ? (
             <div className="h-full flex flex-col items-center justify-center p-8 text-neutral-500">
-              <span className="text-4xl mb-2">🛡️</span>
+              <NavIcon name="shield" className="w-8 h-8 mb-2" />
               <p className="text-sm font-bold text-neutral-700">No thread selected</p>
               <p className="text-xs text-neutral-500 mt-1">
                 Select an audit thread from the list to review the complete transcript.
