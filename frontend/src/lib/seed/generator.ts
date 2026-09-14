@@ -15,6 +15,7 @@ import type {
   ExamResult,
   FeeInvoice,
   FeeStructure,
+  LeaveRequest,
   Lesson,
   Message,
   Meta,
@@ -55,6 +56,7 @@ export interface SeedData {
   assignments: Assignment[];
   submissions: Submission[];
   announcements: Announcement[];
+  leaveRequests: LeaveRequest[];
   messages: Message[];
   notifications: Notification[];
   whatsappLog: WhatsAppLog[];
@@ -924,6 +926,64 @@ export function generateSeedData(): SeedData {
     },
   ];
 
+  // 16b. Staff Leave Requests (Main Campus, mixed statuses for principal review)
+  const leaveRequests: LeaveRequest[] = [
+    {
+      id: 'lvr_1',
+      schoolId,
+      campusId: 'cmp_main',
+      teacherId: 'tch_2',
+      leaveType: 'sick',
+      startDate: '2026-09-15',
+      endDate: '2026-09-16',
+      reason: 'Fever and flu symptoms, advised bed rest by physician.',
+      status: 'pending',
+      requestedAt: '2026-09-10T07:30:00.000Z',
+    },
+    {
+      id: 'lvr_2',
+      schoolId,
+      campusId: 'cmp_main',
+      teacherId: 'tch_3',
+      leaveType: 'casual',
+      startDate: '2026-09-20',
+      endDate: '2026-09-20',
+      reason: 'Attending a family wedding function.',
+      status: 'pending',
+      requestedAt: '2026-09-11T09:00:00.000Z',
+    },
+    {
+      id: 'lvr_3',
+      schoolId,
+      campusId: 'cmp_main',
+      teacherId: 'tch_sana',
+      leaveType: 'annual',
+      startDate: '2026-08-20',
+      endDate: '2026-08-25',
+      reason: 'Pre-planned annual leave, substitute arranged for classes.',
+      status: 'approved',
+      requestedAt: '2026-08-10T08:15:00.000Z',
+      decidedBy: 'usr_principal_main',
+      decidedAt: '2026-08-11T10:00:00.000Z',
+      decisionNote: 'Approved. Substitute schedule confirmed with department head.',
+    },
+    {
+      id: 'lvr_4',
+      schoolId,
+      campusId: 'cmp_main',
+      teacherId: 'tch_4',
+      leaveType: 'other',
+      startDate: '2026-09-05',
+      endDate: '2026-09-12',
+      reason: 'Extended personal leave request during peak exam preparation week.',
+      status: 'rejected',
+      requestedAt: '2026-08-28T08:00:00.000Z',
+      decidedBy: 'usr_principal_main',
+      decidedAt: '2026-08-29T09:30:00.000Z',
+      decisionNote: 'Cannot approve during exam prep week; please resubmit for a later date.',
+    },
+  ];
+
   // 17. Messages (Thread between Sana Malik and Tariq Khan)
   const messages: Message[] = [
     {
@@ -1059,6 +1119,7 @@ export function generateSeedData(): SeedData {
     assignments,
     submissions,
     announcements,
+    leaveRequests,
     messages,
     notifications,
     whatsappLog,

@@ -84,3 +84,28 @@ export interface Teacher {
 }
 
 export type NewTeacher = Omit<Teacher, 'id'>;
+
+export type LeaveType = 'sick' | 'casual' | 'annual' | 'other';
+
+export type LeaveRequestStatus = 'pending' | 'approved' | 'rejected';
+
+export interface LeaveRequest {
+  id: ID;
+  schoolId: ID;
+  campusId: ID;
+  teacherId: ID;
+  leaveType: LeaveType;
+  startDate: ISODate;
+  endDate: ISODate;
+  reason: string;
+  status: LeaveRequestStatus;
+  requestedAt: ISODate;
+  decidedBy?: ID;
+  decidedAt?: ISODate;
+  decisionNote?: string;
+}
+
+export type NewLeaveRequest = Omit<
+  LeaveRequest,
+  'id' | 'status' | 'requestedAt' | 'decidedBy' | 'decidedAt' | 'decisionNote'
+>;

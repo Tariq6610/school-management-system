@@ -37,6 +37,7 @@ export const STORAGE_KEYS = {
   LESSON_COMPLETIONS: 'sp:v1:lessonCompletions',
   LEARNING_PROFILES: 'sp:v1:learningProfiles',
   OUTREACH_LOGS: 'sp:v1:outreachLogs',
+  LEAVE_REQUESTS: 'sp:v1:leaveRequests',
 } as const;
 
 export type StorageKey = (typeof STORAGE_KEYS)[keyof typeof STORAGE_KEYS] | string;

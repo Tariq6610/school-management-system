@@ -43,6 +43,7 @@ export async function seedDemoNetwork(): Promise<{ bytes: number; formatted: str
   setItem(STORAGE_KEYS.ASSIGNMENTS, data.assignments);
   setItem(STORAGE_KEYS.SUBMISSIONS, data.submissions);
   setItem(STORAGE_KEYS.ANNOUNCEMENTS, data.announcements);
+  setItem(STORAGE_KEYS.LEAVE_REQUESTS, data.leaveRequests);
   setItem(STORAGE_KEYS.MESSAGES, data.messages);
   setItem(STORAGE_KEYS.NOTIFICATIONS, data.notifications);
   setItem(STORAGE_KEYS.WHATSAPP_LOG, data.whatsappLog);

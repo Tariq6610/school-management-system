@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Input, Button, StatusBadge } from '@/components/ui';
 import { DEMO_ACCOUNTS, DemoAccount, getRoleDashboardRoute } from '@/lib/auth/auth';
@@ -65,29 +64,36 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 bg-canvas text-ink-900">
-      <div className="w-full max-w-xl space-y-6">
+    <main className="relative min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 bg-canvas text-ink-900 overflow-hidden">
+      {/* Ambient background accents */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+        <div className="absolute -top-32 -left-24 h-72 w-72 rounded-full bg-brand-700/10 blur-3xl" />
+        <div className="absolute -bottom-32 -right-24 h-72 w-72 rounded-full bg-brand-600/10 blur-3xl" />
+      </div>
+
+      <div className="relative w-full max-w-xl space-y-6">
+        {/* Brand lockup above the card */}
+        <div className="flex flex-col items-center text-center gap-2">
+          <div className="w-12 h-12 rounded-card bg-brand-700 text-surface flex items-center justify-center font-bold text-lg shadow-overlay">
+            {schoolName.substring(0, 3).toUpperCase()}
+          </div>
+          <h1 className="text-page-title text-ink-900">{schoolName}</h1>
+          <p className="text-secondary-meta text-ink-500">Institutional management portal</p>
+        </div>
+
         {/* Card Container */}
         <div className="rounded-card bg-surface p-6 sm:p-8 border border-rule shadow-overlay space-y-6">
           {/* Header */}
           <div className="flex items-center justify-between border-b border-rule pb-4">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-control bg-brand-700 text-surface flex items-center justify-center font-bold text-sm">
-                {schoolName.substring(0, 3).toUpperCase()}
-              </div>
-              <span className="text-sm font-semibold text-ink-900">{schoolName}</span>
-            </div>
+            <h2 className="text-section-heading text-ink-900">Sign In</h2>
             <span className="inline-flex items-center rounded-control bg-brand-100 px-2.5 py-1 text-secondary-meta font-medium text-brand-700">
               Phase 0 Prototype
             </span>
           </div>
 
-          <div>
-            <h1 className="text-page-title text-ink-900">Institutional Sign In</h1>
-            <p className="text-secondary-meta text-ink-600 mt-1">
-              Enter credentials or select a seeded demo role below to explore the portal.
-            </p>
-          </div>
+          <p className="text-secondary-meta text-ink-600 -mt-2">
+            Enter credentials or select a seeded demo role below to explore the portal.
+          </p>
 
           {/* Active Session Notice */}
           {isAuthenticated && user && (
@@ -213,15 +219,6 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Back Link */}
-        <div className="text-center">
-          <Link
-            href="/"
-            className="text-xs font-medium text-ink-500 hover:text-brand-700 transition-colors"
-          >
-            ← Return to Prototype Overview & UI Kit Showcase
-          </Link>
-        </div>
       </div>
     </main>
   );

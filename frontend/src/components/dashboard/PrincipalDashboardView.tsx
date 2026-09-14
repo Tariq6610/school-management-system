@@ -105,6 +105,11 @@ export function PrincipalDashboardView({
               Campus Attendance
             </Button>
           </Link>
+          <Link href="/principal/teachers">
+            <Button variant="secondary" size="sm">
+              Manage Teachers
+            </Button>
+          </Link>
           <Link href="/principal/announcements">
             <Button variant="secondary" size="sm">
               Post Announcement
@@ -328,10 +333,15 @@ export function PrincipalDashboardView({
               </div>
 
               <div className="grid grid-cols-2 gap-3 pt-3 border-t border-gray-100 text-xs">
-                <div className="p-3 rounded-lg bg-gray-50">
+                <Link
+                  href="/principal/teachers"
+                  className="p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors group"
+                >
                   <span className="text-gray-500 block">Campus Faculty</span>
-                  <span className="text-lg font-bold text-gray-900">{totalTeachers} Teachers</span>
-                </div>
+                  <span className="text-lg font-bold text-gray-900 group-hover:text-brand-700">
+                    {totalTeachers} Teachers →
+                  </span>
+                </Link>
                 <div className="p-3 rounded-lg bg-gray-50">
                   <span className="text-gray-500 block">Campus Staff Ratio</span>
                   <span className="text-lg font-bold text-gray-900">{studentTeacherRatio} : 1</span>
