@@ -98,6 +98,12 @@ export function SuperAdminDashboardView({
             <span>📊</span> Compare Campuses
           </Link>
           <Link
+            href="/super-admin/schools"
+            className="px-3 py-2 rounded-xl bg-white hover:bg-neutral-50 text-neutral-800 text-xs font-semibold border border-neutral-200 shadow-2xs transition-colors"
+          >
+            View Schools
+          </Link>
+          <Link
             href="/super-admin/campuses"
             className="px-3 py-2 rounded-xl bg-white hover:bg-neutral-50 text-neutral-800 text-xs font-semibold border border-neutral-200 shadow-2xs transition-colors"
           >
