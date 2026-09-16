@@ -139,7 +139,7 @@ function LessonForm({ initialLesson, onClose, onSave }: LessonFormProps) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="e.g. Chapter 3: Newton's Laws of Motion & Practice"
-            className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-600/30 focus:border-purple-600 transition-colors"
+            className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary-600/30 focus:border-primary-600 transition-colors"
             required
             autoFocus
           />
@@ -157,12 +157,12 @@ function LessonForm({ initialLesson, onClose, onSave }: LessonFormProps) {
               onClick={() => setContentType('video')}
               className={`p-3 rounded-xl border text-left flex flex-col items-start gap-1.5 transition-all ${
                 contentType === 'video'
-                  ? 'border-purple-600 bg-purple-50/70 text-purple-900 shadow-xs ring-2 ring-purple-600/20'
+                  ? 'border-primary-600 bg-primary-50/70 text-primary-900 shadow-xs ring-2 ring-primary-600/20'
                   : 'border-neutral-200 hover:border-neutral-300 bg-white text-neutral-700'
               }`}
             >
               <div className="flex items-center gap-2">
-                <span className="p-1.5 rounded-lg bg-purple-100 text-purple-700">
+                <span className="p-1.5 rounded-lg bg-primary-100 text-primary-700">
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path
                       strokeLinecap="round"
@@ -239,10 +239,10 @@ function LessonForm({ initialLesson, onClose, onSave }: LessonFormProps) {
 
         {/* Content-Type Specific Details */}
         {contentType === 'video' && (
-          <div className="space-y-4 p-4 rounded-xl bg-purple-50/50 border border-purple-100">
-            <div className="flex items-center gap-2 text-xs font-bold text-purple-900">
+          <div className="space-y-4 p-4 rounded-xl bg-primary-50/50 border border-primary-100">
+            <div className="flex items-center gap-2 text-xs font-bold text-primary-900">
               <span>Video Configuration</span>
-              <span className="text-[10px] font-normal text-purple-700 bg-purple-100/80 px-2 py-0.5 rounded-full">
+              <span className="text-[10px] font-normal text-primary-700 bg-primary-100/80 px-2 py-0.5 rounded-full">
                 Player Placeholder
               </span>
             </div>
@@ -260,7 +260,7 @@ function LessonForm({ initialLesson, onClose, onSave }: LessonFormProps) {
                   onChange={(e) =>
                     setDurationMinutes(e.target.value === '' ? '' : parseInt(e.target.value, 10))
                   }
-                  className="w-full text-sm px-3.5 py-2 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-600/30 focus:border-purple-600 transition-colors bg-white"
+                  className="w-full text-sm px-3.5 py-2 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary-600/30 focus:border-primary-600 transition-colors bg-white"
                   required
                 />
               </div>
@@ -274,7 +274,7 @@ function LessonForm({ initialLesson, onClose, onSave }: LessonFormProps) {
                   value={contentUrl}
                   onChange={(e) => setContentUrl(e.target.value)}
                   placeholder="https://example.com/lecture-video.mp4"
-                  className="w-full text-sm px-3.5 py-2 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-600/30 focus:border-purple-600 transition-colors bg-white font-mono text-xs"
+                  className="w-full text-sm px-3.5 py-2 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary-600/30 focus:border-primary-600 transition-colors bg-white font-mono text-xs"
                 />
               </div>
             </div>
@@ -288,7 +288,7 @@ function LessonForm({ initialLesson, onClose, onSave }: LessonFormProps) {
                 onChange={(e) => setBody(e.target.value)}
                 rows={3}
                 placeholder="Key concepts covered in this video lecture and suggested timestamps..."
-                className="w-full text-sm px-3.5 py-2 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-600/30 focus:border-purple-600 transition-colors bg-white"
+                className="w-full text-sm px-3.5 py-2 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary-600/30 focus:border-primary-600 transition-colors bg-white"
               />
             </div>
           </div>

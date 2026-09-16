@@ -23,8 +23,10 @@ export function FontSwitcher() {
 
   // Load font from local storage on mount
   useEffect(() => {
+    // eslint-disable-next-line no-restricted-globals
     const saved = localStorage.getItem('site-font') as FontId | null;
     if (saved && fonts.some(f => f.id === saved)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setActiveFont(saved);
       document.documentElement.setAttribute('data-font', saved);
     }
@@ -56,6 +58,7 @@ export function FontSwitcher() {
 
   const handleSelectFont = (fontId: FontId) => {
     setActiveFont(fontId);
+    // eslint-disable-next-line no-restricted-globals
     localStorage.setItem('site-font', fontId);
     document.documentElement.setAttribute('data-font', fontId);
     setIsOpen(false);

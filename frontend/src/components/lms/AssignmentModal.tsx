@@ -15,6 +15,7 @@ export interface AssignmentModalProps {
     maxMarks: number;
     lessonId?: string;
     submissionType: 'online' | 'offline';
+    assignmentType: 'homework' | 'quiz' | 'test' | 'activity';
     courseId?: string;
   }) => Promise<void>;
   initialAssignment?: Assignment | null;
@@ -64,6 +65,7 @@ interface AssignmentFormProps {
     maxMarks: number;
     lessonId?: string;
     submissionType: 'online' | 'offline';
+    assignmentType: 'homework' | 'quiz' | 'test' | 'activity';
     courseId?: string;
   }) => Promise<void>;
 }
@@ -97,6 +99,7 @@ function AssignmentForm({
   const [maxMarks, setMaxMarks] = useState<number | ''>(initialAssignment?.maxMarks ?? 100);
   const [lessonId, setLessonId] = useState<string>(initialAssignment?.lessonId || '');
   const [submissionType, setSubmissionType] = useState<'online' | 'offline'>(initialAssignment?.submissionType || 'online');
+  const [assignmentType, setAssignmentType] = useState<'homework' | 'quiz' | 'test' | 'activity'>(initialAssignment?.assignmentType || 'homework');
   const [courseId, setCourseId] = useState<string>(initialAssignment?.courseId || (courses?.[0]?.id ?? ''));
 
   const [error, setError] = useState<string | null>(null);
@@ -135,6 +138,7 @@ function AssignmentForm({
         maxMarks: Number(maxMarks),
         lessonId: lessonId.trim() || undefined,
         submissionType,
+        assignmentType,
         courseId: courses ? courseId : undefined,
       });
       onClose();
@@ -176,7 +180,7 @@ function AssignmentForm({
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="e.g. Problem Set 2: Kinematics & Free Fall Dynamics"
-          className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-600/30 focus:border-purple-600 transition-colors"
+          className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary-600/30 focus:border-primary-600 transition-colors"
           required
           autoFocus
         />
@@ -191,7 +195,7 @@ function AssignmentForm({
           <select
             value={courseId}
             onChange={(e) => setCourseId(e.target.value)}
-            className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-600/30 focus:border-purple-600 transition-colors bg-white"
+            className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary-600/30 focus:border-primary-600 transition-colors bg-white"
             required
             disabled={!!initialAssignment}
           >
@@ -218,7 +222,7 @@ function AssignmentForm({
         <select
           value={lessonId}
           onChange={(e) => setLessonId(e.target.value)}
-          className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-600/30 focus:border-purple-600 transition-colors bg-white"
+          className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary-600/30 focus:border-primary-600 transition-colors bg-white"
         >
           <option value="">No linked lesson (Course-wide)</option>
           {lessons.filter(l => !courses || l.courseId === courseId).map((lesson, idx) => (
@@ -229,6 +233,32 @@ function AssignmentForm({
         </select>
         <p className="text-[11px] text-neutral-500 mt-1.5">
           Attach this task to a specific lesson or leave unlinked as a broad course milestone.
+        </p>
+      </div>
+
+      {/* Assessment Type */}
+      <div>
+        <label className="block text-xs font-semibold text-neutral-800 mb-1">
+          Assessment Type <span className="text-rose-600">*</span>
+        </label>
+        <select
+          value={assignmentType}
+          onChange={(e) => {
+            const type = e.target.value as 'homework' | 'quiz' | 'test' | 'activity';
+            setAssignmentType(type);
+            if (type === 'test' || type === 'quiz') {
+              setSubmissionType('offline');
+            }
+          }}
+          className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary-600/30 focus:border-primary-600 transition-colors bg-white"
+        >
+          <option value="homework">Homework / Standard Assignment</option>
+          <option value="quiz">Quiz (In-class)</option>
+          <option value="test">Test / Exam (In-class)</option>
+          <option value="activity">Class Activity</option>
+        </select>
+        <p className="text-[11px] text-neutral-500 mt-1.5">
+          Tests and quizzes default to offline submissions. Students can see these in their dashboards to prepare in advance.
         </p>
       </div>
 
@@ -245,7 +275,7 @@ function AssignmentForm({
               value="online"
               checked={submissionType === 'online'}
               onChange={() => setSubmissionType('online')}
-              className="w-4 h-4 text-purple-600 border-neutral-300 focus:ring-purple-600"
+              className="w-4 h-4 text-primary-600 border-neutral-300 focus:ring-primary-600"
             />
             <span>Online Submission (Soft Copy)</span>
           </label>
@@ -256,7 +286,7 @@ function AssignmentForm({
               value="offline"
               checked={submissionType === 'offline'}
               onChange={() => setSubmissionType('offline')}
-              className="w-4 h-4 text-purple-600 border-neutral-300 focus:ring-purple-600"
+              className="w-4 h-4 text-primary-600 border-neutral-300 focus:ring-primary-600"
             />
             <span>Offline (Physical Copy / Classwork)</span>
           </label>
@@ -277,7 +307,7 @@ function AssignmentForm({
             type="datetime-local"
             value={deadline}
             onChange={(e) => setDeadline(e.target.value)}
-            className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-600/30 focus:border-purple-600 transition-colors bg-white font-mono text-xs"
+            className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary-600/30 focus:border-primary-600 transition-colors bg-white font-mono text-xs"
             required
           />
         </div>
@@ -297,7 +327,7 @@ function AssignmentForm({
                 setMaxMarks(e.target.value === '' ? '' : parseInt(e.target.value, 10))
               }
               placeholder="100"
-              className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-600/30 focus:border-purple-600 transition-colors bg-white font-mono text-xs"
+              className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary-600/30 focus:border-primary-600 transition-colors bg-white font-mono text-xs"
               required
             />
             <span className="absolute right-3.5 top-2.5 text-xs text-neutral-500 pointer-events-none">
@@ -317,7 +347,7 @@ function AssignmentForm({
           onChange={(e) => setInstructions(e.target.value)}
           rows={4}
           placeholder="Provide instructions, required deliverables, rubric criteria, or reference links for students..."
-          className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-600/30 focus:border-purple-600 transition-colors bg-white leading-relaxed"
+          className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary-600/30 focus:border-primary-600 transition-colors bg-white leading-relaxed"
         />
       </div>
 

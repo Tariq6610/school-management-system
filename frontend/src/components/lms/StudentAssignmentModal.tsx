@@ -146,7 +146,7 @@ function StudentAssignmentForm({
           <div className="flex flex-wrap items-center gap-2">
             {/* Optional Lesson Badge */}
             {assignment.lessonId ? (
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-purple-50 text-purple-700 border border-purple-200">
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-primary-50 text-primary-700 border border-primary-200">
                 <span>Unit:</span>
                 <span>{details?.lessonTitle || 'Curriculum Lesson'}</span>
               </span>
@@ -228,17 +228,17 @@ function StudentAssignmentForm({
 
       {/* Existing Graded Feedback Banner */}
       {existingSubmission && existingSubmission.marksObtained !== undefined && (
-        <div className="p-4 rounded-2xl bg-purple-50/70 border border-purple-200 space-y-2">
+        <div className="p-4 rounded-2xl bg-primary-50/70 border border-primary-200 space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-purple-900 uppercase tracking-wider">
+            <span className="text-xs font-bold text-primary-900 uppercase tracking-wider">
               Teacher Evaluation
             </span>
-            <span className="text-sm font-extrabold text-purple-900 bg-white px-3 py-0.5 rounded-xl border border-purple-200 shadow-2xs font-mono">
+            <span className="text-sm font-extrabold text-primary-900 bg-white px-3 py-0.5 rounded-xl border border-primary-200 shadow-2xs font-mono">
               {existingSubmission.marksObtained} / {assignment.maxMarks} pts
             </span>
           </div>
           {existingSubmission.feedback && (
-            <p className="text-xs text-purple-800 whitespace-pre-line leading-relaxed">
+            <p className="text-xs text-primary-800 whitespace-pre-line leading-relaxed">
               &ldquo;{existingSubmission.feedback}&rdquo;
             </p>
           )}
@@ -290,8 +290,8 @@ function StudentAssignmentForm({
           {existingSubmission.fileName && (
             <div className="space-y-1 pt-1">
               <span className="text-[11px] font-bold text-neutral-700 block">Attached File:</span>
-              <div className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-purple-50 text-purple-800 border border-purple-200 text-xs font-medium">
-                <svg className="w-4 h-4 text-purple-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-primary-50 text-primary-800 border border-primary-200 text-xs font-medium">
+                <svg className="w-4 h-4 text-primary-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
                 </svg>
                 <span className="font-mono">{existingSubmission.fileName}</span>
@@ -343,7 +343,7 @@ function StudentAssignmentForm({
               onChange={(e) => setBody(e.target.value)}
               rows={5}
               placeholder="Type or paste your complete solution, explanations, calculations, or answer notes here..."
-              className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-600/30 focus:border-purple-600 transition-colors bg-white font-mono text-xs leading-relaxed"
+              className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary-600/30 focus:border-primary-600 transition-colors bg-white font-mono text-xs leading-relaxed"
             />
           </div>
 
@@ -362,7 +362,7 @@ function StudentAssignmentForm({
                 value={fileName}
                 onChange={(e) => setFileName(e.target.value)}
                 placeholder="e.g. physics_lab_report_final.pdf"
-                className="w-full text-sm px-3.5 py-2 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-purple-600/30 focus:border-purple-600 transition-colors bg-white font-mono text-xs"
+                className="w-full text-sm px-3.5 py-2 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary-600/30 focus:border-primary-600 transition-colors bg-white font-mono text-xs"
               />
               {fileName && (
                 <button

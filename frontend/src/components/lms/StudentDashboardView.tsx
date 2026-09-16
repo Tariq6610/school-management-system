@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Assignment, Scope, Student, StudentDashboardData } from '@/types';
 import { useSession } from '@/components/providers/SessionProvider';
 import { getStudentDashboardData } from '@/lib/repositories/studentDashboard';
-import { getStudent } from '@/lib/repositories/students';
+import { getStudent, getStudentByUserId } from '@/lib/repositories/students';
 import { AnnouncementFeedView } from '@/components/communication';
 import { NavIcon } from '@/components/shell/NavIcon';
 import { StudentAssignmentModal } from './StudentAssignmentModal';
@@ -38,9 +38,14 @@ export function StudentDashboardView({
     try {
       setLoading(true);
       const scope: Scope = { schoolId, campusId };
+      let resolvedId = activeStudentId;
+      if (resolvedId.startsWith('usr_')) {
+        const studentRec = await getStudentByUserId(resolvedId);
+        if (studentRec) resolvedId = studentRec.id;
+      }
       const [res, stu] = await Promise.all([
-        getStudentDashboardData(activeStudentId, scope),
-        getStudent(activeStudentId),
+        getStudentDashboardData(resolvedId, scope),
+        getStudent(resolvedId),
       ]);
       setData(res);
       setStudent(stu);
@@ -104,7 +109,7 @@ export function StudentDashboardView({
   return (
     <div className="space-y-8" data-testid="student-dashboard-view">
       {/* Hero Welcome Banner */}
-      <div className="rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-purple-900 via-indigo-900 to-neutral-900 text-white shadow-sm relative overflow-hidden">
+      <div className="rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-primary-900 via-indigo-900 to-neutral-900 text-white shadow-sm relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl pointer-events-none" />
         <div className="relative z-10 space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
@@ -112,7 +117,7 @@ export function StudentDashboardView({
               <span className="text-xs font-semibold px-3 py-1 rounded-full bg-white/20 text-white backdrop-blur-xs font-mono">
                 {currentDateFormatted}
               </span>
-              <span className="text-xs font-bold px-3 py-1 rounded-full bg-purple-500/80 text-white backdrop-blur-xs">
+              <span className="text-xs font-bold px-3 py-1 rounded-full bg-primary-500/80 text-white backdrop-blur-xs">
                 {dashboardData.className}
               </span>
             </div>
@@ -152,7 +157,7 @@ export function StudentDashboardView({
             </p>
             <p className="text-xs text-neutral-500">Upcoming lessons & assignments</p>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0 border border-purple-100">
+          <div className="w-12 h-12 rounded-2xl bg-primary-50 text-primary-600 flex items-center justify-center shrink-0 border border-primary-100">
             <NavIcon name="edit" className="w-5 h-5" />
           </div>
         </div>
@@ -209,7 +214,7 @@ export function StudentDashboardView({
               <h2 className="text-lg sm:text-xl font-bold text-neutral-900">
                 Today&apos;s Tasks
               </h2>
-              <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-800 font-mono">
+              <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-primary-100 text-primary-800 font-mono">
                 Grouped by Subject
               </span>
             </div>
@@ -245,7 +250,7 @@ export function StudentDashboardView({
                   onClick={() => setSelectedSubjectFilter(group.subjectId)}
                   className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer ${
                     selectedSubjectFilter === group.subjectId
-                      ? 'bg-purple-700 text-white shadow-xs'
+                      ? 'bg-primary-700 text-white shadow-xs'
                       : 'bg-white border border-neutral-200 text-neutral-700 hover:bg-neutral-50'
                   }`}
                   data-testid={`filter-pill-${group.subjectId}`}
@@ -287,8 +292,7 @@ export function StudentDashboardView({
               >
                 {/* Subject Group Header */}
                 <div
-                  className="p-4 sm:p-5 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 relative overflow-hidden"
-                  style={{ backgroundColor: group.coverColor || '#4B2FA8' }}
+                  className="bg-primary-600 p-4 sm:p-5 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 relative overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent pointer-events-none" />
 
@@ -332,7 +336,7 @@ export function StudentDashboardView({
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <h4 className="text-xs font-bold uppercase tracking-wider text-neutral-600 flex items-center gap-1.5">
-                        <svg className="w-4 h-4 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-4 h-4 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                         </svg>
                         <span>Next Lessons to Watch / Read ({group.nextLessons.length})</span>
@@ -349,7 +353,7 @@ export function StudentDashboardView({
                         {group.nextLessons.slice(0, 4).map((lesson) => (
                           <div
                             key={lesson.id}
-                            className="p-3.5 rounded-xl border border-neutral-200/90 hover:border-purple-300 hover:bg-purple-50/30 transition-all flex flex-col justify-between gap-3 group"
+                            className="p-3.5 rounded-xl border border-neutral-200/90 hover:border-primary-300 hover:bg-primary-50/30 transition-all flex flex-col justify-between gap-3 group"
                             data-testid={`lesson-task-${lesson.id}`}
                           >
                             <div className="space-y-1.5">
@@ -359,7 +363,7 @@ export function StudentDashboardView({
                                 </span>
 
                                 {lesson.contentType === 'video' && (
-                                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-50 text-purple-700 border border-purple-200/60">
+                                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-primary-50 text-primary-700 border border-primary-200/60">
                                     {`Video • ${lesson.durationMinutes ?? 30}m`}
                                   </span>
                                 )}
@@ -375,7 +379,7 @@ export function StudentDashboardView({
                                 )}
                               </div>
 
-                              <h5 className="text-xs font-bold text-neutral-900 group-hover:text-purple-700 transition-colors line-clamp-1">
+                              <h5 className="text-xs font-bold text-neutral-900 group-hover:text-primary-700 transition-colors line-clamp-1">
                                 {lesson.title}
                               </h5>
                               <p className="text-[11px] text-neutral-500 line-clamp-1">
@@ -386,7 +390,7 @@ export function StudentDashboardView({
                             <div className="pt-2 border-t border-neutral-100 flex items-center justify-end">
                               <Link
                                 href={`/student/courses/${group.courseId}?lessonId=${lesson.id}`}
-                                className="inline-flex items-center gap-1 text-xs font-bold text-purple-700 hover:text-purple-900"
+                                className="inline-flex items-center gap-1 text-xs font-bold text-primary-700 hover:text-primary-900"
                               >
                                 <span>Start Lesson</span>
                                 <span>&rarr;</span>
@@ -405,7 +409,7 @@ export function StudentDashboardView({
                         <svg className="w-4 h-4 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                         </svg>
-                        <span>Assignments Due ({group.pendingAssignments.length})</span>
+                        <span>Assignments & Tests Due ({group.pendingAssignments.length})</span>
                       </h4>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -423,6 +427,16 @@ export function StudentDashboardView({
                                 <span className="text-[10px] font-mono font-bold text-neutral-600 bg-white px-2 py-0.5 rounded border border-neutral-200">
                                   {assignment.maxMarks} Marks
                                 </span>
+                                {assignment.assignmentType === 'test' && (
+                                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-800 uppercase tracking-wider">
+                                    Test
+                                  </span>
+                                )}
+                                {assignment.assignmentType === 'quiz' && (
+                                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 uppercase tracking-wider">
+                                    Quiz
+                                  </span>
+                                )}
                               </div>
                               <h5 className="text-xs font-bold text-neutral-900">
                                 {assignment.title}
@@ -447,7 +461,7 @@ export function StudentDashboardView({
                                 }}
                                 className="inline-flex items-center gap-1 text-xs font-bold text-amber-900 bg-amber-200/80 hover:bg-amber-300 px-2.5 py-1 rounded-lg transition-colors cursor-pointer"
                               >
-                                <span>Submit Work</span>
+                                <span>{assignment.submissionType === 'offline' ? 'View Details' : 'Submit Work'}</span>
                                 <span>&rarr;</span>
                               </button>
                             </div>
@@ -476,7 +490,7 @@ export function StudentDashboardView({
           </div>
           <Link
             href="/student/courses"
-            className="text-xs font-bold text-purple-700 hover:text-purple-900"
+            className="text-xs font-bold text-primary-700 hover:text-primary-900"
           >
             View Full Catalog &rarr;
           </Link>
@@ -491,8 +505,7 @@ export function StudentDashboardView({
               <div>
                 {/* Course Cover Banner */}
                 <div
-                  className="h-24 p-4 flex flex-col justify-between relative overflow-hidden"
-                  style={{ backgroundColor: course.coverColor }}
+                  className="bg-primary-600 h-24 p-4 flex flex-col justify-between relative overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                   <div className="flex items-center justify-between relative z-10">
@@ -514,7 +527,7 @@ export function StudentDashboardView({
                 {/* Course Details & Progress */}
                 <div className="p-5 space-y-3">
                   <div>
-                    <h3 className="text-sm font-bold text-neutral-900 group-hover:text-purple-700 transition-colors line-clamp-1">
+                    <h3 className="text-sm font-bold text-neutral-900 group-hover:text-primary-700 transition-colors line-clamp-1">
                       {course.title}
                     </h3>
                     <p className="text-xs text-neutral-500 mt-1 line-clamp-2 min-h-[32px]">
@@ -543,7 +556,7 @@ export function StudentDashboardView({
                         className={`h-full transition-all duration-300 ${
                           course.progress.percentage === 100
                             ? 'bg-emerald-500'
-                            : 'bg-purple-600'
+                            : 'bg-primary-600'
                         }`}
                         style={{ width: `${course.progress.percentage}%` }}
                       />
@@ -559,7 +572,7 @@ export function StudentDashboardView({
                 </span>
                 <Link
                   href={`/student/courses/${course.id}`}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-xs font-bold transition-colors shadow-xs"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary-600 hover:bg-primary-700 text-white rounded-lg text-xs font-bold transition-colors shadow-xs"
                 >
                   <span>Open Course</span>
                   <span className="text-sm leading-none">&rarr;</span>

@@ -49,7 +49,9 @@ export function TeacherGradingModal({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title={`Review & Grade: ${assignment.title}`}
+      title={`Review & Grade: ${assignment.title} ${
+        assignment.assignmentType === 'test' ? '(Test)' : assignment.assignmentType === 'quiz' ? '(Quiz)' : ''
+      }`}
       description={`Max Marks: ${assignment.maxMarks} pts • Deadline: ${formatDateTime(assignment.deadline)}`}
       size="lg"
       className="max-w-4xl"
@@ -359,8 +361,6 @@ function StudentEvaluationPane({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  // If student has not submitted (e.g., offline assignment or missing)
-  const isMissing = !submission;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

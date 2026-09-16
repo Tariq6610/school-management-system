@@ -69,7 +69,7 @@ export default function StudentCourseLessonViewerPage({ params }: PageProps) {
               <div className="pt-2">
                 <Link
                   href="/student/courses"
-                  className="text-xs font-bold text-purple-700 hover:text-purple-900"
+                  className="text-xs font-bold text-primary-700 hover:text-primary-900"
                 >
                   Return to Course Catalog &rarr;
                 </Link>

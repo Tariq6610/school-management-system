@@ -70,7 +70,7 @@ export function StudentResultsView({ mode, initialStudentId }: StudentResultsVie
             setActiveUser(matched.user);
           }
         } else if (mode === 'student' && session?.userId) {
-          const st = await getStudent(initialStudentId || session.userId);
+          const st = await getStudent(initialStudentId || session.activeChildId || session.userId);
           if (ignore) return;
           if (st) {
             setActiveStudent(st);

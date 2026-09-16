@@ -43,7 +43,15 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
         if (storedSession) {
           const userRecord = await getUser(storedSession.userId);
           if (!active) return;
-          setSessionState(storedSession);
+          
+          let activeChildId = storedSession.activeChildId;
+          if (userRecord?.role === 'student' && !activeChildId) {
+            const { getStudentByUserId } = await import('@/lib/repositories/students');
+            const studentRecord = await getStudentByUserId(userRecord.id);
+            if (studentRecord) activeChildId = studentRecord.id;
+          }
+
+          setSessionState({ ...storedSession, activeChildId });
           setUserState(userRecord);
         } else {
           setSessionState(null);

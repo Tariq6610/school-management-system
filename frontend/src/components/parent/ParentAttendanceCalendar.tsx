@@ -72,7 +72,7 @@ export function ParentAttendanceCalendar({
           }
         } else if (session.role === 'student') {
           // If logged in as student, self is the child
-          const stu = await getStudent(session.userId);
+          const stu = await getStudent(session.activeChildId || session.userId);
           if (isMounted && stu) {
             setChildren([{ student: stu, name: session.userId }]);
           }
@@ -91,7 +91,7 @@ export function ParentAttendanceCalendar({
     return () => {
       isMounted = false;
     };
-  }, [session?.userId, session?.role, initialStudentId]);
+  }, [session?.userId, session?.role, session?.activeChildId, initialStudentId]);
 
   // Load monthly attendance data
   useEffect(() => {

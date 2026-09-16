@@ -17,6 +17,7 @@ import {
   toggleLessonCompletion,
 } from '@/lib/repositories/lessonCompletions';
 import { getStudentCourseAssignments } from '@/lib/repositories/submissions';
+import { getStudentByUserId } from '@/lib/repositories/students';
 import { Button } from '@/components/ui/Button';
 import { useToast } from '@/components/ui/Toast';
 import { NavIcon } from '@/components/shell/NavIcon';
@@ -74,7 +75,12 @@ export function StudentCourseView({
   const loadAssignments = useCallback(async () => {
     try {
       const scope: Scope = { schoolId, campusId };
-      const data = await getStudentCourseAssignments(scope, course.id, activeStudentId);
+      let resolvedId = activeStudentId;
+      if (resolvedId.startsWith('usr_')) {
+        const studentRec = await getStudentByUserId(resolvedId);
+        if (studentRec) resolvedId = studentRec.id;
+      }
+      const data = await getStudentCourseAssignments(scope, course.id, resolvedId);
       setAssignments(data);
     } catch (err) {
       console.error('Failed to load student course assignments:', err);
@@ -100,7 +106,12 @@ export function StudentCourseView({
   const loadCompletions = useCallback(async () => {
     try {
       const scope: Scope = { schoolId, campusId };
-      const comp = await getLessonCompletions(scope, activeStudentId, course.id);
+      let resolvedId = activeStudentId;
+      if (resolvedId.startsWith('usr_')) {
+        const studentRec = await getStudentByUserId(resolvedId);
+        if (studentRec) resolvedId = studentRec.id;
+      }
+      const comp = await getLessonCompletions(scope, resolvedId, course.id);
       setCompletions(comp);
     } catch (err) {
       console.error('Failed to load lesson completions:', err);
@@ -221,8 +232,7 @@ export function StudentCourseView({
     <div className="space-y-6">
       {/* Course Hero Header */}
       <div
-        className="rounded-2xl p-6 sm:p-7 text-white relative overflow-hidden shadow-sm"
-        style={{ backgroundColor: course.coverColor || '#4B2FA8' }}
+        className="bg-primary-600 rounded-2xl p-6 sm:p-7 text-white relative overflow-hidden shadow-sm"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent pointer-events-none" />
 
@@ -287,7 +297,7 @@ export function StudentCourseView({
           onClick={() => setActiveTab('lessons')}
           className={`px-4 py-2.5 text-xs font-bold border-b-2 transition-all flex items-center gap-2 cursor-pointer ${
             activeTab === 'lessons'
-              ? 'border-purple-600 text-purple-700'
+              ? 'border-primary-600 text-primary-700'
               : 'border-transparent text-neutral-500 hover:text-neutral-800'
           }`}
         >
@@ -310,7 +320,7 @@ export function StudentCourseView({
           onClick={() => setActiveTab('assignments')}
           className={`px-4 py-2.5 text-xs font-bold border-b-2 transition-all flex items-center gap-2 cursor-pointer ${
             activeTab === 'assignments'
-              ? 'border-purple-600 text-purple-700'
+              ? 'border-primary-600 text-primary-700'
               : 'border-transparent text-neutral-500 hover:text-neutral-800'
           }`}
         >
@@ -322,7 +332,7 @@ export function StudentCourseView({
               d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
             />
           </svg>
-          <span>Course Assignments</span>
+          <span>Assignments & Tests</span>
           <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-amber-100 text-amber-800">
             {assignments.length}
           </span>
@@ -349,7 +359,7 @@ export function StudentCourseView({
           <div className="pt-2">
             <Link
               href="/student/courses"
-              className="text-xs font-bold text-purple-700 hover:text-purple-900"
+              className="text-xs font-bold text-primary-700 hover:text-primary-900"
             >
               &larr; Return to My Courses
             </Link>
@@ -365,11 +375,11 @@ export function StudentCourseView({
                 <div className="p-5 border-b border-neutral-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-mono font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md border border-purple-100">
+                      <span className="text-xs font-mono font-bold text-primary-700 bg-primary-50 px-2 py-0.5 rounded-md border border-primary-100">
                         Lesson {activeIndex + 1} of {lessons.length}
                       </span>
                       {activeLesson.contentType === 'video' && (
-                        <span className="text-xs font-semibold text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-200/60 flex items-center gap-1">
+                        <span className="text-xs font-semibold text-primary-700 bg-primary-50 px-2.5 py-0.5 rounded-full border border-primary-200/60 flex items-center gap-1">
                           <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                           </svg>
@@ -408,7 +418,7 @@ export function StudentCourseView({
                       className={`text-xs font-bold transition-all ${
                         isCurrentLessonCompleted
                           ? 'bg-emerald-50 text-emerald-700 border-emerald-300 hover:bg-emerald-100 ring-1 ring-emerald-400/30'
-                          : 'bg-purple-600 hover:bg-purple-700 text-white'
+                          : 'bg-primary-600 hover:bg-primary-700 text-white'
                       }`}
                       data-testid="mark-complete-button"
                       title={isCurrentLessonCompleted ? 'Click to mark incomplete' : 'Mark lesson as complete'}
@@ -479,7 +489,7 @@ export function StudentCourseView({
                           <button
                             type="button"
                             onClick={() => setIsPlaying(!isPlaying)}
-                            className="w-16 h-16 rounded-full bg-purple-600 hover:bg-purple-500 text-white flex items-center justify-center shadow-lg transform hover:scale-105 active:scale-95 transition-all cursor-pointer backdrop-blur-sm border border-white/20"
+                            className="w-16 h-16 rounded-full bg-primary-600 hover:bg-primary-500 text-white flex items-center justify-center shadow-lg transform hover:scale-105 active:scale-95 transition-all cursor-pointer backdrop-blur-sm border border-white/20"
                             aria-label={isPlaying ? 'Pause video' : 'Play video'}
                           >
                             {isPlaying ? (
@@ -501,7 +511,7 @@ export function StudentCourseView({
                         <div className="space-y-2 z-10">
                           <div className="w-full bg-neutral-800/80 h-1.5 rounded-full overflow-hidden cursor-pointer">
                             <div
-                              className={`bg-purple-500 h-full rounded-full transition-all duration-300 ${
+                              className={`bg-primary-500 h-full rounded-full transition-all duration-300 ${
                                 isPlaying ? 'w-1/2 motion-safe:animate-pulse' : 'w-1/4'
                               }`}
                             />
@@ -513,14 +523,14 @@ export function StudentCourseView({
                         </div>
 
                         {/* Ambient glow */}
-                        <div className="absolute inset-0 bg-radial from-purple-900/30 via-transparent to-transparent pointer-events-none" />
+                        <div className="absolute inset-0 bg-radial from-primary-900/30 via-transparent to-transparent pointer-events-none" />
                       </div>
 
                       {/* Video Information & Syllabus Notes */}
                       <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200/80 space-y-2">
                         <div className="flex items-center justify-between text-xs">
                           <span className="font-bold text-neutral-800">Video Lecture Source</span>
-                          <span className="font-mono text-purple-700 bg-purple-50 px-2 py-0.5 rounded border border-purple-100 truncate max-w-xs sm:max-w-md">
+                          <span className="font-mono text-primary-700 bg-primary-50 px-2 py-0.5 rounded border border-primary-100 truncate max-w-xs sm:max-w-md">
                             {activeLesson.contentUrl || 'https://lms.academy.internal/stream/mp4-placeholder'}
                           </span>
                         </div>
@@ -638,7 +648,7 @@ export function StudentCourseView({
                     size="sm"
                     disabled={activeIndex >= lessons.length - 1}
                     onClick={handleNextLesson}
-                    className="text-xs font-semibold bg-purple-600 hover:bg-purple-700 text-white"
+                    className="text-xs font-semibold bg-primary-600 hover:bg-primary-700 text-white"
                   >
                     Next Unit &rarr;
                   </Button>
@@ -675,7 +685,7 @@ export function StudentCourseView({
                       onClick={() => handleSelectLesson(lesson.id)}
                       className={`w-full text-left p-3 rounded-xl border transition-all flex items-center justify-between gap-3 ${
                         isSelected
-                          ? 'border-purple-600 bg-purple-50/70 text-purple-950 font-semibold shadow-xs ring-1 ring-purple-600/30'
+                          ? 'border-primary-600 bg-primary-50/70 text-primary-950 font-semibold shadow-xs ring-1 ring-primary-600/30'
                           : isDone
                           ? 'border-emerald-200/80 bg-emerald-50/30 hover:bg-emerald-50/60 text-neutral-800'
                           : 'border-neutral-200/80 hover:border-neutral-300 hover:bg-neutral-50 bg-white text-neutral-700'
@@ -696,7 +706,7 @@ export function StudentCourseView({
                           <span
                             className={`w-6 h-6 rounded-lg text-xs font-mono font-bold flex items-center justify-center shrink-0 ${
                               isSelected
-                                ? 'bg-purple-600 text-white'
+                                ? 'bg-primary-600 text-white'
                                 : 'bg-neutral-100 text-neutral-600'
                             }`}
                           >
@@ -726,7 +736,7 @@ export function StudentCourseView({
                       {/* Icon */}
                       <div className="shrink-0 text-neutral-500">
                         {lesson.contentType === 'video' && (
-                          <svg className="w-4 h-4 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <svg className="w-4 h-4 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                           </svg>
                         )}
@@ -752,7 +762,7 @@ export function StudentCourseView({
               <span className="text-xs text-neutral-500 font-medium">All Enrolled Courses</span>
               <Link
                 href="/student/courses"
-                className="text-xs font-bold text-purple-700 hover:text-purple-900"
+                className="text-xs font-bold text-primary-700 hover:text-primary-900"
               >
                 Catalog &rarr;
               </Link>
@@ -767,13 +777,13 @@ export function StudentCourseView({
           <div className="bg-white border border-neutral-200 rounded-2xl p-5 shadow-xs flex items-center justify-between">
             <div>
               <h2 className="text-base font-bold text-neutral-900">
-                Course Assignments & Tasks
+                Course Assignments & Tests
               </h2>
               <p className="text-xs text-neutral-500 mt-0.5">
-                Submit your homework solutions, attachments, and track grades for {course.title}.
+                Submit your homework solutions, track grades, and prepare for upcoming tests in {course.title}.
               </p>
             </div>
-            <span className="text-xs font-bold px-3 py-1 rounded-full bg-purple-50 text-purple-700 border border-purple-100 font-mono">
+            <span className="text-xs font-bold px-3 py-1 rounded-full bg-primary-50 text-primary-700 border border-primary-100 font-mono">
               {assignments.length} {assignments.length === 1 ? 'Assignment' : 'Assignments'}
             </span>
           </div>
@@ -801,7 +811,7 @@ export function StudentCourseView({
                     <div className="space-y-2">
                       <div className="flex flex-wrap items-center justify-between gap-2">
                         {assignment.lessonId ? (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-purple-50 text-purple-700 border border-purple-200">
+                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-primary-50 text-primary-700 border border-primary-200">
                             <span>Unit:</span>
                             <span className="truncate max-w-[150px]">
                               {assignment.lessonTitle || 'Lesson'}
@@ -813,9 +823,26 @@ export function StudentCourseView({
                           </span>
                         )}
 
+                        {/* Assessment Type Badge */}
+                        {assignment.assignmentType === 'test' && (
+                          <span className="inline-flex items-center rounded-md bg-rose-50 px-2.5 py-0.5 text-[10px] font-bold text-rose-700 border border-rose-200 uppercase tracking-wide">
+                            Test
+                          </span>
+                        )}
+                        {assignment.assignmentType === 'quiz' && (
+                          <span className="inline-flex items-center rounded-md bg-amber-50 px-2.5 py-0.5 text-[10px] font-bold text-amber-700 border border-amber-200 uppercase tracking-wide">
+                            Quiz
+                          </span>
+                        )}
+                        {assignment.assignmentType === 'activity' && (
+                          <span className="inline-flex items-center rounded-md bg-blue-50 px-2.5 py-0.5 text-[10px] font-bold text-blue-700 border border-blue-200 uppercase tracking-wide">
+                            Activity
+                          </span>
+                        )}
+
                         {/* Status Badge */}
                         {assignment.status === 'graded' && (
-                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-100 text-purple-800 border border-purple-200 font-mono">
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-primary-100 text-primary-800 border border-primary-200 font-mono">
                             Graded: {assignment.submission?.marksObtained}/{assignment.maxMarks}
                           </span>
                         )}

@@ -53,6 +53,7 @@ export interface Assignment {
   deadline: string; // ISO date-time string
   maxMarks: number;
   submissionType?: 'online' | 'offline';
+  assignmentType?: 'homework' | 'quiz' | 'test' | 'activity';
 }
 
 export interface EnrichedAssignment extends Assignment {

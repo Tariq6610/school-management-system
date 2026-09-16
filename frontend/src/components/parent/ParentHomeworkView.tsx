@@ -26,9 +26,9 @@ export function ParentHomeworkView({ homework }: ParentHomeworkViewProps) {
     <div className="space-y-6">
       <div className="bg-white rounded-card shadow-xs border border-rule overflow-hidden">
         <div className="p-5 border-b border-rule bg-surface">
-          <h2 className="text-lg font-bold text-ink-900">Pending Assignments</h2>
+          <h2 className="text-lg font-bold text-ink-900">Pending Assignments & Tests</h2>
           <p className="text-sm text-secondary-meta mt-1">
-            {homework.totalPendingCount} assignment{homework.totalPendingCount !== 1 ? 's' : ''} require your child's attention.
+            {homework.totalPendingCount} assignment{homework.totalPendingCount !== 1 ? 's' : ''} require your child&apos;s attention.
           </p>
         </div>
 
@@ -49,8 +49,22 @@ export function ParentHomeworkView({ homework }: ParentHomeworkViewProps) {
               },
               {
                 key: 'title',
-                header: 'Assignment',
-                accessor: (item) => <span className="font-medium text-ink-900">{item.title}</span>,
+                header: 'Task',
+                accessor: (item) => (
+                  <div>
+                    <span className="font-medium text-ink-900">{item.title}</span>
+                    {item.assignmentType === 'test' && (
+                      <span className="ml-2 inline-flex items-center rounded-md bg-rose-50 px-2 py-1 text-xs font-medium text-rose-700 ring-1 ring-inset ring-rose-600/10 uppercase tracking-wide">
+                        Test
+                      </span>
+                    )}
+                    {item.assignmentType === 'quiz' && (
+                      <span className="ml-2 inline-flex items-center rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/10 uppercase tracking-wide">
+                        Quiz
+                      </span>
+                    )}
+                  </div>
+                ),
               },
               {
                 key: 'deadline',

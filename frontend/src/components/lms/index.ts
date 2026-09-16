@@ -11,3 +11,4 @@ export * from './StudentAssignmentModal';
 export * from './TeacherGradingModal';
 export * from './TeacherHomeworkView';
 export * from './TeacherAssignmentsView';
+export * from './StudentHomeworkView';

@@ -196,22 +196,22 @@ export async function generateMonthlyInvoice(
   const newInvoice: Omit<FeeInvoice, 'id'> = {
     schoolId,
     studentId,
+    campusId: 'cam_main',
+    feeStructureId: 'fs_mock',
     invoiceNumber: `INV-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}-${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`,
     totalAmount: 5000,
     paidAmount: 0,
     discountAmount: 0,
     dueDate: dueDate.toISOString().split('T')[0],
-    status: 'unpaid',
+    status: 'pending',
     billingMonth: currentMonthName,
     lineItems: [
       { label: 'Tuition Fee (Prototype)', amount: 5000 },
     ],
     payments: [],
-    createdAt: now.toISOString(),
-    updatedAt: now.toISOString(),
   };
 
-  const created = await createCollectionItem<FeeInvoice>(STORAGE_KEYS.FEE_INVOICES, newInvoice);
+  const created = await createCollectionItem<FeeInvoice>(STORAGE_KEYS.FEE_INVOICES, newInvoice, 'inv');
 
   return {
     success: true,

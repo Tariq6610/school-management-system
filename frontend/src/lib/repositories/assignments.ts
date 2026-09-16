@@ -67,6 +67,7 @@ export async function createAssignment(input: NewAssignment): Promise<Assignment
     maxMarks: Math.round(input.maxMarks),
     lessonId: normalizedLessonId,
     submissionType: input.submissionType || 'online',
+    assignmentType: input.assignmentType || 'homework',
   };
 
   const created = await createCollectionItem<Assignment>(STORAGE_KEYS.ASSIGNMENTS, payload, 'asn');

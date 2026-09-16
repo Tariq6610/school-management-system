@@ -116,7 +116,24 @@ export function TeacherAssignmentsView() {
               className="flex items-center justify-between gap-3 p-4 rounded-card bg-surface border border-rule hover:border-brand-600/40 transition-colors"
             >
               <div className="min-w-0">
-                <h3 className="text-body-custom font-semibold text-ink-900 truncate">{item.title}</h3>
+                <h3 className="text-body-custom font-semibold text-ink-900 truncate">
+                  {item.title}
+                  {item.assignmentType === 'test' && (
+                    <span className="ml-2 inline-flex items-center rounded-md bg-rose-50 px-2 py-0.5 text-[10px] font-bold text-rose-700 border border-rose-200 uppercase tracking-wide align-middle">
+                      Test
+                    </span>
+                  )}
+                  {item.assignmentType === 'quiz' && (
+                    <span className="ml-2 inline-flex items-center rounded-md bg-amber-50 px-2 py-0.5 text-[10px] font-bold text-amber-700 border border-amber-200 uppercase tracking-wide align-middle">
+                      Quiz
+                    </span>
+                  )}
+                  {item.assignmentType === 'activity' && (
+                    <span className="ml-2 inline-flex items-center rounded-md bg-blue-50 px-2 py-0.5 text-[10px] font-bold text-blue-700 border border-blue-200 uppercase tracking-wide align-middle">
+                      Activity
+                    </span>
+                  )}
+                </h3>
                 <p className="text-secondary-meta text-ink-500 mt-0.5 truncate">{item.courseTitle}</p>
               </div>
               <div className="flex items-center gap-4 shrink-0 text-secondary-meta">

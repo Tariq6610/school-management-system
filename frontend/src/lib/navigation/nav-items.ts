@@ -107,7 +107,7 @@ export const STUDENT_NAV: NavSection[] = [
     items: [
       { id: 'stu_dash', label: 'Dashboard', href: '/student/dashboard', iconName: 'grid', isPrimaryMobile: true },
       { id: 'stu_courses', label: 'My Courses', href: '/student/courses', iconName: 'book-open', isPrimaryMobile: true },
-      { id: 'stu_assignments', label: 'Assignments', href: '/student/assignments', iconName: 'folder', isPrimaryMobile: true },
+      { id: 'stu_homework', label: 'Homework', href: '/student/homework', iconName: 'file-text', isPrimaryMobile: true },
       { id: 'stu_results', label: 'My Results', href: '/student/results', iconName: 'award', isPrimaryMobile: true },
     ],
   },

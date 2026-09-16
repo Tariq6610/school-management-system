@@ -11,7 +11,8 @@ export default function NotFound() {
         message="The page you are looking for does not exist or you do not have permission to access it."
         retryLabel="Return Home"
         onRetry={() => {
-          window.location.href = '/';
+          // eslint-disable-next-line @next/next/no-location-assign-relative-destination
+          window.location.assign('/');
         }}
       />
     </div>

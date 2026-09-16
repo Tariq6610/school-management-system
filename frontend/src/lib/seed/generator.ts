@@ -863,14 +863,20 @@ export function generateSeedData(): SeedData {
     if (c < 10) {
       for (let a = 1; a <= 3; a++) {
         const asnId = `asn_${asnIdx++}`;
+        const typeRandom = a % 3;
+        const assignmentType = typeRandom === 0 ? 'test' : typeRandom === 1 ? 'quiz' : 'homework';
+        const titlePrefix = typeRandom === 0 ? 'Weekly Test' : typeRandom === 1 ? 'Pop Quiz' : 'Homework Assignment';
+
         assignments.push({
           id: asnId,
           schoolId,
           courseId,
-          title: `Homework Assignment ${a}: Problem Set on Chapter ${a}`,
-          instructions: 'Complete exercises 1 through 10 from the textbook. Upload your work as notes or scanned PDF.',
+          title: `${titlePrefix} ${a}: Problem Set on Chapter ${a}`,
+          instructions: typeRandom === 0 ? 'In-class physical test covering recent topics.' : 'Complete exercises 1 through 10 from the textbook. Upload your work as notes or scanned PDF.',
           deadline: `2026-09-${10 + a}T23:59:00.000Z`,
           maxMarks: 20,
+          assignmentType,
+          submissionType: typeRandom === 2 ? 'online' : 'offline',
         });
 
         // Submissions for Ahmed Khan & sample students

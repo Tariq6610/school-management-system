@@ -42,7 +42,7 @@ export function LessonContentPreview({ lesson, isOpen, onClose }: LessonContentP
 
               {/* Center Play Button Placeholder */}
               <div className="flex flex-col items-center justify-center gap-3 z-10">
-                <div className="w-16 h-16 rounded-full bg-purple-600/90 text-white flex items-center justify-center shadow-lg transform hover:scale-105 transition-transform cursor-pointer backdrop-blur-sm border border-white/20">
+                <div className="w-16 h-16 rounded-full bg-primary-600/90 text-white flex items-center justify-center shadow-lg transform hover:scale-105 transition-transform cursor-pointer backdrop-blur-sm border border-white/20">
                   <svg className="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z" />
                   </svg>
@@ -53,7 +53,7 @@ export function LessonContentPreview({ lesson, isOpen, onClose }: LessonContentP
               {/* Bottom Controls Placeholder */}
               <div className="space-y-2 z-10">
                 <div className="w-full bg-neutral-700/80 h-1.5 rounded-full overflow-hidden">
-                  <div className="bg-purple-500 h-full w-1/3 rounded-full" />
+                  <div className="bg-primary-500 h-full w-1/3 rounded-full" />
                 </div>
                 <div className="flex items-center justify-between text-[11px] text-neutral-500 font-mono">
                   <span>10:24</span>
@@ -62,14 +62,14 @@ export function LessonContentPreview({ lesson, isOpen, onClose }: LessonContentP
               </div>
 
               {/* Subtle background glow */}
-              <div className="absolute inset-0 bg-radial from-purple-900/20 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-radial from-primary-900/20 via-transparent to-transparent pointer-events-none" />
             </div>
 
             {/* Video Meta Info */}
             <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200/80 space-y-2">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-bold text-neutral-800">Source Stream / URL</span>
-                <span className="text-xs font-mono text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md border border-purple-100">
+                <span className="text-xs font-mono text-primary-700 bg-primary-50 px-2 py-0.5 rounded-md border border-primary-100">
                   {lesson.contentUrl || 'https://lms.academy.internal/stream/mp4-default'}
                 </span>
               </div>

@@ -2,6 +2,7 @@ import { Role, Session, ID } from '@/types';
 import { getUserByEmail } from '@/lib/repositories/users';
 import { getParentByUserId } from '@/lib/repositories/parents';
 import { getStudentParentsByParentId } from '@/lib/repositories/studentParents';
+import { getStudentByUserId } from '@/lib/repositories/students';
 import { getSession, setSession, clearSession } from '@/lib/repositories/session';
 
 export interface DemoAccount {
@@ -138,6 +139,11 @@ export async function signIn(email: string, password?: string): Promise<SignInRe
         // Default to first enrolled child
         activeChildId = links[0].studentId;
       }
+    }
+  } else if (user.role === 'student') {
+    const studentRecord = await getStudentByUserId(user.id);
+    if (studentRecord) {
+      activeChildId = studentRecord.id;
     }
   }
 

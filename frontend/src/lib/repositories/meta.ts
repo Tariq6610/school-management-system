@@ -1,7 +1,7 @@
 import { getItem, removeItem, setItem, STORAGE_KEYS } from '@/lib/storage';
 import { Meta } from '@/types';
 
-export const CURRENT_SCHEMA_VERSION = '1.0.0';
+export const CURRENT_SCHEMA_VERSION = '1.0.1';
 
 export async function getMeta(): Promise<Meta | null> {
   return getItem<Meta>(STORAGE_KEYS.META);

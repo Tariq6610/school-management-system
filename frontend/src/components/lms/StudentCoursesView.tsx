@@ -83,18 +83,18 @@ export function StudentCoursesView({
   return (
     <div className="space-y-6">
       {/* Top Automatic Enrolment Banner */}
-      <div className="bg-purple-50 border border-purple-200 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="bg-primary-50 border border-primary-200 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-start gap-3">
-          <div className="w-9 h-9 rounded-xl bg-purple-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+          <div className="w-9 h-9 rounded-xl bg-primary-600 text-white flex items-center justify-center shrink-0 shadow-xs">
             <NavIcon name="book-open" className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="text-sm font-bold text-purple-950">
+            <h2 className="text-sm font-bold text-primary-950">
               Automatic Class Enrollment
             </h2>
-            <p className="text-xs text-purple-800 mt-0.5">
+            <p className="text-xs text-primary-800 mt-0.5">
               You are automatically enrolled in all learning modules published for{' '}
-              <strong className="font-semibold text-purple-950 underline decoration-purple-400">
+              <strong className="font-semibold text-primary-950 underline decoration-primary-400">
                 {classNameLabel}
               </strong>
               . No course codes or invitations needed.
@@ -102,7 +102,7 @@ export function StudentCoursesView({
           </div>
         </div>
 
-        <div className="text-xs text-purple-900 font-semibold bg-white/80 border border-purple-200 px-3 py-1.5 rounded-xl shrink-0 self-start sm:self-auto">
+        <div className="text-xs text-primary-900 font-semibold bg-white/80 border border-primary-200 px-3 py-1.5 rounded-xl shrink-0 self-start sm:self-auto">
           {courses.length} {courses.length === 1 ? 'Course' : 'Courses'} Active
         </div>
       </div>
@@ -115,7 +115,7 @@ export function StudentCoursesView({
             placeholder="Search enrolled courses or subjects..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full text-xs sm:text-sm border border-neutral-300 rounded-xl py-2 px-3 pl-9 bg-white text-neutral-900 focus:outline-none focus:ring-2 focus:ring-purple-500 shadow-xs"
+            className="w-full text-xs sm:text-sm border border-neutral-300 rounded-xl py-2 px-3 pl-9 bg-white text-neutral-900 focus:outline-none focus:ring-2 focus:ring-primary-500 shadow-xs"
           />
           <svg
             className="w-4 h-4 text-neutral-500 absolute left-3 top-2.5"
@@ -160,8 +160,7 @@ export function StudentCoursesView({
               <div>
                 {/* Course Cover Banner */}
                 <div
-                  className="h-28 p-4 flex flex-col justify-between relative overflow-hidden"
-                  style={{ backgroundColor: course.coverColor }}
+                  className="bg-primary-600 h-28 p-4 flex flex-col justify-between relative overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                   <div className="flex items-center justify-between relative z-10">
@@ -183,7 +182,7 @@ export function StudentCoursesView({
                 {/* Course Details */}
                 <div className="p-5 space-y-3">
                   <div>
-                    <h3 className="text-base font-bold text-neutral-900 group-hover:text-purple-700 transition-colors line-clamp-1">
+                    <h3 className="text-base font-bold text-neutral-900 group-hover:text-primary-700 transition-colors line-clamp-1">
                       {course.title}
                     </h3>
                     <p className="text-xs text-neutral-500 mt-1 line-clamp-2 min-h-[32px]">
@@ -213,7 +212,7 @@ export function StudentCoursesView({
                           className={`h-full transition-all duration-300 ${
                             course.progress.percentage === 100
                               ? 'bg-emerald-500'
-                              : 'bg-purple-600'
+                              : 'bg-primary-600'
                           }`}
                           style={{ width: `${course.progress.percentage}%` }}
                         />
@@ -230,7 +229,7 @@ export function StudentCoursesView({
                 </span>
                 <Link
                   href={`/student/courses/${course.id}`}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-xs font-bold transition-colors shadow-xs"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary-600 hover:bg-primary-700 text-white rounded-lg text-xs font-bold transition-colors shadow-xs"
                 >
                   <span>Open Course</span>
                   <span className="text-sm leading-none">&rarr;</span>
