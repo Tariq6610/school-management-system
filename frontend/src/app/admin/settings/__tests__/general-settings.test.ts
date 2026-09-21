@@ -123,13 +123,13 @@ async function runTests() {
 
   // TEST 4: React SSR Component Rendering
   const renderedAttendanceEditor = renderWithProviders(
-    React.createElement(AttendanceSettingsEditor as unknown, { initialSettings: updatedAttendance })
+    React.createElement(AttendanceSettingsEditor as any, { initialSettings: updatedAttendance })
   );
   assert(renderedAttendanceEditor.includes('Attendance Operations'), 'Must render attendance editor heading');
   assert(renderedAttendanceEditor.includes('Daily Cutoff Time'), 'Must render cutoff input');
   
   const renderedBrandingEditor = renderWithProviders(
-    React.createElement(BrandingSettingsEditor as unknown, { initialSettings: updatedBranding })
+    React.createElement(BrandingSettingsEditor as any, { initialSettings: updatedBranding })
   );
   assert(renderedBrandingEditor.includes('Institution Branding'), 'Must render branding editor heading');
   assert(renderedBrandingEditor.includes('Institution Name'), 'Must render school name input');

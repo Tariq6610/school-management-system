@@ -35,6 +35,7 @@ export interface ParentChildHomeworkItem {
   daysRemaining: number;
   isOverdue: boolean;
   isCompleted: boolean;
+  assignmentType?: 'homework' | 'quiz' | 'test' | 'activity';
 }
 
 export interface ParentChildHomeworkPillar {
@@ -142,6 +143,7 @@ export async function getParentDashboardChildData(
         daysRemaining,
         isOverdue,
         isCompleted: false,
+        assignmentType: assignment.assignmentType,
       });
     }
   }
