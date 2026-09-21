@@ -84,15 +84,31 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen bg-canvas text-ink-900 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
+    <main className="h-screen overflow-hidden bg-canvas text-ink-900 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
       {/* Left: brand hero panel (desktop only) */}
-      <div className="hidden lg:flex relative flex-col justify-between overflow-hidden bg-brand-700 p-10 text-white">
-        <div className="pointer-events-none absolute inset-0 opacity-[0.06]" aria-hidden>
-          <div className="absolute -top-24 -right-16 h-80 w-80 rounded-full bg-white blur-3xl" />
-          <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-white blur-3xl" />
-        </div>
+      <div className="hidden lg:flex relative flex-col overflow-hidden p-10 text-white h-screen"
+        style={{ backgroundImage: 'url(/bg-image2.jpeg)', backgroundSize: 'cover', backgroundPosition: 'center 30%' }}>
 
-        <div className="relative flex items-center gap-3">
+        {/* Diagonal backdrop-blur — strong at bottom-left, fades to nothing at top-right */}
+        <div className="pointer-events-none absolute inset-0 z-0" aria-hidden
+          style={{
+            backdropFilter: 'blur(6px)',
+            WebkitBackdropFilter: 'blur(6px)',
+            maskImage: 'linear-gradient(to top right, black 0%, black 25%, rgba(0,0,0,0.5) 50%, transparent 75%)',
+            WebkitMaskImage: 'linear-gradient(to top right, black 0%, black 25%, rgba(0,0,0,0.5) 50%, transparent 75%)',
+          }} />
+
+        {/* Diagonal dark overlay — same direction, gives text contrast */}
+        <div className="pointer-events-none absolute inset-0 z-0" aria-hidden
+          style={{ background: 'linear-gradient(to top right, rgba(8,4,1,0.80) 0%, rgba(8,4,1,0.55) 35%, rgba(8,4,1,0.15) 60%, transparent 85%)' }} />
+
+        {/* Subtle top gradient for logo legibility */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-32 z-0" aria-hidden
+          style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, transparent 100%)' }} />
+
+
+        {/* Logo — top left */}
+        <div className="relative z-10 flex items-center gap-3">
           <Logo size="lg" />
           <div>
             <p className="text-xs font-medium uppercase tracking-wider text-white/70">Phase 0 Prototype</p>
@@ -100,7 +116,8 @@ export default function LoginPage() {
           </div>
         </div>
 
-        <div className="relative space-y-8 max-w-md">
+        {/* Main content — pushed to bottom with mt-auto */}
+        <div className="relative z-10 mt-auto space-y-6 max-w-md pb-10">
           <div>
             <h2 className="text-3xl font-semibold leading-tight">
               Everything your school runs on, in one portal.
@@ -113,7 +130,7 @@ export default function LoginPage() {
           <ul className="space-y-5">
             {HERO_HIGHLIGHTS.map((item) => (
               <li key={item.title} className="flex items-start gap-3">
-                <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-control bg-white/15">
+                <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-control bg-brand-600">
                   <NavIcon name={item.iconName} className="w-5 h-5 text-white" />
                 </div>
                 <div>
@@ -125,13 +142,14 @@ export default function LoginPage() {
           </ul>
         </div>
 
-        <p className="relative text-white/60 text-secondary-meta">
+        {/* Footer — bottom right */}
+        <p className="absolute bottom-10 right-10 z-10 text-white/60 text-secondary-meta text-right">
           Institutional record system prototype · offline-first
         </p>
       </div>
 
       {/* Right: open sign-in area (no boxed card — full-width, breathing room) */}
-      <div className="relative flex flex-col items-center justify-center p-5 sm:p-8 lg:p-14 overflow-hidden">
+      <div className="login-scroll relative flex flex-col items-center justify-center p-5 sm:p-8 lg:p-14 overflow-y-auto h-full">
         {/* Ambient accents (mobile / narrow layouts) */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden lg:hidden" aria-hidden>
           <div className="absolute -top-32 -left-24 h-72 w-72 rounded-full bg-brand-700/10 blur-3xl" />

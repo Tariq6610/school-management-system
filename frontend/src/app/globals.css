@@ -164,3 +164,23 @@ html[data-font="jetbrains"] {
 html[data-font="inter"] {
   --font-sans: var(--font-inter), "Inter", sans-serif;
 }
+
+/* ─── Login page: beautiful branded scrollbar (right panel only) ─── */
+.login-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(249, 115, 22, 0.35) transparent;
+}
+.login-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+.login-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.login-scroll::-webkit-scrollbar-thumb {
+  background: rgba(249, 115, 22, 0.35);
+  border-radius: 100px;
+  transition: background 0.2s ease;
+}
+.login-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(219, 101, 16, 0.70);
+}
