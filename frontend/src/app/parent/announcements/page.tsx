@@ -67,7 +67,7 @@ function ParentAnnouncementsContent() {
     'Your Child';
 
   return (
-    <div className="max-w-5xl mx-auto space-y-6">
+    <div className="max-w-7xl space-y-6">
       {/* Child Context Banner if multiple children */}
       {activeChildStudent && (
         <div className="p-3.5 bg-white rounded-2xl border border-neutral-200/80 shadow-2xs flex flex-wrap items-center justify-between gap-3 text-xs">

@@ -180,7 +180,7 @@ export function ParentAttendanceCalendar({
   const monthTitle = `${getMonthName(currentMonth)} ${currentYear}`;
 
   return (
-    <div className="flex flex-col gap-6 p-4 md:p-8 max-w-7xl mx-auto w-full">
+    <div className="flex flex-col gap-6 max-w-7xl w-full">
       {/* Child Context Banner & Switcher */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-xl border border-neutral-200 bg-white p-5 shadow-xs">
         <div>

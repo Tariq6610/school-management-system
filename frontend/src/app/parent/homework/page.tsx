@@ -89,7 +89,7 @@ function ParentHomeworkContent() {
   }
 
   return (
-    <div className="p-6 max-w-7xl mx-auto space-y-6">
+    <div className="max-w-7xl space-y-6">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-ink-900">Homework & Assignments</h1>
         <p className="text-secondary-meta text-ink-600 mt-1">

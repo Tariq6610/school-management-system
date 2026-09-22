@@ -184,7 +184,7 @@ export function StudentResultsView({ mode, initialStudentId }: StudentResultsVie
   };
 
   return (
-    <div className="student-results-container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+    <div className="student-results-container max-w-7xl space-y-6">
       {/* Header Bar */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-ink-100 pb-5">
         <div>
