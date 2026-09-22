@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { Role } from '@/types';
 import { useSession } from '@/components/providers/SessionProvider';
 import { RouteGuard } from '@/components/auth/RouteGuard';
@@ -25,10 +26,42 @@ export interface AppShellProps {
  */
 export function AppShell({ allowedRoles, pageTitle, children }: AppShellProps) {
   const { session, user } = useSession();
+  const pathname = usePathname();
   const [campusName, setCampusName] = useState<string>('Main Campus');
   const [childName, setChildName] = useState<string | undefined>(undefined);
 
   const activeRole: Role = session?.role ?? 'student';
+
+  // ── Scroll position save/restore across tab navigations ──────────────────
+  // Since AppShell remounts on every page, we manually persist scroll position
+  // per-path in sessionStorage so switching tabs feels seamless.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    // Tell browser not to auto-restore scroll (we do it ourselves)
+    history.scrollRestoration = 'manual';
+
+    const key = `__scroll__${pathname}`;
+
+    // Restore saved scroll position after content renders
+    const saved = sessionStorage.getItem(key);
+    if (saved) {
+      const y = parseInt(saved, 10);
+      // rAF ensures content is painted before we scroll
+      const raf = requestAnimationFrame(() => {
+        window.scrollTo({ top: y, behavior: 'instant' });
+      });
+      return () => {
+        cancelAnimationFrame(raf);
+        sessionStorage.setItem(key, String(window.scrollY));
+      };
+    }
+
+    return () => {
+      sessionStorage.setItem(key, String(window.scrollY));
+    };
+  }, [pathname]);
+  // ─────────────────────────────────────────────────────────────────────────
 
   // Load campus name from repository
   useEffect(() => {
