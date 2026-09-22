@@ -60,14 +60,14 @@ export function SchoolsListView() {
 
   if (loadError) {
     return (
-      <div className="max-w-5xl mx-auto p-4 sm:p-6">
+      <div className="max-w-5xl">
         <ErrorState title="Schools Could Not Be Loaded" message={loadError} onRetry={load} />
       </div>
     );
   }
 
   return (
-    <div className="max-w-5xl mx-auto p-4 sm:p-6 space-y-6">
+    <div className="max-w-5xl space-y-6">
       <div>
         <h1 className="text-page-title text-ink-900">Schools</h1>
         <p className="text-secondary-meta text-ink-600 mt-1">

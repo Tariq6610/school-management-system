@@ -135,7 +135,7 @@ export function DesignStudio() {
   const activeCampus = campuses.find((c) => c.id === activeTab);
 
   return (
-    <div className="max-w-5xl mx-auto space-y-6">
+    <div className="max-w-5xl space-y-6">
       <div>
         <h1 className="text-page-title text-ink-900">Design Studio</h1>
         <p className="text-secondary-meta text-ink-600 mt-1">

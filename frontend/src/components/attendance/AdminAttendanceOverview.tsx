@@ -186,7 +186,7 @@ export function AdminAttendanceOverview({
   }, [rows, today]);
 
   return (
-    <div className="flex flex-col gap-6 p-4 md:p-8 max-w-7xl mx-auto w-full">
+    <div className="flex flex-col gap-6 max-w-7xl w-full">
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-neutral-200 pb-5">
         <div>

@@ -86,6 +86,7 @@ export function Sidebar({
                   <li key={item.id}>
                     <Link
                       href={item.href}
+                      scroll={false}
                       className={`flex items-center gap-2.5 px-2.5 py-2 rounded-control text-sm transition-colors duration-150 ${
                         active
                           ? 'bg-primary-50 text-primary-700 font-semibold'

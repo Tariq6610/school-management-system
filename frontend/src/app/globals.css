@@ -165,7 +165,64 @@ html[data-font="inter"] {
   --font-sans: var(--font-inter), "Inter", sans-serif;
 }
 
-/* ─── Login page: beautiful branded scrollbar (right panel only) ─── */
+/* ─── Global Premium Scrollbar ─── */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-ink-200) transparent;
+}
+
+html::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: var(--color-ink-200);
+  border-radius: 100px;
+  transition: background 0.2s ease;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-400);
+}
+
+html::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Sidebar nav inner scroll — even thinner */
+nav[aria-label="Desktop Primary Navigation"] nav,
+aside nav {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-ink-100) transparent;
+}
+
+nav[aria-label="Desktop Primary Navigation"] nav::-webkit-scrollbar,
+aside nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+nav[aria-label="Desktop Primary Navigation"] nav::-webkit-scrollbar-track,
+aside nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+nav[aria-label="Desktop Primary Navigation"] nav::-webkit-scrollbar-thumb,
+aside nav::-webkit-scrollbar-thumb {
+  background: var(--color-ink-100);
+  border-radius: 100px;
+}
+
+nav[aria-label="Desktop Primary Navigation"] nav::-webkit-scrollbar-thumb:hover,
+aside nav::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-200);
+}
+
+/* ─── Login page scrollbar variant ─── */
 .login-scroll {
   scrollbar-width: thin;
   scrollbar-color: rgba(249, 115, 22, 0.35) transparent;

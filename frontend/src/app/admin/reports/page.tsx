@@ -9,7 +9,7 @@ export default function AdminReportsPage() {
   return (
     <RouteGuard allowedRoles={['school_admin', 'super_admin']}>
       <AppShell pageTitle="Reports Pack">
-        <div className="max-w-7xl mx-auto p-6 space-y-8">
+        <div className="max-w-7xl space-y-8">
           <div>
             <h1 className="text-2xl font-bold tracking-tight text-ink-900">Reports Pack</h1>
             <p className="mt-1 text-secondary-meta text-ink-600">
