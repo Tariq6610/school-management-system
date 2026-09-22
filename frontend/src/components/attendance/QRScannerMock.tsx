@@ -458,7 +458,7 @@ export function QRScannerMock({
   const scanPercentage = totalCount > 0 ? Math.round((scannedCount / totalCount) * 100) : 0;
 
   return (
-    <div className="flex flex-col gap-6 max-w-7xl mx-auto w-full p-4 md:p-6">
+    <div className="flex flex-col gap-6 max-w-7xl w-full">
       {/* 1. Header & Context Control Bar */}
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 p-5 rounded-2xl bg-white border border-neutral-200 shadow-xs">
         <div>
